@@ -15,4 +15,5 @@ public class Tajma extends JFrame{
 		 setVisible(true); 
 		 //
 		 }
+	//hhh
 }
