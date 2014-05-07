@@ -13,6 +13,7 @@ public class Tajma extends JFrame{
 		 add(helloLabel); 
 		 this.setSize(100, 100); 
 		 setVisible(true); 
-		 //
+		 //tajma 
+		 
 		 }
 }
