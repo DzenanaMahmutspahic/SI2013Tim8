@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 11, 2014 4:57:04 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Klase.Rezervacija" table="REZERVACIJA">
+        <id name="Id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="soba" class="Klase.Soba" fetch="join">
+            <column name="SOBA" />
+        </many-to-one>
+        <property name="rezervisanoOd" type="java.util.Date">
+            <column name="REZERVISANOOD" />
+        </property>
+        <property name="rezervisanoDo" type="java.util.Date">
+            <column name="REZERVISANODO" />
+        </property>
+        <property name="brojRezervacije" type="int">
+            <column name="BROJREZERVACIJE" />
+        </property>
+        <property name="potvrdjena" type="java.lang.Boolean">
+            <column name="POTVRDJENA" />
+        </property>
+        <many-to-one name="kreiraoZaposlenik" class="Klase.Zaposlenik" fetch="join">
+            <column name="KREIRAOZAPOSLENIK" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

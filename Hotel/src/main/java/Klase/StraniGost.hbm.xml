@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 11, 2014 4:57:04 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Klase.StraniGost" table="STRANIGOST">
+        <id name="Id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="drzavljanstvo" type="java.lang.String">
+            <column name="DRZAVLJANSTVO" />
+        </property>
+        <property name="vrstaPutneIsprave" type="java.lang.String">
+            <column name="VRSTAPUTNEISPRAVE" />
+        </property>
+        <property name="brojPutneIsprave" type="java.lang.String">
+            <column name="BROJPUTNEISPRAVE" />
+        </property>
+        <property name="vrstaVize" type="java.lang.String">
+            <column name="VRSTAVIZE" />
+        </property>
+        <property name="brojVize" type="java.lang.String">
+            <column name="BROJVIZE" />
+        </property>
+        <property name="datumDozvoleBoravka" type="java.util.Date">
+            <column name="DATUMDOZVOLEBORAVKA" />
+        </property>
+        <property name="datumUlaskaUBih" type="java.util.Date">
+            <column name="DATUMULASKAUBIH" />
+        </property>
+        <many-to-one name="gost" class="Klase.Gost" fetch="join">
+            <column name="GOST" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
