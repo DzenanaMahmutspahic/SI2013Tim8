@@ -53,11 +53,13 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         PlacanjeMain placanje = new PlacanjeMain();
         List<Gost> gosti = placanje.dajGoste();
         
-        DefaultListModel model = new DefaultListModel();
-        jList1.setModel(model);
-        
-        for(Gost gost : gosti){
-        	model.addElement(gost);
+        if( gosti.size() > 0 ){
+	        DefaultListModel model = new DefaultListModel();
+	        jList1.setModel(model);
+	        
+	        for(Gost gost : gosti){
+	        	model.addElement(gost);
+	        }
         }
     }
 
