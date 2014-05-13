@@ -25,7 +25,7 @@ public class Gost implements Serializable{
 	public long getId() {
 		return Id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		Id = id;
 	}
 	public int getRbrPrijave() {
@@ -47,7 +47,11 @@ public class Gost implements Serializable{
 		this.primjedba = primjedba;
 	}
 	
-	
+	public String toString(){
+		if(this.osoba!=null)
+			return this.osoba.getImePrezime();
+		return "aaa";
+	}
 	
 	
 }

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Color;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -27,7 +28,11 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
+import Hibernate.PlacanjeMain;
+import Klase.Gost;
+
 import java.awt.FlowLayout;
+import java.util.List;
 
 /**
  *
@@ -44,6 +49,16 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     	setResizable(false);
     	setTitle("Ekran za Placanje");
         initComponents();
+        
+        PlacanjeMain placanje = new PlacanjeMain();
+        List<Gost> gosti = placanje.dajGoste();
+        
+        DefaultListModel model = new DefaultListModel();
+        jList1.setModel(model);
+        
+        for(Gost gost : gosti){
+        	model.addElement(gost);
+        }
     }
 
     /**

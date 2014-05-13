@@ -12,7 +12,7 @@
             <column name="IMEPREZIME" />
         </property>
         <property name="datumRodjenja" type="java.util.Date">
-            <column name="DATUMRODJENJA" />
+            <column name="DATUMRODJENJA"/>
         </property>
         <property name="adresa" type="java.lang.String">
             <column name="ADRESA" />

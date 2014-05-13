@@ -3,6 +3,7 @@ package Klase;
 import java.io.Serializable;
 import java.util.Date;
 
+
 public class Osoba implements Serializable {
 	private long Id;
 	private String imePrezime;
