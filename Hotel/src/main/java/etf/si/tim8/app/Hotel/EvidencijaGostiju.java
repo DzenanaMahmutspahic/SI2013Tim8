@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
@@ -17,8 +19,17 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JList;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Hibernate.HibernateUtil;
+import Klase.Osoba;
+
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EvidencijaGostiju extends JFrame {
 
@@ -123,6 +134,8 @@ public class EvidencijaGostiju extends JFrame {
 		label_5.setText("Status:");
 		label_5.setBounds(20, 21, 68, 14);
 		panel.add(label_5);
+		
+	//	JButton btnUnesiGosta = new JButton("Unesi gosta");
 		
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(171, 11, 149, 30);
@@ -256,9 +269,9 @@ public class EvidencijaGostiju extends JFrame {
 		button.setBounds(225, 25, 99, 23);
 		panel_1.add(button);
 		
-		JList list = new JList();
-		list.setBounds(10, 87, 314, 313);
-		panel_1.add(list);
+		final JList listG = new JList();
+		listG.setBounds(10, 87, 314, 313);
+		panel_1.add(listG);
 		
 		JLabel lblListaGostiju = new JLabel("Lista gostiju:");
 		lblListaGostiju.setBounds(10, 62, 106, 14);
@@ -444,5 +457,161 @@ public class EvidencijaGostiju extends JFrame {
 		ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
 		JLabel pn = new JLabel(guy);
 		panel_3.add(pn);
+		
+		btnSpasiPromjene.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+				
+				
+				 if (listG.getSelectedValue() instanceof Klase.Gost)
+				 {
+					 Klase.Gost g=(Klase.Gost)listG.getSelectedValue();
+					 g.setMjestoRodjenja( textField_16.getText());
+					 Osoba o=new Osoba();
+					 o.setImePrezime(textField_16.getText());
+					 o.setAdresa(textField_16.getText());
+				//	 o.setDatumRodjenja(textField_16.getText());
+					 g.setOsoba(o);
+					 session.save(g);
+				 }
+				 else if (listG.getSelectedValue() instanceof Klase.StraniGost)
+				 {
+					 Klase.StraniGost sg=(Klase.StraniGost)listG.getSelectedValue();
+					 Klase.Gost g=new Klase.Gost();
+					 g.setMjestoRodjenja( textField_16.getText());
+					 Osoba o=new Osoba();
+					 o.setImePrezime(textField_16.getText());
+					 o.setAdresa(textField_16.getText());
+				//	 o.setDatumRodjenja(textField_16.getText());
+					 g.setOsoba(o);
+					 
+					 sg.setGost(g);
+					sg.setBrojPutneIsprave(textField_16.getText());
+					sg.setBrojVize(textField_16.getText());
+					//sg.setDatumDozvoleBoravka(textField_16.getText());
+					//sg.setDatumUlaskaUBih(textField_16.getText());
+					sg.setDrzavljanstvo(textField_16.getText());
+					sg.setVrstaPutneIsprave(textField_16.getText());
+					sg.setVrstaVize(textField_16.getText());
+					 session.save(sg);
+				 }
+			
+				 t.commit();
+				 
+				 session.close();
+				
+				
+			}
+		});
+		
+		listG.addListSelectionListener(new ListSelectionListener()
+		{
+		  public void valueChanged(ListSelectionEvent ev)
+		  {
+			 if (listG.getSelectedValue() instanceof Klase.Gost)
+			 {
+		  Klase.Gost g=(Klase.Gost)listG.getSelectedValue();
+		  textField_16.setText(g.getOsoba().getImePrezime());
+		//  textField_17.setText(g.getOsoba().getDatumRodjenja());
+		  textField_16.setText(g.getOsoba().getAdresa());
+		  textField_16.setText(g.getMjestoRodjenja());
+			 }
+			 else if (listG.getSelectedValue() instanceof Klase.StraniGost)
+			 {
+				 Klase.StraniGost sg=(Klase.StraniGost)listG.getSelectedValue();
+				  textField_16.setText(sg.getGost().getOsoba().getImePrezime());
+					//  textField_17.setText(sg.getGost().getOsoba().getDatumRodjenja());
+					  textField_16.setText(sg.getGost().getOsoba().getAdresa());
+					  textField_16.setText(sg.getGost().getMjestoRodjenja());
+				 textField_16.setText(sg.getBrojPutneIsprave());
+				 textField_16.setText(sg.getBrojVize());
+				 textField_16.setText(sg.getDrzavljanstvo());
+				 textField_16.setText(sg.getVrstaPutneIsprave());
+		//		 textField_16.setText(sg.getDatumDozvoleBoravka());
+		//		 textField_16.setText(sg.getDatumUlaskaUBih());
+				  
+			 }
+		  
+
+		  } 
+		});
+		
+		button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				Session session = HibernateUtil.getSessionFactory()
+						.openSession();
+				Transaction t = session.beginTransaction();
+
+				// if(textField_12.getText().contains(arg0))
+				//ArrayList<Klase.Gost> myList = new ArrayList<Klase.Gost>();
+				// List myList=
+				// myList=session.createCriteria(Klase.Gost.class).list();
+				// for(Klase.Gost g
+				// :session.createCriteria(Klase.Gost.class).list())
+				Query query = session.createQuery("from gosti");
+				List<Klase.Gost> gosti = query.list();
+				for (Klase.Gost g : gosti) 
+				{
+
+					if (g.getOsoba().getImePrezime()
+							.contains(textField_12.getText())) {
+					//	 listG.Add(g);
+						
+						JList<Klase.Gost> listg=new JList<Klase.Gost>();
+	//					listG.add(g);                         NE MOZE DA DODAAAAAAAAAA
+					}
+					t.commit();
+
+					session.close();
+				}
+			}
+		});
+		
+	
+		btnUnesiGosta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Session session = HibernateUtil.getSessionFactory()
+						.openSession();
+				Transaction t = session.beginTransaction();
+
+				Osoba o = new Osoba();
+				o.setAdresa(textField_2.getText());
+				// o.setDatumRodjenja(datumRodjenja);
+				o.setImePrezime(textField.getText() + " "
+						+ textField_1.getText());
+
+				Klase.Gost g = new Klase.Gost();
+				g.setOsoba(o);
+				g.setMjestoRodjenja(textField_1.getText());
+				g.setPrimjedba(textField_1.getText());
+				// g.setRbrPrijave(textField_1.getText());
+
+				if (comboBox.getSelectedItem().toString() == "Strani gost") {
+					Klase.StraniGost sg = new Klase.StraniGost();
+
+					sg.setBrojPutneIsprave(textField_7.getText());
+					sg.setBrojVize(textField_9.getText());
+					// sg.setDatumDozvoleBoravka(textField_10.getText());
+					// sg.setDatumUlaskaUBih(textField_11.getText());
+					sg.setDrzavljanstvo(textField_1.getText());
+					sg.setGost(g);
+					sg.setVrstaPutneIsprave(textField_6.getText());
+					sg.setVrstaVize(textField_8.getText());
+					session.save(sg);
+				} else {
+					session.save(g);
+				}
+
+				t.commit();
+
+				session.close();
+
+			}
+		});
+		
+		
 	}
 }
