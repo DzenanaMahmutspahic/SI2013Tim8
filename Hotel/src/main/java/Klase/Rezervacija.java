@@ -24,7 +24,7 @@ public class Rezervacija implements Serializable {
 		return soba;
 	}
 	public void setSoba(Soba soba) {
-		soba = soba;
+		this.soba = soba;
 	}
 	public Date getRezervisanoOd() {
 		return rezervisanoOd;

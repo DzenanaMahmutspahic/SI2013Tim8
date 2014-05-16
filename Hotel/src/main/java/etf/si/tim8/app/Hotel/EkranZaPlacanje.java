@@ -29,11 +29,15 @@ import java.awt.Component;
 import javax.swing.JPanel;
 
 import Hibernate.PlacanjeMain;
+import Klase.Boravak;
 import Klase.Gost;
+import Klase.Predracun;
 
 import java.awt.FlowLayout;
+import java.util.Date;
 import java.util.List;
 import java.awt.Dimension;
+
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
@@ -46,7 +50,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     /**
      * Creates new form EkranZaPlacanje
      */
-	private List<Gost> gosti; // Lista gostiju, za sad se koristi za popunjavanje jList1
+	private List<Boravak> boravci; // Lista gostiju, za sad se koristi za popunjavanje jList1
+	private Boravak oznaceniBoravak;
 	
     public EkranZaPlacanje() {
     	setPreferredSize(new Dimension(850, 570));
@@ -57,14 +62,14 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         initComponents();
         
         //PlacanjeMain placanje = new PlacanjeMain();
-        gosti = PlacanjeMain.dajGoste();
+        boravci = PlacanjeMain.dajBoravke();
         
-        if( gosti.size() > 0 ){
+        if( boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
 	        jList1.setModel(model);
 	        
-	        for(Gost gost : gosti){
-	        	model.addElement(gost);
+	        for(Boravak boravak : boravci){
+	        	model.addElement(boravak.getGost());
 	        }
         }
     }
@@ -89,12 +94,23 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
         	public void valueChanged(ListSelectionEvent arg0) {
         		//jTextField1.setText("A");
-        		for(Gost g : gosti){
-        			if(g.getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
-        				jTextField1.setText(g.getIme());
-        				jTextField4.setText(g.getIme());
-        				jTextField2.setText(g.getPrezime());
-        				jTextField5.setText(g.getPrezime());
+        		for(Boravak boravak : boravci){
+        			if(boravak.getGost().getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
+        				oznaceniBoravak = boravak;
+        				
+        				jTextField1.setText(boravak.getGost().getIme());
+        				jTextField4.setText(boravak.getGost().getIme());
+        				jTextField2.setText(boravak.getGost().getPrezime());
+        				jTextField5.setText(boravak.getGost().getPrezime());
+        				jTextField3.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
+        				jTextField6.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
+        				jTextField8.setText(Double.toString(boravak.getRezervacija().getSoba().getCijena()));
+        				
+        				long brojdana = (boravak.getVrijemeOdlaska().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
+        				jComboBox1.setSelectedItem(brojdana);
+        				double cijenasoba = boravak.getRezervacija().getSoba().getCijena();
+        				
+        				jTextField11.setText(Double.toString(brojdana *  cijenasoba));
         			}
         		}
         	}
@@ -124,6 +140,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
+        jComboBox1.setEditable(true);
         jLabel12 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel7.setBackground(SystemColor.inactiveCaptionBorder);
@@ -141,7 +158,14 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
+        			Predracun p = new Predracun();
+        			p.setPopust(jTextField10.getText().equals("") ? 0.0 : Double.parseDouble(jTextField10.getText()));
+        			p.setId(1);
+        			p.setRezervacija(oznaceniBoravak.getRezervacija());
+        			PlacanjeMain.unesiPredracun(p);
+        		}
         	}
         });
         jButton2 = new javax.swing.JButton();
