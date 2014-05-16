@@ -23,7 +23,15 @@ public class Osoba implements Serializable {
 		Id = id;
 	}
 
-
+	/* */
+	public String getIme(){
+		return  imePrezime.substring(0, imePrezime.indexOf(' '));
+	}
+	
+	public String getPrezime(){
+		return imePrezime.substring(imePrezime.indexOf(' '));
+	}
+	/* */
 
 	public String getImePrezime() {
 		return imePrezime;

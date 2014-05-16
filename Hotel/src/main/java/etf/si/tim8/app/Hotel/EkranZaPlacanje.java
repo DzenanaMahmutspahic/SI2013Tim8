@@ -33,6 +33,9 @@ import Klase.Gost;
 
 import java.awt.FlowLayout;
 import java.util.List;
+import java.awt.Dimension;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
@@ -43,15 +46,18 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     /**
      * Creates new form EkranZaPlacanje
      */
+	private List<Gost> gosti; // Lista gostiju, za sad se koristi za popunjavanje jList1
+	
     public EkranZaPlacanje() {
+    	setPreferredSize(new Dimension(850, 570));
+    	setSize(1000,1000);
     	getContentPane().setBackground(Color.WHITE);
     	setAutoRequestFocus(false);
-    	setResizable(false);
     	setTitle("Ekran za Placanje");
         initComponents();
         
-        PlacanjeMain placanje = new PlacanjeMain();
-        List<Gost> gosti = placanje.dajGoste();
+        //PlacanjeMain placanje = new PlacanjeMain();
+        gosti = PlacanjeMain.dajGoste();
         
         if( gosti.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
@@ -79,6 +85,21 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        
+        jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
+        	public void valueChanged(ListSelectionEvent arg0) {
+        		//jTextField1.setText("A");
+        		for(Gost g : gosti){
+        			if(g.getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
+        				jTextField1.setText(g.getIme());
+        				jTextField4.setText(g.getIme());
+        				jTextField2.setText(g.getPrezime());
+        				jTextField5.setText(g.getPrezime());
+        			}
+        		}
+        	}
+        });
+        
         jPanel3 = new javax.swing.JPanel();
         jPanel3.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel2 = new javax.swing.JLabel();
@@ -133,6 +154,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new HomePage().setVisible(true);
+        		EkranZaPlacanje.this.setVisible(false);
         	}
         });
 

@@ -20,7 +20,16 @@ public class Gost implements Serializable{
 	public void setOsoba(Osoba osoba) {
 		this.osoba = osoba;
 	}
-
+	
+	/* */
+	public String getIme(){
+		return osoba.getIme();
+	}
+	
+	public String getPrezime(){
+		return osoba.getPrezime();
+	}
+	/* */
 
 	public long getId() {
 		return Id;
