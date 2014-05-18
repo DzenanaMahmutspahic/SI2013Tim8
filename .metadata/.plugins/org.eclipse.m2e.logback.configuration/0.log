@@ -23,3 +23,6 @@
 2014-05-18 15:44:35,808 [Worker-0] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo.maven.apache.org/maven2
 2014-05-18 15:44:36,881 [Worker-0] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
 2014-05-18 15:45:01,713 [Worker-0] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo.maven.apache.org/maven2 in 25983 ms
+2014-05-18 16:33:41,647 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo.maven.apache.org/maven2
+2014-05-18 16:33:41,743 [Worker-4] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2014-05-18 16:33:59,066 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo.maven.apache.org/maven2 in 17423 ms
