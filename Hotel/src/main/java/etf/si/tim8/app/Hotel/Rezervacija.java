@@ -216,13 +216,15 @@ public class Rezervacija extends javax.swing.JFrame {
        UtilDateModel model = new UtilDateModel();
        JDatePanelImpl datePanel = new JDatePanelImpl(model);
        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+       datePicker.setBackground(SystemColor.inactiveCaptionBorder);
        datePicker.setLocation(100, 60);
        datePicker.setSize(150, 26);
        jPanel1.add(datePicker);
         
        UtilDateModel model2 = new UtilDateModel();
-       JDatePanelImpl datePanel2 = new JDatePanelImpl(model);
-       final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel);
+       JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
+       final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
+       datePicker2.setBackground(SystemColor.inactiveCaptionBorder);
        datePicker2.setLocation(100, 90);
        datePicker2.setSize(150, 26);
        jPanel1.add(datePicker2);
