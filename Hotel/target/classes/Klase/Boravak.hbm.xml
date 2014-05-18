@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 11, 2014 4:57:04 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Klase.Boravak" table="BORAVAK">
+        <id name="Id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="gost" class="Klase.Gost" fetch="join">
+            <column name="GOST" />
+        </many-to-one>
+        <many-to-one name="rezervacija" class="Klase.Rezervacija" fetch="join">
+            <column name="REZERVACIJA" />
+        </many-to-one>
+        <property name="vrijemeDolaska" type="java.util.Date">
+            <column name="VRIJEMEDOLASKA" />
+        </property>
+        <property name="vrijemeOdlaska" type="java.util.Date">
+            <column name="VRIJEMEODLASKA" />
+        </property>
+    </class>
+</hibernate-mapping>
