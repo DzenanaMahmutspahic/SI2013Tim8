@@ -149,8 +149,8 @@ public class EvidencijaGostiju extends JFrame {
 		        	textField_7.setEditable(true);
 		        	textField_8.setEditable(true);
 		        	textField_9.setEditable(true);
-		        	textField_10.setEditable(true);
-		        	textField_11.setEditable(true);
+		        	//textField_10.setEditable(true);
+		        	//textField_11.setEditable(true);
 		        }
 		        else
 		        {
@@ -159,8 +159,8 @@ public class EvidencijaGostiju extends JFrame {
 		        	textField_7.setEditable(false);
 		        	textField_8.setEditable(false);
 		        	textField_9.setEditable(false);
-		        	textField_10.setEditable(false);
-		        	textField_11.setEditable(false);
+		        	//textField_10.setEditable(false);
+		        	//textField_11.setEditable(false);
 		        }
 		    }
 		});
