@@ -38,3 +38,35 @@
 2014-05-18 16:37:30,833 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
 2014-05-18 16:37:30,836 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2014-05-18 16:37:30,836 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 16:57:42,652 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:57:42,653 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 16:57:42,658 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:57:42,659 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:04:29,928 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:04:29,937 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:04:29,946 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:04:29,952 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:05:32,335 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:05:32,382 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:05:32,413 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:05:32,423 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:07:02,997 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:07:03,006 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:07:03,014 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:07:03,021 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:07:19,396 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:07:19,404 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:07:19,414 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:07:19,421 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:08:16,054 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:08:16,123 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:08:16,170 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:08:16,177 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:08:31,145 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:08:31,172 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:08:31,277 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:08:31,284 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 17:10:18,397 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:10:18,413 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 17:10:18,425 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 17:10:18,431 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
