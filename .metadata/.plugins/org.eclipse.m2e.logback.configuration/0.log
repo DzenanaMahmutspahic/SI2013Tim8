@@ -1,0 +1,25 @@
+2014-05-18 15:14:09,031 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo.maven.apache.org/maven2
+2014-05-18 15:14:12,799 [Worker-5] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2014-05-18 15:14:33,104 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: etf.si.tim8.app:Hotel:0.0.1-SNAPSHOT @ C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\pom.xml.
+2014-05-18 15:14:33,107 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: etf.si.tim8.app:Hotel:0.0.1-SNAPSHOT @ C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\pom.xml.
+2014-05-18 15:14:42,402 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:42,403 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 15:14:42,409 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:42,409 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 15:14:44,741 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: etf.si.tim8.app:Hotel:0.0.1-SNAPSHOT @ C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\pom.xml.
+2014-05-18 15:14:46,921 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:46,922 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 15:14:46,924 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:46,924 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 15:14:48,749 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:48,749 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 15:14:48,752 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:14:48,756 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 15:17:13,439 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo.maven.apache.org/maven2 in 184450 ms
+2014-05-18 15:39:01,088 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:39:01,089 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 15:39:01,142 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 15:39:01,149 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 15:44:35,808 [Worker-0] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo.maven.apache.org/maven2
+2014-05-18 15:44:36,881 [Worker-0] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2014-05-18 15:45:01,713 [Worker-0] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo.maven.apache.org/maven2 in 25983 ms
