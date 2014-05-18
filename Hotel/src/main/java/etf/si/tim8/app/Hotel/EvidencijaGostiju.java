@@ -465,6 +465,7 @@ public class EvidencijaGostiju extends JFrame {
         datePicker.setSize(150, 26);
         panel.add(datePicker);
 		
+        
 		btnSpasiPromjene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

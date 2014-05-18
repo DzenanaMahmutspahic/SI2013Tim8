@@ -16,7 +16,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import java.awt.SystemColor;
+import javax.swing.JLabel;
 
 /**
  *
@@ -279,7 +285,24 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         textField_11 = new JTextField();
         textField_11.setColumns(10);
         textField_11.setBackground(Color.GREEN);
+        
+        UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker.setLocation(140, 30);
+        datePicker.setSize(120, 26);
+        jPanel4.add(datePicker);
 
+
+        UtilDateModel model2 = new UtilDateModel();
+        JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
+        final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
+        datePicker2.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker2.setLocation(140, 70);
+        datePicker2.setSize(120, 26);
+        jPanel4.add(datePicker2);
+        
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3Layout.setHorizontalGroup(
         	jPanel3Layout.createParallelGroup(Alignment.LEADING)
@@ -372,66 +395,41 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         
-        textField_18 = new JTextField();
-        textField_18.setColumns(10);
-        textField_18.setEnabled(false);//shows picked date only 
-        
-        JButton btnDatumDolaska = new JButton("Datum dolaska");
-        btnDatumDolaska.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementiran odabir datuma!", "Informacija", JOptionPane.INFORMATION_MESSAGE);
-        	}
-        });
-        
-        textField_19 = new JTextField();
-        textField_19.setColumns(10);
-        textField_19.setEnabled(false);//shows picked date only
-        
-        JButton btnDatumOdlaska = new JButton("Datum odlaska");
-        btnDatumOdlaska.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementiran odabir datuma!", "Info", JOptionPane.INFORMATION_MESSAGE);
-        	}
-        });
-        
         JButton btnPrikaziSlobodneSobe = new JButton("Prika\u017Ei slobodne sobe");
         btnPrikaziSlobodneSobe.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		JOptionPane.showMessageDialog(null, "Nije implementiran prikaz slobodnih soba u zavisnosti od rezervacija!", "Info", JOptionPane.INFORMATION_MESSAGE);
         	}
         });
+        
+        JLabel lblDatumDolaska = new JLabel("Datum dolaska:\r\n");
+        
+        JLabel lblDatumOdlaska = new JLabel("Datum odlaska:\r\n");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4Layout.setHorizontalGroup(
         	jPanel4Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel4Layout.createSequentialGroup()
-        			.addGap(21)
-        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING, false)
-        				.addGroup(jPanel4Layout.createSequentialGroup()
-        					.addComponent(textField_19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(btnDatumOdlaska, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(jPanel4Layout.createSequentialGroup()
-        					.addComponent(textField_18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(btnDatumDolaska))
-        				.addComponent(btnPrikaziSlobodneSobe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        			.addContainerGap(45, Short.MAX_VALUE))
+        			.addGap(35)
+        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(lblDatumDolaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblDatumOdlaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(109, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        			.addContainerGap(120, Short.MAX_VALUE)
+        			.addComponent(btnPrikaziSlobodneSobe)
+        			.addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
         	jPanel4Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel4Layout.createSequentialGroup()
-        			.addGap(26)
-        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(textField_18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btnDatumDolaska))
-        			.addGap(18)
-        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(textField_19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btnDatumOdlaska))
-        			.addGap(26)
+        			.addGap(32)
+        			.addComponent(lblDatumDolaska)
+        			.addGap(27)
+        			.addComponent(lblDatumOdlaska)
+        			.addGap(29)
         			.addComponent(btnPrikaziSlobodneSobe)
-        			.addContainerGap(34, Short.MAX_VALUE))
+        			.addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel4.setLayout(jPanel4Layout);
 
@@ -627,6 +625,4 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
     private JTextField textField_15;
     private JTextField textField_16;
     private JTextField textField_17;
-    private JTextField textField_18;
-    private JTextField textField_19;
 }
