@@ -19,6 +19,10 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JList;
 
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -41,7 +45,6 @@ public class EvidencijaGostiju extends JFrame {
 	private JTextField textField_27;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -213,10 +216,6 @@ public class EvidencijaGostiju extends JFrame {
 		textField_2 = new JTextField();
 		textField_2.setBounds(171, 123, 149, 26);
 		panel.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(171, 160, 149, 26);
-		panel.add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setBounds(171, 197, 149, 26);
@@ -457,6 +456,14 @@ public class EvidencijaGostiju extends JFrame {
 		ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
 		JLabel pn = new JLabel(guy);
 		panel_3.add(pn);
+		
+		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker.setLocation(170, 160);
+        datePicker.setSize(150, 26);
+        panel.add(datePicker);
 		
 		btnSpasiPromjene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
