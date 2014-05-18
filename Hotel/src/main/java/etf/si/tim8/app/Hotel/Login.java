@@ -18,7 +18,8 @@ import java.awt.SystemColor;
 
 /**
  *
- * @author adnan
+ * @author1 design form adnan 
+ * @author2 tajma
  */
 public class Login extends javax.swing.JFrame {
 
