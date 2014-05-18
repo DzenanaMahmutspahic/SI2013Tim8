@@ -408,16 +408,14 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4Layout.setHorizontalGroup(
-        	jPanel4Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel4Layout.createSequentialGroup()
+        	jPanel4Layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, jPanel4Layout.createSequentialGroup()
         			.addGap(35)
-        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(lblDatumDolaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(lblDatumOdlaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(109, Short.MAX_VALUE))
-        		.addGroup(Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-        			.addContainerGap(120, Short.MAX_VALUE)
-        			.addComponent(btnPrikaziSlobodneSobe)
+        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(btnPrikaziSlobodneSobe, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        				.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING)
+        					.addComponent(lblDatumDolaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(lblDatumOdlaska, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
