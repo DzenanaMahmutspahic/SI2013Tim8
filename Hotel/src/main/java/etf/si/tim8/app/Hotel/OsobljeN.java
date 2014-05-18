@@ -6,6 +6,7 @@
 
 package etf.si.tim8.app.Hotel;
 import etf.si.tim8.app.Hotel.org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SwingConstants;
@@ -26,9 +27,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import java.awt.SystemColor;
 
 /**
@@ -39,7 +43,6 @@ public class OsobljeN extends javax.swing.JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -141,11 +144,6 @@ public class OsobljeN extends javax.swing.JFrame {
     	textField_2.setColumns(10);
     	textField_2.setBounds(107, 45, 123, 32);
     	panel_5.add(textField_2);
-    	
-    	textField_3 = new JTextField();
-    	textField_3.setColumns(10);
-    	textField_3.setBounds(107, 83, 123, 32);
-    	panel_5.add(textField_3);
     	
     	textField_4 = new JTextField();
     	textField_4.setColumns(10);
@@ -326,7 +324,14 @@ public class OsobljeN extends javax.swing.JFrame {
     	ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
  		JLabel pn = new JLabel(guy);
  		panel_8.add(pn);
-    	getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tabbedPane, panel_2, panel, textField, label, button, panel_3, label_1, list, panel_4, panel_1, tabbedPane_1, panel_5, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6, textField_7, textField_8, textField_9, textField_10, textField_11, textField_12, textField_13, label_2, label_3, label_4, label_5, label_6, label_7, label_8, label_9, label_10, label_11, label_12, label_13, label_14, panel_6, radioButton, radioButton_1, radioButton_2, radioButton_3, radioButton_4, radioButton_5, label_15, panel_7, button_1, button_2, button_3}));
+ 		
+ 		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker.setLocation(110, 85);
+        datePicker.setSize(120, 26);
+        panel_5.add(datePicker);
         initComponents();
     }
 
