@@ -51,20 +51,15 @@ public class EvidencijaGostiju extends JFrame {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
 	private JTextField textField_13;
 	private JTextField textField_14;
 	private JTextField textField_15;
 	private JTextField textField_16;
 	private JTextField textField_17;
 	private JTextField textField_18;
-	private JTextField textField_19;
 	private JTextField textField_20;
 	private JTextField textField_21;
 	private JTextField textField_22;
-	private JTextField textField_23;
-	private JTextField textField_24;
 
 	/**
 	 * Launch the application.
@@ -241,14 +236,6 @@ public class EvidencijaGostiju extends JFrame {
 		textField_9.setBounds(171, 386, 149, 26);
 		panel.add(textField_9);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(171, 423, 149, 26);
-		panel.add(textField_10);
-		
-		textField_11 = new JTextField();
-		textField_11.setBounds(171, 460, 149, 26);
-		panel.add(textField_11);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
@@ -380,10 +367,6 @@ public class EvidencijaGostiju extends JFrame {
 		textField_18.setBounds(484, 129, 149, 26);
 		panel_1.add(textField_18);
 		
-		textField_19 = new JTextField();
-		textField_19.setBounds(484, 166, 149, 26);
-		panel_1.add(textField_19);
-		
 		textField_20 = new JTextField();
 		textField_20.setBounds(484, 318, 149, 26);
 		panel_1.add(textField_20);
@@ -395,14 +378,6 @@ public class EvidencijaGostiju extends JFrame {
 		textField_22 = new JTextField();
 		textField_22.setBounds(484, 392, 149, 26);
 		panel_1.add(textField_22);
-		
-		textField_23 = new JTextField();
-		textField_23.setBounds(484, 429, 149, 26);
-		panel_1.add(textField_23);
-		
-		textField_24 = new JTextField();
-		textField_24.setBounds(484, 466, 149, 26);
-		panel_1.add(textField_24);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
@@ -464,6 +439,47 @@ public class EvidencijaGostiju extends JFrame {
         datePicker.setLocation(170, 160);
         datePicker.setSize(150, 26);
         panel.add(datePicker);
+        
+    	UtilDateModel model2 = new UtilDateModel();
+        JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
+        final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
+        datePicker2.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker2.setLocation(170, 420);
+        datePicker2.setSize(150, 26);
+        panel.add(datePicker2);
+        
+    	UtilDateModel model3 = new UtilDateModel();
+        JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
+        final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePanel3);
+        datePicker3.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker3.setLocation(170, 460);
+        datePicker3.setSize(150, 26);
+        panel.add(datePicker3);
+        
+        //azuriranje gosta
+        UtilDateModel model4 = new UtilDateModel();
+        JDatePanelImpl datePanel4 = new JDatePanelImpl(model4);
+        final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePanel4);
+        datePicker4.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker4.setLocation(485, 170);
+        datePicker4.setSize(150, 26);
+        panel_1.add(datePicker4);
+        
+    	UtilDateModel model5 = new UtilDateModel();
+        JDatePanelImpl datePanel5 = new JDatePanelImpl(model5);
+        final JDatePickerImpl datePicker5 = new JDatePickerImpl(datePanel5);
+        datePicker5.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker5.setLocation(485, 430);
+        datePicker5.setSize(150, 26);
+        panel_1.add(datePicker5);
+        
+    	UtilDateModel model6 = new UtilDateModel();
+        JDatePanelImpl datePanel6 = new JDatePanelImpl(model6);
+        final JDatePickerImpl datePicker6 = new JDatePickerImpl(datePanel6);
+        datePicker6.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker6.setLocation(485, 470);
+        datePicker6.setSize(150, 26);
+        panel_1.add(datePicker6);
 		
         
 		btnSpasiPromjene.addActionListener(new ActionListener() {
