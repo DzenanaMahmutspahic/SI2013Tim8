@@ -26,3 +26,15 @@
 2014-05-18 16:33:41,647 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo.maven.apache.org/maven2
 2014-05-18 16:33:41,743 [Worker-4] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
 2014-05-18 16:33:59,066 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo.maven.apache.org/maven2 in 17423 ms
+2014-05-18 16:37:06,264 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2014-05-18 16:37:15,690 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel
+2014-05-18 16:37:15,699 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B 
+2014-05-18 16:37:25,853 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: etf.si.tim8.app:Hotel:0.0.1-SNAPSHOT @ C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\pom.xml.
+2014-05-18 16:37:27,406 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:37:27,406 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 16:37:27,416 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:37:27,416 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
+2014-05-18 16:37:30,832 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:37:30,833 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\main\resources
+2014-05-18 16:37:30,836 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-05-18 16:37:30,836 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\X\Documents\GitHub\SI2013Tim8\Hotel\src\test\resources
