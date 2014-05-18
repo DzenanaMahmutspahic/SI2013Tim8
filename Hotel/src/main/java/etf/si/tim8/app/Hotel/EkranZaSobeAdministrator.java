@@ -7,19 +7,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.BevelBorder;
+
 import java.awt.Color;
 import java.awt.SystemColor;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class EkranZaSobeAdministrator extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -174,28 +179,8 @@ public class EkranZaSobeAdministrator extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setColumns(10);
-		textField.setBounds(25, 28, 86, 20);
-		panel_1.add(textField);
-		
-		JButton button = new JButton("Datum dolaska");
-		button.setBounds(121, 27, 118, 23);
-		panel_1.add(button);
-		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(25, 71, 86, 20);
-		panel_1.add(textField_1);
-		
-		JButton button_1 = new JButton("Datum odlaska");
-		button_1.setBounds(121, 68, 118, 23);
-		panel_1.add(button_1);
-		
 		JButton button_2 = new JButton("Prika\u017Ei slobodne sobe");
-		button_2.setBounds(25, 117, 214, 23);
+		button_2.setBounds(21, 117, 218, 23);
 		panel_1.add(button_2);
 		
 		JLabel label_9 = new JLabel();
@@ -354,6 +339,30 @@ public class EkranZaSobeAdministrator extends JFrame {
 		JButton btnDodavanjeSoba = new JButton("Dodavanje soba");
 		btnDodavanjeSoba.setBounds(462, 456, 123, 27);
 		contentPane.add(btnDodavanjeSoba);
+		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker.setLocation(130, 30);
+        datePicker.setSize(120, 26);
+        panel_1.add(datePicker);
+
+
+        UtilDateModel model2 = new UtilDateModel();
+        JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
+        final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
+        datePicker2.setBackground(SystemColor.inactiveCaptionBorder);
+        datePicker2.setLocation(130, 70);
+        datePicker2.setSize(120, 26);
+        panel_1.add(datePicker2);
+        
+        JLabel lblDatumDolaska = new JLabel("Datum dolaska:");
+        lblDatumDolaska.setBounds(33, 42, 87, 14);
+        panel_1.add(lblDatumDolaska);
+        
+        JLabel label_22 = new JLabel("Datum dolaska:");
+        label_22.setBounds(33, 82, 87, 14);
+        panel_1.add(label_22);
 		
 		JButton btnPoetna = new JButton("Po\u010Detna");
 		btnPoetna.addActionListener(new ActionListener() {
@@ -364,5 +373,4 @@ public class EkranZaSobeAdministrator extends JFrame {
 		btnPoetna.setBounds(607, 456, 123, 27);
 		contentPane.add(btnPoetna);
 	}
-
 }
