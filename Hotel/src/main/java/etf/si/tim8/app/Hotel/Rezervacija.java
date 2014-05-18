@@ -92,8 +92,6 @@ public class Rezervacija extends javax.swing.JFrame {
         jPanel5.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton2.addActionListener(new ActionListener() {
@@ -228,7 +226,23 @@ public class Rezervacija extends javax.swing.JFrame {
        datePicker2.setLocation(100, 90);
        datePicker2.setSize(150, 26);
        jPanel1.add(datePicker2);
+      
+       UtilDateModel model3 = new UtilDateModel();
+       JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
+       final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePanel3);
+       datePicker3.setBackground(SystemColor.inactiveCaptionBorder);
+       datePicker3.setLocation(50, 20);
+       datePicker3.setSize(120, 26);
+       jPanel5.add(datePicker3);
         
+       UtilDateModel model4 = new UtilDateModel();
+       JDatePanelImpl datePanel4 = new JDatePanelImpl(model4);
+       final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePanel4);
+       datePicker4.setBackground(SystemColor.inactiveCaptionBorder);
+       datePicker4.setLocation(50, 50);
+       datePicker4.setSize(120, 26);
+       jPanel5.add(datePicker4);
+       
         JLabel lblDatumDolaska = new JLabel("Datum dolaska:");
         
         JLabel lblDatumOdlaska = new JLabel("Datum odlaska:");
@@ -312,36 +326,26 @@ public class Rezervacija extends javax.swing.JFrame {
 
         jLabel11.setText("Do:");
 
-        jTextField6.setToolTipText("");
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
-                .addContainerGap())
+        	jPanel5Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel5Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(jPanel5Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel10)
+        				.addComponent(jLabel11))
+        			.addGap(99))
         );
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	jPanel5Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel5Layout.createSequentialGroup()
+        			.addGap(13)
+        			.addComponent(jLabel10)
+        			.addGap(17)
+        			.addComponent(jLabel11)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel5.setLayout(jPanel5Layout);
 
         jLabel9.setText("Vremenski period:");
         jLabel9.setToolTipText("");
@@ -361,12 +365,17 @@ public class Rezervacija extends javax.swing.JFrame {
         					.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
         				.addComponent(jLabel7)
         				.addComponent(jLabel8))
-        			.addGap(198)
-        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(jLabel9)
-        				.addComponent(jButton2, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-        				.addComponent(jPanel5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        			.addContainerGap(66, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+        			.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING, false)
+        				.addGroup(jPanel4Layout.createSequentialGroup()
+        					.addComponent(jLabel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addContainerGap())
+        				.addGroup(jPanel4Layout.createSequentialGroup()
+        					.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+        					.addGap(39))
+        				.addGroup(jPanel4Layout.createSequentialGroup()
+        					.addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+        					.addGap(27))))
         );
         jPanel4Layout.setVerticalGroup(
         	jPanel4Layout.createParallelGroup(Alignment.LEADING)
@@ -386,12 +395,13 @@ public class Rezervacija extends javax.swing.JFrame {
         					.addGap(5)
         					.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         				.addGroup(jPanel4Layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
         					.addComponent(jLabel9)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(jButton2)))
-        			.addContainerGap(58, Short.MAX_VALUE))
+        					.addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(62)
+        			.addComponent(jButton2)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4.setLayout(jPanel4Layout);
 
@@ -867,8 +877,6 @@ jButton_7.setText("Galerija");
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private JPanel panel;
