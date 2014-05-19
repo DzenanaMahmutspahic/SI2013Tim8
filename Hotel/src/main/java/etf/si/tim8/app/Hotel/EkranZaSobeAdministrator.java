@@ -330,6 +330,11 @@ public class EkranZaSobeAdministrator extends JFrame {
 		panel_5.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Ure\u0111ivanje soba");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EkranZaEditovanjeSobe().setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(0, 0, 123, 27);
 		panel_5.add(btnNewButton);
 		
