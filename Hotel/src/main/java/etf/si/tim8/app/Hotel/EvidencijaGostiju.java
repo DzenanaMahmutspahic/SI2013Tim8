@@ -195,12 +195,7 @@ public class EvidencijaGostiju extends JFrame {
 		panel.add(lblDatumUlaskaU);
 		
 		JButton btnUnesiGosta = new JButton("Unesi gosta");
-		btnUnesiGosta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
-	        	
-			}
-		});
+		
 		btnUnesiGosta.setBounds(457, 460, 153, 25);
 		panel.add(btnUnesiGosta);
 		
@@ -593,8 +588,6 @@ public class EvidencijaGostiju extends JFrame {
 				}
 			}
 		});
-		
-	
 		btnUnesiGosta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Session session = HibernateUtil.getSessionFactory()
@@ -632,9 +625,12 @@ public class EvidencijaGostiju extends JFrame {
 				t.commit();
 
 				session.close();
-
+	        	
 			}
 		});
+		
+	
+		
 		
 		
 	}
