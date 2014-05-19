@@ -33,6 +33,7 @@ import Klase.Osoba;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EvidencijaGostiju extends JFrame {
@@ -492,7 +493,7 @@ public class EvidencijaGostiju extends JFrame {
 					 Osoba o=new Osoba();
 					 o.setImePrezime(textField_16.getText());
 					 o.setAdresa(textField_16.getText());
-				//	 o.setDatumRodjenja(textField_16.getText());
+				       o.setDatumRodjenja((Date)datePicker.getJFormattedTextField().getValue());
 					 g.setOsoba(o);
 					 session.save(g);
 				 }
@@ -504,14 +505,14 @@ public class EvidencijaGostiju extends JFrame {
 					 Osoba o=new Osoba();
 					 o.setImePrezime(textField_16.getText());
 					 o.setAdresa(textField_16.getText());
-				//	 o.setDatumRodjenja(textField_16.getText());
+				 o.setDatumRodjenja((Date)datePicker.getJFormattedTextField().getValue());
 					 g.setOsoba(o);
 					 
 					 sg.setGost(g);
 					sg.setBrojPutneIsprave(textField_16.getText());
 					sg.setBrojVize(textField_16.getText());
-					//sg.setDatumDozvoleBoravka(textField_16.getText());
-					//sg.setDatumUlaskaUBih(textField_16.getText());
+					sg.setDatumDozvoleBoravka( ((Date)datePicker2.getJFormattedTextField().getValue()));
+					sg.setDatumUlaskaUBih(((Date)datePicker3.getJFormattedTextField().getValue()));
 					sg.setDrzavljanstvo(textField_16.getText());
 					sg.setVrstaPutneIsprave(textField_16.getText());
 					sg.setVrstaVize(textField_16.getText());
