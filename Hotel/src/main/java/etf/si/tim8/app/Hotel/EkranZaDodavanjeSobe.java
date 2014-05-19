@@ -16,7 +16,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
 public class EkranZaDodavanjeSobe {
-
+//tajma komentar
+	
 	private JFrame frame;
 	private JTextField textField;
 
