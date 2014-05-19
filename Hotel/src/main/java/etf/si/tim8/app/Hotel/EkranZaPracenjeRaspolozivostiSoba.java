@@ -26,7 +26,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author adnan
+ * @author adnan , tajma
  */
 public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 
