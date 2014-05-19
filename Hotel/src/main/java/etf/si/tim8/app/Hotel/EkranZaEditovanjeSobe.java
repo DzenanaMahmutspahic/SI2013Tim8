@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
 public class EkranZaEditovanjeSobe {
-
+//neki koemntar
 	private JFrame frame;
 	private JTextField textField;
 
