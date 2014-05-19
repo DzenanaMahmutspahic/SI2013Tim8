@@ -338,6 +338,11 @@ public class EkranZaSobeAdministrator extends JFrame {
 		contentPane.add(btnGalerija);
 		
 		JButton btnDodavanjeSoba = new JButton("Dodavanje soba");
+		btnDodavanjeSoba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new EkranZaDodavanjeSobe().setVisible(true);
+			}
+		});
 		btnDodavanjeSoba.setBounds(462, 456, 123, 27);
 		contentPane.add(btnDodavanjeSoba);
 		UtilDateModel model = new UtilDateModel();
