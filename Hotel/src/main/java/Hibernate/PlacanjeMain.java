@@ -27,7 +27,7 @@ public class PlacanjeMain {//zasto je datumrodjenja u gost, da li se brojdana uz
 		 List<Object[]> objekti1 = (List<Object[]>) q1.list();
 		
 	    List<Object[]> objekti = (List<Object[]>) q.list();
-	    List<Boravak> boravci = new ArrayList<Boravak>();
+	    List<Boravak> boravci = new ArrayList<Boravak>();//Da nesto dodam
 	    
 	    for(Object[] o : objekti){
 	    	for(Object o2: o){
