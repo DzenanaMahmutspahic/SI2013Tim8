@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
-public class EkranZaDodavanjeSobe {
+public class EkranZaEditovanjeSobe {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -28,7 +28,7 @@ public class EkranZaDodavanjeSobe {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EkranZaDodavanjeSobe window = new EkranZaDodavanjeSobe();
+					EkranZaEditovanjeSobe window = new EkranZaEditovanjeSobe();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class EkranZaDodavanjeSobe {
 	/**
 	 * Create the application.
 	 */
-	public EkranZaDodavanjeSobe() {
+	public EkranZaEditovanjeSobe() {
 		initialize();
 	}
 
@@ -64,7 +64,7 @@ public class EkranZaDodavanjeSobe {
 		
 		JLabel lblSoba = new JLabel("Soba:");
 		lblSoba.setBackground(SystemColor.inactiveCaptionBorder);
-		lblSoba.setBounds(24, 11, 74, 29);
+		lblSoba.setBounds(21, 11, 74, 29);
 		panel.add(lblSoba);
 		
 		JPanel panel_1 = new JPanel();
@@ -141,10 +141,10 @@ public class EkranZaDodavanjeSobe {
 		rdbtnBraniKrevet.setBounds(6, 85, 109, 23);
 		panel_2.add(rdbtnBraniKrevet);
 		
-		JRadioButton rdbtnKreveti = new JRadioButton("Odvojeni kreveti");
-		rdbtnKreveti.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnKreveti.setBounds(6, 111, 109, 23);
-		panel_2.add(rdbtnKreveti);
+		JRadioButton rdbtnOdvojeniKreveti = new JRadioButton("Odvojeni kreveti");
+		rdbtnOdvojeniKreveti.setBackground(SystemColor.inactiveCaptionBorder);
+		rdbtnOdvojeniKreveti.setBounds(6, 111, 109, 23);
+		panel_2.add(rdbtnOdvojeniKreveti);
 		
 		JRadioButton rdbtnMiniBar = new JRadioButton("Mini bar");
 		rdbtnMiniBar.setBackground(SystemColor.inactiveCaptionBorder);
@@ -156,8 +156,12 @@ public class EkranZaDodavanjeSobe {
 		rdbtnTrezor.setBounds(6, 163, 109, 23);
 		panel_2.add(rdbtnTrezor);
 		
-		JButton btnDodajSobu = new JButton("Dodaj sobu");
-		btnDodajSobu.setBounds(294, 236, 102, 23);
+		JButton btnDodajSobu = new JButton("Spasi promjene");
+		btnDodajSobu.setBounds(277, 236, 119, 23);
 		panel_1.add(btnDodajSobu);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(59, 15, 103, 20);
+		panel.add(comboBox_1);
 	}
 }
