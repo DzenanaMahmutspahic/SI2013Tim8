@@ -20,6 +20,7 @@ public class HomePage extends javax.swing.JFrame {
      * Creates new form HomePage
      */
     public HomePage() {
+    	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
         setTitle("Hotel Ksenon Plaza-Dobrodo�li!");

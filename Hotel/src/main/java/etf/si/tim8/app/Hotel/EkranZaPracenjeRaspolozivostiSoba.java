@@ -34,6 +34,7 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
      * Creates new form EkranZaPracenjeRaspolozivostiSoba
      */
     public EkranZaPracenjeRaspolozivostiSoba() {
+    	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
     	setTitle("Sobe");
         initComponents();

@@ -81,6 +81,7 @@ public class EvidencijaGostiju extends JFrame {
 	 * Create the frame.
 	 */
 	public EvidencijaGostiju() {
+		setResizable(false);
 		setTitle("Hotel Ksenon Plaza-Evidencija gostiju");
 		setBounds(100, 100, 903, 631);
 		contentPane = new JPanel();

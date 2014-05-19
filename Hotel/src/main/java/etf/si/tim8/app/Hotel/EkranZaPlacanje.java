@@ -54,6 +54,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	private Boravak oznaceniBoravak;
 	
     public EkranZaPlacanje() {
+    	setResizable(false);
     	setPreferredSize(new Dimension(850, 570));
     	setSize(1000,1000);
     	getContentPane().setBackground(Color.WHITE);

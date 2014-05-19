@@ -64,6 +64,7 @@ public class EkranZaSobeAdministrator extends JFrame {
 	 * Create the frame.
 	 */
 	public EkranZaSobeAdministrator() {
+		setResizable(false);
 		setTitle("Sobe");
 		setBounds(100, 100, 784, 547);
 		contentPane = new JPanel();

@@ -39,6 +39,7 @@ public class Rezervacija extends javax.swing.JFrame {
      * Creates new form Rezervacija
      */
     public Rezervacija() {
+    	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
     	setSize(796,501);
     	setTitle("Hotel Ksenon Plaza-Rezervacija");
