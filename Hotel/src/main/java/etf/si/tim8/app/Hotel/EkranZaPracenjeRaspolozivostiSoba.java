@@ -23,7 +23,7 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 import java.awt.SystemColor;
 import javax.swing.JLabel;
-
+import java.sql.*;
 /**
  *
  * @author adnan , tajma
@@ -399,6 +399,25 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         JButton btnPrikaziSlobodneSobe = new JButton("Prika\u017Ei slobodne sobe");
         btnPrikaziSlobodneSobe.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		String url = "jdbc:mysql://localhost/hotelDB";
+        		try {
+        		Class.forName("com.mysql.jdbc.Driver");
+        		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");
+        		try {
+        		Statement st = c.createStatement();
+        		String datumOD="";
+        		String datumDO="";
+        		ResultSet rs = st.executeQuery ("select * from users where datumOd>"+datumOD+" and datumDo<"+datumDO+"");
+        		
+        			
+        		} catch (Exception ex1) 
+        		{
+        			System.out.println("Greska pri radu sa bazom 1: "+ex1.getMessage());
+        		} 
+        		
+        			} catch (Exception ex2) {
+        			System.out.println("Greska pri radu sa bazom 2: "+ex2.getMessage());
+        			}
         		JOptionPane.showMessageDialog(null, "Nije implementiran prikaz slobodnih soba u zavisnosti od rezervacija!", "Info", JOptionPane.INFORMATION_MESSAGE);
         	}
         });
