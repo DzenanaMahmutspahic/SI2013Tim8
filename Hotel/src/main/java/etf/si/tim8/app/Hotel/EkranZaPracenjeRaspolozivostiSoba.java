@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Canvas;
 import java.awt.Color;
 
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
@@ -22,8 +23,15 @@ import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 import java.awt.SystemColor;
+
 import javax.swing.JLabel;
+
+import antlr.collections.List;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+import java.util.*;
 import java.sql.*;
+import java.awt.*;
 /**
  *
  * @author adnan , tajma
@@ -405,11 +413,185 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");
         		try {
         		Statement st = c.createStatement();
-        		String datumOD="";
-        		String datumDO="";
-        		ResultSet rs = st.executeQuery ("select * from users where datumOd>"+datumOD+" and datumDo<"+datumDO+"");
+        		//String datumOD=datePicker.getModel().getValue().toString();
+        		//String datumDO=datePicker2.getModel().getValue().toString();
+        		//String dateString = datePicker.getModel().getValue().toString();
+
+        		java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+        		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
         		
-        			
+        		
+        	
+        		java.util.List tempListaSoba = new java.util.ArrayList();
+        		
+	        		for(int i=1; i<=16;i++){
+	        			
+	        			
+	        			ResultSet rs = st.executeQuery ("select * from rezervacija where SOBA="+i+"");
+	        			
+	        			rs.next();
+	        			
+	        			java.util.Date rezervisanoOD=rs.getDate(3);
+	        			java.util.Date rezervisanoDO=rs.getDate(4);
+	        			Integer soba=rs.getInt(2);
+	        			
+	        			
+	        			if(datumDO.before(rezervisanoOD) || datumOD.after(rezervisanoDO) || (datumOD.after(rezervisanoDO) && datumDO.before(rezervisanoOD)))	        			        			
+	        			{
+	        				
+	        				tempListaSoba.add(soba);
+	        		
+	        				
+	        			}
+	        				
+	    	        		
+	        			
+	        			
+	        		}
+        		
+	        		
+        		
+	        		
+	        			if(tempListaSoba.contains(1))
+	        			{
+	        				textField.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(2))
+	        			{
+	        				textField_1.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_1.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(3))
+	        			{
+	        				textField_2.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_2.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(4))
+	        			{
+	        				textField_3.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_3.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(13))
+	        			{
+	        				textField_4.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_4.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(14))
+	        			{
+	        				textField_5.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_5.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(15))
+	        			{
+	        				textField_6.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_6.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(16))
+	        			{
+	        				textField_7.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_7.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(9))
+	        			{
+	        				textField_8.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_8.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(10))
+	        			{
+	        				textField_9.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_9.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(11))
+	        			{
+	        				textField_10.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_10.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(12))
+	        			{
+	        				textField_11.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_11.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(5))
+	        			{
+	        				textField_13.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_13.setBackground(Color.RED);        				
+	        			}
+	        			if(tempListaSoba.contains(6))
+	        			{
+	        				textField_14.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_14.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(7))
+	        			{
+	        				textField_15.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_15.setBackground(Color.RED);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(8))
+	        			{
+	        				textField_16.setBackground(Color.GREEN);
+	        			}
+	        			else
+	        			{
+	        				textField_16.setBackground(Color.RED);        				
+	        			}
+        		
+        		
+        		//if(datumOD>rezervisanoDO) || datumDO<rezervisanoOD || (datumOD>rezervisanoDO && datumDO<rezervisanoOD) )
         		} catch (Exception ex1) 
         		{
         			System.out.println("Greska pri radu sa bazom 1: "+ex1.getMessage());
@@ -418,7 +600,8 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         			} catch (Exception ex2) {
         			System.out.println("Greska pri radu sa bazom 2: "+ex2.getMessage());
         			}
-        		JOptionPane.showMessageDialog(null, "Nije implementiran prikaz slobodnih soba u zavisnosti od rezervacija!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		
+        		//JOptionPane.showMessageDialog(null, "Nije implementiran prikaz slobodnih soba u zavisnosti od rezervacija!", "Info", JOptionPane.INFORMATION_MESSAGE);
         	}
         });
         
