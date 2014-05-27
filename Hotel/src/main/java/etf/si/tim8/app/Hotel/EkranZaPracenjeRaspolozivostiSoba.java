@@ -415,7 +415,6 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         		Statement st = c.createStatement();
         		//String datumOD=datePicker.getModel().getValue().toString();
         		//String datumDO=datePicker2.getModel().getValue().toString();
-        		//String dateString = datePicker.getModel().getValue().toString();
 
         		java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
         		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
