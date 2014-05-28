@@ -181,12 +181,12 @@ public class Login extends javax.swing.JFrame {
         	{
         		if(!zaposlenik.getIsAdministrator())
         		{
-        			new HomePage().setVisible(true);
+        			new HomePage(zaposlenik).setVisible(true);
                     new Login().hide();
         		}
         		else
         		{
-        			new EkranZaAdministratora().setVisible(true);
+        			new EkranZaAdministratora(zaposlenik).setVisible(true);
         			new Login().hide();
         		}
         		

@@ -6,9 +6,13 @@
 
 package etf.si.tim8.app.Hotel;
 import javax.swing.JFrame;
+
 import java.awt.SystemColor;
 import java.awt.Color;
+
 import javax.swing.UIManager;
+
+import Klase.Zaposlenik;
 
 /**
  *
@@ -16,6 +20,7 @@ import javax.swing.UIManager;
  */
 public class HomePage extends javax.swing.JFrame {
 
+	private Zaposlenik zaposlenik;
     /**
      * Creates new form HomePage
      */
@@ -24,6 +29,14 @@ public class HomePage extends javax.swing.JFrame {
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
         setTitle("Hotel Ksenon Plaza-Dobrodo�li!");
+    }
+    
+    public HomePage(Zaposlenik zaposlenik) {
+    	setResizable(false);
+    	getContentPane().setBackground(Color.WHITE);
+        initComponents();
+        setTitle("Hotel Ksenon Plaza-Dobrodo�li!");
+        this.zaposlenik = zaposlenik;
     }
 
     /**
