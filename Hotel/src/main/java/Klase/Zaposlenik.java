@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Zaposlenik implements Serializable {
 	private long Id;
 	private String username;
+	private String password;
 	private String JMB;
 	private String drzavljanstvo;
 	private String titula;
@@ -38,6 +39,15 @@ public class Zaposlenik implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public String getJMB() {
 		return JMB;
 	}

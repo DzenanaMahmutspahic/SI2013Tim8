@@ -6,7 +6,8 @@ public class Predracun implements Serializable {
 	private long Id;
 	private double popust;
 	private Rezervacija rezervacija;
-	
+	private double ukupnaCijena;
+
 	public Predracun() {}
 
 	public long getId() {
@@ -31,6 +32,14 @@ public class Predracun implements Serializable {
 
 	public void setRezervacija(Rezervacija rezervacija) {
 		this.rezervacija = rezervacija;
+	}
+	
+	public double getUkupnaCijena() {
+		return ukupnaCijena;
+	}
+
+	public void setUkupnaCijena(double ukupnaCijena) {
+		this.ukupnaCijena = ukupnaCijena;
 	}
 	
 	

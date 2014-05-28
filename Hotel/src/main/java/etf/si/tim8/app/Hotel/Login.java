@@ -13,13 +13,16 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFrame;
+
+import Hibernate.DBManager;
+import Klase.Zaposlenik;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 
 /**
  *
- * @author1 design form adnan 
- * @author2 tajma
+ * @author adnan
  */
 public class Login extends javax.swing.JFrame {
 
@@ -173,18 +176,24 @@ public class Login extends javax.swing.JFrame {
 		public void run() {
         	String username = jTextField1.getText();
         	String password = jPasswordField1.getText();
-        	if(username.equals("admin")  && password.equals("admin"))
+        	Zaposlenik zaposlenik = DBManager.provjeriLogin(username, password);
+        	if(zaposlenik != null)
         	{
-        		new HomePage().setVisible(true);
-                new Login().hide();
-        	}
-        	else if(username.equals("glavni") && password.equals("glavni"))
-        	{
-        		new EkranZaAdministratora().setVisible(true);
+        		if(!zaposlenik.getIsAdministrator())
+        		{
+        			new HomePage().setVisible(true);
+                    new Login().hide();
+        		}
+        		else
+        		{
+        			new EkranZaAdministratora().setVisible(true);
+        			new Login().hide();
+        		}
+        		
         	}
         	else
         	{
-        		JOptionPane.showMessageDialog(null, "Neispravani korisni�ki podaci", "Gre�ka", JOptionPane.INFORMATION_MESSAGE);
+        		JOptionPane.showMessageDialog(null, "Neispravani korisniďż˝ki podaci", "Greďż˝ka", JOptionPane.INFORMATION_MESSAGE);
         	}
             
         }
