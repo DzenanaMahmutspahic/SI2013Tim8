@@ -44,6 +44,7 @@ public class EkranZaDodavanjeSobe {
 				try {
 					EkranZaDodavanjeSobe window = new EkranZaDodavanjeSobe();
 					window.frame.setVisible(true);
+					//frame.setTitle("Nova soba");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,13 +66,13 @@ public class EkranZaDodavanjeSobe {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 469, 372);
+		frame.setBounds(100, 100, 278, 324);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel.setBounds(10, 11, 443, 325);
+		panel.setBounds(10, 11, 249, 272);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -82,7 +83,7 @@ public class EkranZaDodavanjeSobe {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 44, 423, 270);
+		panel_1.setBounds(10, 44, 219, 208);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -108,67 +109,22 @@ public class EkranZaDodavanjeSobe {
 		panel_1.add(cb1);
 		
 		final JSpinner spinner = new JSpinner();
-		spinner.setBounds(65, 8, 86, 20);
+		spinner.setBounds(97, 11, 112, 20);
 		panel_1.add(spinner);
 		
 		final JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(65, 36, 86, 20);
+		spinner_1.setBounds(97, 39, 112, 20);
 		panel_1.add(spinner_1);
 		
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Jednokrevetna", "Dvokrevetna"}));
-		comboBox.setBounds(65, 61, 86, 20);
+		comboBox.setBounds(97, 64, 112, 20);
 		panel_1.add(comboBox);
 		
 		textField = new JTextField();
-		textField.setBounds(65, 86, 86, 20);
+		textField.setBounds(97, 89, 112, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
-		
-		JLabel lblInventarUSobi = new JLabel("Inventar u sobi");
-		lblInventarUSobi.setBounds(188, 11, 119, 14);
-		panel_1.add(lblInventarUSobi);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
-		panel_2.setBounds(188, 36, 208, 189);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JRadioButton rdbtnTelevizor = new JRadioButton("Televizor");
-		rdbtnTelevizor.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnTelevizor.setBounds(6, 7, 109, 23);
-		panel_2.add(rdbtnTelevizor);
-		
-		JRadioButton rdbtnInternet = new JRadioButton("Internet");
-		rdbtnInternet.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnInternet.setBounds(6, 33, 109, 23);
-		panel_2.add(rdbtnInternet);
-		
-		JRadioButton rdbtnTelefon = new JRadioButton("Telefon");
-		rdbtnTelefon.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnTelefon.setBounds(6, 59, 109, 23);
-		panel_2.add(rdbtnTelefon);
-		
-		JRadioButton rdbtnBraniKrevet = new JRadioButton("Bračni krevet");
-		rdbtnBraniKrevet.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnBraniKrevet.setBounds(6, 85, 109, 23);
-		panel_2.add(rdbtnBraniKrevet);
-		
-		JRadioButton rdbtnKreveti = new JRadioButton("Odvojeni kreveti");
-		rdbtnKreveti.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnKreveti.setBounds(6, 111, 109, 23);
-		panel_2.add(rdbtnKreveti);
-		
-		JRadioButton rdbtnMiniBar = new JRadioButton("Mini bar");
-		rdbtnMiniBar.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnMiniBar.setBounds(6, 137, 109, 23);
-		panel_2.add(rdbtnMiniBar);
-		
-		JRadioButton rdbtnTrezor = new JRadioButton("Trezor");
-		rdbtnTrezor.setBackground(SystemColor.inactiveCaptionBorder);
-		rdbtnTrezor.setBounds(6, 163, 109, 23);
-		panel_2.add(rdbtnTrezor);
 		
 		JButton btnDodajSobu = new JButton("Dodaj sobu");
 		
@@ -206,7 +162,7 @@ public class EkranZaDodavanjeSobe {
 			}
 		});
 		
-		btnDodajSobu.setBounds(294, 236, 102, 23);
+		btnDodajSobu.setBounds(97, 162, 112, 23);
 		panel_1.add(btnDodajSobu);
 		
 	}
