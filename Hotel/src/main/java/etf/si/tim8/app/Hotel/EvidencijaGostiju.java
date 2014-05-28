@@ -152,6 +152,22 @@ public class EvidencijaGostiju extends JFrame {
 							// sobe.add((Soba) o2);
 
 							// }
+							//Probaj ovako Kopicu-tajma
+							//Query query = session.createQuery("from Soba");
+							//try{
+							//	List<Soba> sobe = (ArrayList<Soba>)query.list();
+							//	for (Soba o : sobe) {
+									
+							//		comboBox_1.addItem(Integer.toString(o.getBrojSobe()));
+							
+							//	}
+								
+							//}
+							
+							//catch(Exception e)
+							//{
+								
+							//}
 						}
 
 					}
