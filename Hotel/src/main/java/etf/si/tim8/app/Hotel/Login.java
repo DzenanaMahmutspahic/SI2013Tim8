@@ -193,7 +193,7 @@ public class Login extends javax.swing.JFrame {
         	}
         	else
         	{
-        		JOptionPane.showMessageDialog(null, "Neispravani korisniďż˝ki podaci", "Greďż˝ka", JOptionPane.INFORMATION_MESSAGE);
+        		JOptionPane.showMessageDialog(null, "Neispravani korisnicki podaci", "Greska", JOptionPane.INFORMATION_MESSAGE);
         	}
             
         }
