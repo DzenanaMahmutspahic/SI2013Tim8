@@ -141,24 +141,27 @@ public class EkranZaDodavanjeSobe {
 				Soba soba = new Soba();
 				Session session = HibernateUtil.getSessionFactory().openSession();
 				Transaction t = session.beginTransaction();
-				soba.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
-				soba.setSprat(Integer.parseInt(spinner.getValue().toString()));
-				if(cb1.isSelected())soba.setBalkon(true);
-				else soba.setBalkon(false);
-				if(comboBox.getSelectedIndex()==0)
-					soba.setBrojKreveta(1);
-				else
-					soba.setBrojKreveta(2);
+				
 				try{
 					soba.setCijena(Double.parseDouble(textField.getText()));
+					soba.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
+					soba.setSprat(Integer.parseInt(spinner.getValue().toString()));
+					if(cb1.isSelected())soba.setBalkon(true);
+					else soba.setBalkon(false);
+					if(comboBox.getSelectedIndex()==0)
+						soba.setBrojKreveta(1);
+					else
+						soba.setBrojKreveta(2);
+					soba.setZauzeta(false);
+					session.save(soba);
+					t.commit();
+					JOptionPane.showMessageDialog(null, "Soba je uspješno dodana!", "Obavijest", JOptionPane.INFORMATION_MESSAGE);
 					}
 				catch(Exception e){
 						JOptionPane.showMessageDialog(null, "Morate unijeti broj!", "Greska", JOptionPane.INFORMATION_MESSAGE);
 					} 
 					
-				soba.setZauzeta(false);
-				session.save(soba);
-				t.commit();
+
 			}
 		});
 		
