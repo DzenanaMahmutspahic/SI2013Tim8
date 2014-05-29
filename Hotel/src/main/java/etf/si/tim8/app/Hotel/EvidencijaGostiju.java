@@ -227,6 +227,7 @@ public class EvidencijaGostiju extends JFrame {
 		// JButton btnUnesiGosta = new JButton("Unesi gosta");
 
 		final JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Domaci", "Strani"}));
 		comboBox.setBounds(171, 11, 149, 30);
 		comboBox.addItem("Doma�i");
 		comboBox.addItem("Strani");
