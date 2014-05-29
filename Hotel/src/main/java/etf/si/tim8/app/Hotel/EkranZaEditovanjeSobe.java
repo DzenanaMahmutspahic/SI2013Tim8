@@ -5,16 +5,32 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
+
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Hibernate.HibernateUtil;
+import Klase.Boravak;
+import Klase.Soba;
+import java.awt.event.ActionEvent;
 
 public class EkranZaEditovanjeSobe {
 //neki koemntar
@@ -89,20 +105,20 @@ public class EkranZaEditovanjeSobe {
 		lblCijena.setBounds(10, 86, 66, 14);
 		panel_1.add(lblCijena);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Balkon");
-		chckbxNewCheckBox.setBackground(Color.WHITE);
-		chckbxNewCheckBox.setBounds(10, 112, 102, 18);
-		panel_1.add(chckbxNewCheckBox);
+		final JCheckBox cb1 = new JCheckBox("Balkon");
+		cb1.setBackground(Color.WHITE);
+		cb1.setBounds(10, 112, 102, 18);
+		panel_1.add(cb1);
 		
-		JSpinner spinner = new JSpinner();
+		final JSpinner spinner = new JSpinner();
 		spinner.setBounds(79, 11, 115, 20);
 		panel_1.add(spinner);
 		
-		JSpinner spinner_1 = new JSpinner();
+		final JSpinner spinner_1 = new JSpinner();
 		spinner_1.setBounds(79, 39, 115, 20);
 		panel_1.add(spinner_1);
 		
-		JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Jednokrevetna", "Dvokrevetna"}));
 		comboBox.setBounds(79, 64, 115, 20);
 		panel_1.add(comboBox);
@@ -113,11 +129,41 @@ public class EkranZaEditovanjeSobe {
 		textField.setColumns(10);
 		
 		JButton btnDodajSobu = new JButton("Spasi promjene");
+		btnDodajSobu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnDodajSobu.setBounds(78, 140, 116, 23);
 		panel_1.add(btnDodajSobu);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		final JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(59, 15, 155, 20);
 		panel.add(comboBox_1);
+		//comboBox_1.addItem("tajma");
+		//final Scanner sc = new Scanner(System.in); 
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		final Query query = session.createQuery("from Soba");
+		List<Soba> sobe=new ArrayList<Soba>();
+		try{
+            sobe = (ArrayList<Soba>)query.list();
+			for (Soba o : sobe) {
+				
+				comboBox_1.addItem(Integer.toString(o.getBrojSobe()));
+				
+			}
+			
+		}
+		
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Došlo je do greške u bazi!", "Greska", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		
+		t.commit();
+		session.close();
+		
+
 	}
 }
