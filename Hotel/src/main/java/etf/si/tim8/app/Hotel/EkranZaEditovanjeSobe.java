@@ -30,6 +30,7 @@ import org.hibernate.Transaction;
 import Hibernate.HibernateUtil;
 import Klase.Boravak;
 import Klase.Soba;
+
 import java.awt.event.ActionEvent;
 
 public class EkranZaEditovanjeSobe {
@@ -128,13 +129,9 @@ public class EkranZaEditovanjeSobe {
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnDodajSobu = new JButton("Spasi promjene");
-		btnDodajSobu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnDodajSobu.setBounds(78, 140, 116, 23);
-		panel_1.add(btnDodajSobu);
+		JButton btnEditujSobu = new JButton("Spasi promjene");
+		btnEditujSobu.setBounds(78, 140, 116, 23);
+		panel_1.add(btnEditujSobu);
 		
 		final JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(59, 15, 155, 20);
@@ -164,6 +161,70 @@ public class EkranZaEditovanjeSobe {
 		t.commit();
 		session.close();
 		
+		comboBox_1.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	Session session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+				final Query query = session.createQuery("from Soba");
+				List<Soba> sobe=new ArrayList<Soba>();
+				sobe = (ArrayList<Soba>)query.list();
+				
+				int brojSobe=Integer.parseInt(comboBox_1.getSelectedItem().toString());//uzememo selektovani broj sobe
+				
+				 Soba s=new Soba();
+					for (Soba o : sobe) {
+						//JOptionPane.showMessageDialog(null, "Sve je OK!"+Integer.toString(o.getBrojSobe()), "OK", JOptionPane.INFORMATION_MESSAGE);
 
+						if(o.getBrojSobe()==brojSobe)//postavimo parametre
+						{
+							//JOptionPane.showMessageDialog(null, "Sve je OK!"+Integer.toString(brojSobe), "OK", JOptionPane.INFORMATION_MESSAGE);
+
+							s=o;
+							spinner.setValue(s.getSprat());
+							spinner_1.setValue(s.getBrojSobe());
+							if(s.getBrojKreveta()==1)
+								comboBox.setSelectedIndex(0);
+							else
+								comboBox.setSelectedIndex(1);
+							textField.setText(Double.toString(s.getCijena()));
+							if(s.getBalkon())cb1.setSelected(true);
+							
+							break;
+							
+					}
+
+					
+					}//od for petlje
+					t.commit();
+					session.close();
+		    }
+		});
+		//spasavanje promjena klikom na dugme
+		btnEditujSobu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+				final Query query = session.createQuery("from Soba where brojsobe="+comboBox_1.getSelectedItem().toString());
+			    //query.setParameter("tag", comboBox_1.getSelectedItem().toString());
+				List<Soba> sobe=new ArrayList<Soba>();
+				sobe = (ArrayList<Soba>)query.list();
+				Soba s=sobe.get(0);
+				s.setBalkon(cb1.isSelected());
+				
+				if(comboBox.getSelectedIndex()==0)
+					s.setBrojKreveta(1);
+				else
+					s.setBrojKreveta(2);
+				s.setSprat(Integer.parseInt(spinner.getValue().toString()));
+				s.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
+				s.setCijena(Double.parseDouble(textField.getText()));
+				
+				session.update(s);
+				t.commit();
+				session.close();
+				JOptionPane.showMessageDialog(null, "sve ok ", "OK", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 	}
 }

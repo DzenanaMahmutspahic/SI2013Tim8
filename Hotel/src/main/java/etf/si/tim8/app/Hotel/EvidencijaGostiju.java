@@ -227,6 +227,7 @@ public class EvidencijaGostiju extends JFrame {
 		// JButton btnUnesiGosta = new JButton("Unesi gosta");
 
 		final JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Domaci", "Strani"}));
 		comboBox.setBounds(171, 11, 149, 30);
 		comboBox.addItem("Doma�i");
 		comboBox.addItem("Strani");
@@ -321,7 +322,7 @@ public class EvidencijaGostiju extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
