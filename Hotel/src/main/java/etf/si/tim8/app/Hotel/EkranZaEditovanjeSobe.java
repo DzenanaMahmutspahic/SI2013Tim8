@@ -188,7 +188,7 @@ public class EkranZaEditovanjeSobe {
 								comboBox.setSelectedIndex(1);
 							textField.setText(Double.toString(s.getCijena()));
 							if(s.getBalkon())cb1.setSelected(true);
-							
+							else cb1.setSelected(false);
 							break;
 							
 					}
