@@ -569,7 +569,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         panel = new JPanel();
         panel.setBackground(Color.WHITE);
         panel.setSize(200,200);
-        ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
+        ImageIcon guy = new ImageIcon("hotel.png");
 		JLabel pn = new JLabel(guy);
 		panel.add(pn);
         FlowLayout fl_panel = (FlowLayout) panel.getLayout();
