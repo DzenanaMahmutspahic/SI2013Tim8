@@ -11,6 +11,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -396,9 +397,9 @@ public class EkranZaSobeAdministrator extends JFrame {
         lblDatumDolaska.setBounds(33, 42, 87, 14);
         panel_1.add(lblDatumDolaska);
         
-        JLabel label_22 = new JLabel("Datum dolaska:");
-        label_22.setBounds(33, 82, 87, 14);
-        panel_1.add(label_22);
+        JLabel lblDatumOdlaska = new JLabel("Datum odlaska:");
+        lblDatumOdlaska.setBounds(33, 82, 87, 14);
+        panel_1.add(lblDatumOdlaska);
 		
 		JButton btnPoetna = new JButton("Po\u010Detna");
 		btnPoetna.addActionListener(new ActionListener() {
@@ -410,8 +411,36 @@ public class EkranZaSobeAdministrator extends JFrame {
 		contentPane.add(btnPoetna);
 		prikaziSlobodneSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try{
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = session.beginTransaction();
+				final Query query = session.createQuery("from Soba");
+				List<Soba> sobe=new ArrayList<Soba>();
+				sobe = (ArrayList<Soba>)query.list();
 				
-			}
+				final Query query2 = session.createQuery("from Rezervacija");
+				List<Rezervacija> rezervacije=new ArrayList<Rezervacija>();
+				rezervacije = (ArrayList<Rezervacija>)query2.list();
+				//obrabrani datumi
+				java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+        		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+				
+        		for(Rezervacija o:rezervacije)
+        		{ 
+     			   JOptionPane.showMessageDialog(null, "Došlo je do greške pri radu s bazom!", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+        		}
+        		
+				t.commit();
+				session.close();
+				}
+				catch(Exception e)
+				{
+			   JOptionPane.showMessageDialog(null, "Došlo je do greške pri radu s bazom!", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+				}
+}
+			
 		});
 	}
 }
