@@ -28,10 +28,9 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-import Hibernate.PlacanjeMain;
-import Klase.Boravak;
-import Klase.Gost;
-import Klase.Predracun;
+import Hibernate.DBManager;
+import Klase.*;
+
 
 import java.awt.FlowLayout;
 import java.util.Date;
@@ -52,6 +51,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
      */
 	private List<Boravak> boravci; // Lista gostiju, za sad se koristi za popunjavanje jList1
 	private Boravak oznaceniBoravak;
+	private Predracun predracun;
 	
     public EkranZaPlacanje() {
     	setResizable(false);
@@ -63,7 +63,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         initComponents();
         
         //PlacanjeMain placanje = new PlacanjeMain();
-        boravci = PlacanjeMain.dajBoravke();
+        boravci = DBManager.dajBoravke();
         
         if( boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
@@ -107,11 +107,20 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				jTextField6.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
         				jTextField8.setText(Double.toString(boravak.getRezervacija().getSoba().getCijena()));
         				
-        				long brojdana = (boravak.getVrijemeOdlaska().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
+        				long brojdana;
+        				if(boravak.getVrijemeOdlaska() !=null) {
+        					brojdana = (boravak.getVrijemeOdlaska().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
+        				}
+        				else brojdana = (new Date().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
         				jComboBox1.setSelectedItem(brojdana);
         				double cijenasoba = boravak.getRezervacija().getSoba().getCijena();
         				
         				jTextField11.setText(Double.toString(brojdana *  cijenasoba));
+        				
+        				predracun = DBManager.dajPredracun(boravak.getRezervacija());
+        				if(predracun!=null){
+        					jTextField10.setText(Double.toString(predracun.getPopust()));
+        				}
         			}
         		}
         	}
@@ -160,12 +169,28 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
-        		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
-        			Predracun p = new Predracun();
-        			p.setPopust(jTextField10.getText().equals("") ? 0.0 : Double.parseDouble(jTextField10.getText()));
-        			p.setId(1);
-        			p.setRezervacija(oznaceniBoravak.getRezervacija());
-        			PlacanjeMain.unesiPredracun(p);
+        		try{
+        			boolean kreiraj = false;
+	        		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
+	        			if(predracun==null){
+	        				kreiraj = true;
+	        				predracun = new Predracun();
+	        			}
+	        			if(Double.parseDouble(jTextField10.getText()) >=0 &&  Double.parseDouble(jTextField10.getText()) <=100) {
+	        				predracun.setPopust(jTextField10.getText().equals("") ? 0.0 : Double.parseDouble(jTextField10.getText()));
+	        				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
+	        				if(kreiraj)
+	        					DBManager.unesiPredracun(predracun);
+	        				else 
+	        					DBManager.updatePredracun(predracun);
+	            			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+	        			}
+	        			else 
+	        				JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
+	        		}
+        		}
+        		catch(Exception exception){
+        			JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
         		}
         	}
         });
