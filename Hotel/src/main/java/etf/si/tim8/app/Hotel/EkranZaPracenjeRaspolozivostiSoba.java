@@ -32,6 +32,8 @@ import com.mysql.fabric.xmlrpc.base.Array;
 import java.util.*;
 import java.sql.*;
 import java.awt.*;
+import Hibernate.DBManager;
+
 /**
  *
  * @author adnan , tajma
@@ -407,22 +409,22 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         JButton btnPrikaziSlobodneSobe = new JButton("Prika\u017Ei slobodne sobe");
         btnPrikaziSlobodneSobe.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String url = "jdbc:mysql://localhost/hotelDB";
+        		/*String url = "jdbc:mysql://localhost/hotelDB";*/
         		try {
-        		Class.forName("com.mysql.jdbc.Driver");
-        		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");
+        		/*Class.forName("com.mysql.jdbc.Driver");
+        		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");*/
         		try {
-        		Statement st = c.createStatement();
+        		/*Statement st = c.createStatement();
         		//String datumOD=datePicker.getModel().getValue().toString();
         		//String datumDO=datePicker2.getModel().getValue().toString();
         		//komenatar
-
+*/
         		java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
         		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
         	
-        		java.util.List tempListaSoba = new java.util.ArrayList();
+        	//	java.util.List tempListaSoba = new java.util.ArrayList();
         		
-	        		for(int i=1; i<=16;i++){
+	        		/*for(int i=1; i<=16;i++){
 	        			
 	        			
 	        			ResultSet rs = st.executeQuery ("select * from rezervacija where SOBA="+i+"");
@@ -442,7 +444,8 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 	        				
 	        			}
 	
-	        		}
+	        		}*/
+        		java.util.List tempListaSoba =DBManager.dajSlobodneSobe(datumOD, datumDO);
         		
 	        		
 	        			if(tempListaSoba.contains(1))

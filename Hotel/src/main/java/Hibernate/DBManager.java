@@ -54,6 +54,49 @@ public class DBManager {
 		return boravci;
 	}
 	
+	
+		/*Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		java.util.List tempListaSoba = new java.util.ArrayList();
+		
+		for(int i=1; i<=16;i++){	
+			
+			//ResultSet rs = st.executeQuery ("select * from rezervacija where SOBA="+i+"");
+			Query q=session.createQuery("select * from rezervacija where SOBA="+i+"");
+			sc.next();
+			//java.util.Date rezervisanoOD=Rezervacija.class.getRezervisanoOd();
+			java.util.Date rezervisanoDO= (java.util.Date) q.setParameter("rezervisanoDo", rezervisanoDO);
+			java.util.Date rezervisanoOD= (java.util.Date) q.setParameter("rezervisanoOd", rezervisanoOD);
+			Integer soba=getInt;
+			
+			
+			if(datumDO.before(rezervisanoOD) || datumOD.after(rezervisanoDO) || (datumOD.after(rezervisanoDO) && datumDO.before(rezervisanoOD)))	        			        			
+			{
+				
+				tempListaSoba.add(soba);
+					
+			}
+			
+			return tempListaSoba;*/
+	public static List<Integer> dajSlobodneSobe(java.util.Date datumOD, java.util.Date datumDO){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
+		
+			//List<Object[]> objekti = (List<Object[]>) q.list();
+			//List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();//
+			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
+			List<Integer> ret = new ArrayList<Integer>();
+			for(Rezervacija r: rezervacije){
+				if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
+    			{
+    				ret.add(r.getSoba().getBrojSobe());
+    				
+    			}
+			}
+			return ret;
+	}
+
+	
 	public static Predracun dajPredracun(Rezervacija rezervacija) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		//Transaction t = session.beginTransaction();
