@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -26,6 +27,9 @@ import Klase.Soba;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 
 public class EkranZaDodavanjeSobe {
@@ -143,9 +147,37 @@ public class EkranZaDodavanjeSobe {
 				Transaction t = session.beginTransaction();
 				
 				try{
+					boolean ispravna=true;
 					soba.setCijena(Double.parseDouble(textField.getText()));
+					
+					if(Integer.parseInt(spinner.getValue().toString())>0 && Integer.parseInt(spinner.getValue().toString())<3)
+						soba.setSprat(Integer.parseInt(spinner.getValue().toString()));
+	                    else
+	                    {
+	                    	ispravna=false;
+	    					JOptionPane.showMessageDialog(null, "Sprat može biti samo 1 ili 2!", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+	                    }
+					
+					final Query query = session.createQuery("from Soba");
+					List<Soba> sobe=new ArrayList<Soba>();
+					sobe = (ArrayList<Soba>)query.list();
+					boolean postoji=false;
+					for(Soba s:sobe)
+					{
+						if(s.getBrojSobe()==Integer.parseInt(spinner_1.getValue().toString())){
+							postoji=true;
+							ispravna =false;
+							break;
+						}
+					}
+					if(!postoji)
 					soba.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
-					soba.setSprat(Integer.parseInt(spinner.getValue().toString()));
+					else
+					JOptionPane.showMessageDialog(null, "Broj sobe već postoji!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    
+					
+					if(ispravna){
 					if(cb1.isSelected())soba.setBalkon(true);
 					else soba.setBalkon(false);
 					if(comboBox.getSelectedIndex()==0)
@@ -157,9 +189,12 @@ public class EkranZaDodavanjeSobe {
 					t.commit();
 					JOptionPane.showMessageDialog(null, "Soba je uspješno dodana!", "Obavijest", JOptionPane.INFORMATION_MESSAGE);
 					}
+					}
 				catch(Exception e){
-						JOptionPane.showMessageDialog(null, "Morate unijeti broj!", "Greska", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Morate unijeti cijenu!", "Error", JOptionPane.INFORMATION_MESSAGE);
 					} 
+				
+				
 					
 
 			}
