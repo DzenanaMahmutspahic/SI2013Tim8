@@ -322,7 +322,7 @@ public class EvidencijaGostiju extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
