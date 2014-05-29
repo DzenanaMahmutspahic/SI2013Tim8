@@ -52,6 +52,27 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	private List<Boravak> boravci; // Lista gostiju, za sad se koristi za popunjavanje jList1
 	private Boravak oznaceniBoravak;
 	private Predracun predracun;
+	private Racun racun;
+	
+	private void kreirajPredracun() throws Exception {
+		boolean kreiraj = false;
+		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
+			if(predracun==null){
+				kreiraj = true;
+				predracun = new Predracun();
+			}
+			if(Double.parseDouble(jTextField10.getText()) >=0 &&  Double.parseDouble(jTextField10.getText()) <=100) {
+				predracun.setPopust(jTextField10.getText().equals("") ? 0.0 : Double.parseDouble(jTextField10.getText()));
+				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
+				if(kreiraj)
+					DBManager.unesiPredracun(predracun);
+				else 
+					DBManager.updatePredracun(predracun);
+			}
+			else 
+				JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	
     public EkranZaPlacanje() {
     	setResizable(false);
@@ -91,6 +112,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        final JLabel labelPlaceno = new JLabel("/");
         
         jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
         	public void valueChanged(ListSelectionEvent arg0) {
@@ -116,11 +138,28 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				double cijenasoba = boravak.getRezervacija().getSoba().getCijena();
         				
         				jTextField11.setText(Double.toString(brojdana *  cijenasoba));
+        				jTextField10.setText("");
         				
         				predracun = DBManager.dajPredracun(boravak.getRezervacija());
         				if(predracun!=null){
         					jTextField10.setText(Double.toString(predracun.getPopust()));
+        					racun = DBManager.dajRacun(predracun);
+        					if(racun!=null){
+        						jButton1.setEnabled(false);
+        						jButton2.setEnabled(false);
+        						labelPlaceno.setText("DA");
+        					}
+        					else{ 
+        						labelPlaceno.setText("NE");
+        						jButton1.setEnabled(true);
+        						jButton2.setEnabled(true);
+        					}
         				}
+        				else{ 
+    						labelPlaceno.setText("NE");
+    						jButton1.setEnabled(true);
+    						jButton2.setEnabled(true);
+    					}
         			}
         		}
         	}
@@ -132,8 +171,11 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jTextField1.setEnabled(false);
         jTextField2 = new javax.swing.JTextField();
+        jTextField2.setEnabled(false);
         jTextField3 = new javax.swing.JTextField();
+        jTextField3.setEnabled(false);
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel5.setBackground(SystemColor.inactiveCaptionBorder);
@@ -146,10 +188,15 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jTextField4.setEnabled(false);
         jTextField5 = new javax.swing.JTextField();
+        jTextField5.setEnabled(false);
         jTextField6 = new javax.swing.JTextField();
+        jTextField6.setEnabled(false);
         jTextField8 = new javax.swing.JTextField();
+        jTextField8.setEnabled(false);
         jComboBox1 = new javax.swing.JComboBox();
+        jComboBox1.setEnabled(false);
         jComboBox1.setEditable(true);
         jLabel12 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -170,24 +217,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		//JOptionPane.showMessageDialog(null, "Nije implementirano!", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
-        			boolean kreiraj = false;
-	        		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
-	        			if(predracun==null){
-	        				kreiraj = true;
-	        				predracun = new Predracun();
-	        			}
-	        			if(Double.parseDouble(jTextField10.getText()) >=0 &&  Double.parseDouble(jTextField10.getText()) <=100) {
-	        				predracun.setPopust(jTextField10.getText().equals("") ? 0.0 : Double.parseDouble(jTextField10.getText()));
-	        				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
-	        				if(kreiraj)
-	        					DBManager.unesiPredracun(predracun);
-	        				else 
-	        					DBManager.updatePredracun(predracun);
-	            			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
-	        			}
-	        			else 
-	        				JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
-	        		}
+        			kreirajPredracun();
+        			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
         		}
         		catch(Exception exception){
         			JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
@@ -197,7 +228,20 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		
+        		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		try{
+        			kreirajPredracun();
+        			racun = new Racun();
+        			racun.setBrojRacuna(10);
+        			racun.setPredracun(predracun);
+        			racun.setVrijemeIzdavanja(new Date());
+        			DBManager.unesiRacun(racun);
+        			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali racun!", "Evidencija racuna", JOptionPane.INFORMATION_MESSAGE);
+        		}
+        		catch(Exception exception){
+        			JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
+        		}
         	}
         });
         jButton3 = new javax.swing.JButton();
@@ -263,8 +307,12 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
         			.addGap(26)
-        			.addComponent(jLabel5)
-        			.addContainerGap(26, Short.MAX_VALUE))
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel5)
+        				.addGroup(jPanel3Layout.createSequentialGroup()
+        					.addGap(10)
+        					.addComponent(labelPlaceno)))
+        			.addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
         	jPanel3Layout.createParallelGroup(Alignment.LEADING)
@@ -285,7 +333,9 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         						.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         				.addGroup(jPanel3Layout.createSequentialGroup()
         					.addContainerGap()
-        					.addComponent(jLabel5)))
+        					.addComponent(jLabel5)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(labelPlaceno)))
         			.addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel3Layout.linkSize(SwingConstants.VERTICAL, new Component[] {jTextField1, jTextField2, jTextField3});
@@ -635,5 +685,4 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private JPanel panel;
-    // End of variables declaration//GEN-END:variables
 }

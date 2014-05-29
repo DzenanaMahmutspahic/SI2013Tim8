@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import Klase.Racun;
 import Klase.Rezervacija;
 import Klase.Boravak;
 import Klase.Predracun;
@@ -69,6 +70,22 @@ public class DBManager {
 		return predracun;
 	}
 	
+	public static Racun dajRacun(Predracun predracun) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		//Transaction t = session.beginTransaction();
+
+		Query q = session.createQuery("from Racun racun where predracun=:predracun");//or vrijemeOdlaska isnull
+		q.setParameter("predracun", predracun);
+		
+		Racun racun;
+		if(!q.list().isEmpty())
+			racun = (Racun) q.list().get(0);
+		else racun=null;
+	    
+		session.close();
+		return racun;
+	}
+	
 	/*Za Ekran za placanje */
 	public static void unesiPredracun(Predracun p){
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -81,6 +98,13 @@ public class DBManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		session.update(p);
+		t.commit();
+	}
+	
+	public static void unesiRacun(Racun racun){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(racun);
 		t.commit();
 	}
 
