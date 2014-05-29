@@ -82,7 +82,6 @@ public class DBManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
 		
-			//List<Object[]> objekti = (List<Object[]>) q.list();
 			//List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();//
 			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
 			List<Integer> ret = new ArrayList<Integer>();

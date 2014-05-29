@@ -425,7 +425,6 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         JButton btnPrikaziSlobodneSobe = new JButton("Prika\u017Ei slobodne sobe");
         btnPrikaziSlobodneSobe.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		/*String url = "jdbc:mysql://localhost/hotelDB";*/
         		try {
         		/*Class.forName("com.mysql.jdbc.Driver");
         		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");*/
