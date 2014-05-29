@@ -5,8 +5,6 @@
  */
 
 package etf.si.tim8.app.Hotel;
-import etf.si.tim8.app.Hotel.org.eclipse.wb.swing.FocusTraversalOnArray;
-
 import javax.swing.JFrame;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SwingConstants;
