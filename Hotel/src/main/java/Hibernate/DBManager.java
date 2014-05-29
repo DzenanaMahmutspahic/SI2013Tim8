@@ -64,17 +64,7 @@ public class DBManager {
 		if(!q.list().isEmpty())
 			predracun = (Predracun) q.list().get(0);
 		else predracun=null;
-	    /*List<Boravak> boravci = new ArrayList<Boravak>();//Da nesto dodam
 	    
-	    for(Object[] o : objekti){
-	    	for(Object o2: o){
-	    		if(o2.getClass().equals(Boravak.class)){
-	    			boravci.add((Boravak)o2);
-	    		}
-	    	}
-	    	
-	    }*/
-	    //List<Osoba> osoba = (List<Osoba>) q1.list();//t.commit();
 		session.close();
 		return predracun;
 	}

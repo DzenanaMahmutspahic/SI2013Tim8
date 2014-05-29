@@ -168,7 +168,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		//JOptionPane.showMessageDialog(null, "Nije implementirano!", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
         			boolean kreiraj = false;
 	        		if(oznaceniBoravak !=null && Double.parseDouble(jTextField11.getText()) >= 0 ){
