@@ -123,36 +123,44 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         jLabel11.setText("Soba 8");
         
         textField = new JTextField();
-        textField.setBackground(Color.RED);
+       // textField.setBackground(Color.RED);
         textField.setColumns(10);
+        textField.setEditable(false);
         
         textField_1 = new JTextField();
         textField_1.setColumns(10);
-        textField_1.setBackground(Color.RED);
+       // textField_1.setBackground(Color.RED);
+        textField_1.setEditable(false);
         
         textField_2 = new JTextField();
         textField_2.setColumns(10);
-        textField_2.setBackground(Color.RED);
+        //textField_2.setBackground(Color.RED);
+        textField_2.setEditable(false);
         
         textField_3 = new JTextField();
         textField_3.setColumns(10);
-        textField_3.setBackground(Color.RED);
+        //textField_3.setBackground(Color.RED);
+        textField_3.setEditable(false);
         
         textField_13 = new JTextField();
         textField_13.setColumns(10);
-        textField_13.setBackground(Color.GREEN);
+       // textField_13.setBackground(Color.GREEN);
+        textField_13.setEditable(false);
         
         textField_14 = new JTextField();
         textField_14.setColumns(10);
-        textField_14.setBackground(Color.GREEN);
+        //textField_14.setBackground(Color.GREEN);
+        textField_14.setEditable(false);
         
         textField_15 = new JTextField();
         textField_15.setColumns(10);
-        textField_15.setBackground(Color.GREEN);
+       // textField_15.setBackground(Color.GREEN);
+        textField_15.setEditable(false);
         
         textField_16 = new JTextField();
         textField_16.setColumns(10);
-        textField_16.setBackground(Color.GREEN);
+      //  textField_16.setBackground(Color.GREEN);
+        textField_16.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1Layout.setHorizontalGroup(
@@ -267,35 +275,43 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         
         textField_4 = new JTextField();
         textField_4.setColumns(10);
-        textField_4.setBackground(Color.RED);
+        //textField_4.setBackground(Color.RED);
+        textField_4.setEditable(false);
         
         textField_5 = new JTextField();
         textField_5.setColumns(10);
-        textField_5.setBackground(Color.RED);
+       // textField_5.setBackground(Color.RED);
+        textField_5.setEditable(false);
         
         textField_6 = new JTextField();
         textField_6.setColumns(10);
-        textField_6.setBackground(Color.RED);
+      //  textField_6.setBackground(Color.RED);
+        textField_6.setEditable(false);
         
         textField_7 = new JTextField();
         textField_7.setColumns(10);
-        textField_7.setBackground(Color.RED);
+      //  textField_7.setBackground(Color.RED);
+        textField_7.setEditable(false);
         
         textField_8 = new JTextField();
         textField_8.setColumns(10);
-        textField_8.setBackground(Color.GREEN);
+        //textField_8.setBackground(Color.GREEN);
+        textField_8.setEditable(false);
         
         textField_9 = new JTextField();
         textField_9.setColumns(10);
-        textField_9.setBackground(Color.GREEN);
+        //textField_9.setBackground(Color.GREEN);
+        textField_9.setEditable(false);
         
         textField_10 = new JTextField();
         textField_10.setColumns(10);
-        textField_10.setBackground(Color.GREEN);
+       // textField_10.setBackground(Color.GREEN);
+        textField_10.setEditable(false);
         
         textField_11 = new JTextField();
         textField_11.setColumns(10);
-        textField_11.setBackground(Color.GREEN);
+      //  textField_11.setBackground(Color.GREEN);
+        textField_11.setEditable(false);
         
         UtilDateModel model = new UtilDateModel();
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
