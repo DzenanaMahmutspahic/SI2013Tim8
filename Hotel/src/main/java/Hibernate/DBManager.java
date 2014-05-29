@@ -13,6 +13,7 @@ import Klase.Racun;
 import Klase.Rezervacija;
 import Klase.Boravak;
 import Klase.Predracun;
+import Klase.Soba;
 import Klase.Zaposlenik;
 
 public class DBManager {
@@ -107,5 +108,5 @@ public class DBManager {
 		session.save(racun);
 		t.commit();
 	}
-
+	
 }
