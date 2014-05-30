@@ -117,6 +117,7 @@ public class EkranZaAdministratora extends JFrame {
 	}
 	
 	public EkranZaAdministratora(Zaposlenik zaposlenik) {
+		this.zaposlenik = zaposlenik;
 		setBounds(100, 100, 746, 383);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -137,10 +138,11 @@ public class EkranZaAdministratora extends JFrame {
 		contentPane.add(btnSobe);
 		
 		JButton button = new JButton();
+		final Zaposlenik zap = zaposlenik;
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-			 new Rezervacija().setVisible(true);
+			 new Rezervacija(zap).setVisible(true);
 			 
 			}
 		});
@@ -192,6 +194,6 @@ public class EkranZaAdministratora extends JFrame {
 		btnGalerija.setActionCommand("Rezervacija");
 		btnGalerija.setBounds(497, 190, 179, 74);
 		contentPane.add(btnGalerija);
-		this.zaposlenik = zaposlenik;
+		
 	}
 }
