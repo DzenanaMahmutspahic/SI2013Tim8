@@ -31,8 +31,8 @@ import javax.swing.JPanel;
 import Hibernate.DBManager;
 import Klase.*;
 
-
 import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.awt.Dimension;
@@ -129,7 +129,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				jTextField6.setText(Integer.toString(oznaceniBoravak.getRezervacija().getSoba().getBrojSobe()));
         				jTextField8.setText(Double.toString(oznaceniBoravak.getRezervacija().getSoba().getCijena()));
         				
-        				textField.setText( Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getYear() +1900) );
+        				textField.setText( new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoOd()) + " - " + new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoDo()));
+        				/*Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getYear() +1900)*/ 
         				
         				long brojdana;
         				if(oznaceniBoravak.getVrijemeOdlaska() !=null) {
@@ -361,7 +362,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         						.addGroup(jPanel3Layout.createSequentialGroup()
         							.addGap(10)
         							.addComponent(labelPlaceno))))
-        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
