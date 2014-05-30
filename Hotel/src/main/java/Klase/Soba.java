@@ -58,5 +58,8 @@ public class Soba implements Serializable {
 		this.zauzeta = zauzeta;
 	}
 	
+	@Override public String toString() {
+		return "Soba " + this.brojSobe + "Br kreveta: " + this.brojKreveta;
+	}
 	
 }

@@ -8,6 +8,7 @@ package etf.si.tim8.app.Hotel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,13 +23,20 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.util.List;
 
 import javax.swing.JPanel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import javax.swing.JList;
+
+import Hibernate.DBManager;
+import Klase.Gost;
+import Klase.Soba;
+import Klase.Zaposlenik;
 
 /**
  *
@@ -36,15 +44,54 @@ import javax.swing.JList;
  */
 public class Rezervacija extends javax.swing.JFrame {
 
-    /**
+	/**
      * Creates new form Rezervacija
      */
+	DefaultListModel gostiModel = new DefaultListModel();
+	private Zaposlenik zaposlenik;
+	
+	public Rezervacija(Zaposlenik zaposlenik) {
+    	setResizable(false);
+    	getContentPane().setBackground(Color.WHITE);
+    	setSize(796,501);
+    	setTitle("Hotel Ksenon Plaza-Rezervacija");
+    	try
+        {
+        	List<Gost> sviGosti = DBManager.dajSveGoste();
+        	for(Gost gost : sviGosti)
+        	{
+        		gostiModel.addElement(gost);
+        	}
+        	
+        }
+        catch(Exception ex)
+        {
+        	
+        }
+        initComponents();
+        this.zaposlenik = zaposlenik;
+    }
+	
     public Rezervacija() {
     	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
     	setSize(796,501);
     	setTitle("Hotel Ksenon Plaza-Rezervacija");
+    	try
+        {
+        	List<Gost> sviGosti = DBManager.dajSveGoste();
+        	for(Gost gost : sviGosti)
+        	{
+        		gostiModel.addElement(gost);
+        	}
+        	
+        }
+        catch(Exception ex)
+        {
+        	
+        }
         initComponents();
+        
     }
 
     /**
@@ -60,11 +107,6 @@ public class Rezervacija extends javax.swing.JFrame {
         jPanel1.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementirano!", "Info", JOptionPane.INFORMATION_MESSAGE);
-        	}
-        });
         jPanel12 = new javax.swing.JPanel();
         jPanel12.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel4 = new javax.swing.JLabel();
@@ -86,11 +128,6 @@ public class Rezervacija extends javax.swing.JFrame {
         jPanel4.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
-        	}
-        });
         jPanel8 = new javax.swing.JPanel();
         jPanel8.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel12 = new javax.swing.JLabel();
@@ -300,8 +337,9 @@ public class Rezervacija extends javax.swing.JFrame {
 
         jButton2.setText("Rezervi\u0161i");
         
-        JList list = new JList();
-
+        final JList list = new JList();
+        list.setModel(gostiModel);
+        
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4Layout.setHorizontalGroup(
         	jPanel4Layout.createParallelGroup(Alignment.LEADING)
@@ -698,6 +736,86 @@ jButton_7.setText("Galerija");
         layout.linkSize(SwingConstants.VERTICAL, new Component[] {jButton5, jButton6, jButton_7});
         getContentPane().setLayout(layout);
 
+        jButton1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try
+        		{
+        			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+            		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+            		if(datumOD == null)
+            		{
+            			JOptionPane.showMessageDialog(null, "Niste unjeli datum dolaska!", "Info", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
+            		if(datumDO == null)
+            		{
+            			JOptionPane.showMessageDialog(null, "Niste unjeli datum odlaska!", "Info", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
+            		
+            		int klasa;
+            		if(jRadioButton1.isSelected() && !jRadioButton2.isSelected())
+            		{
+            			klasa = 1;
+            		}
+            		else if(jRadioButton2.isSelected() && !jRadioButton1.isSelected())
+            		{
+            			klasa = 2;
+            		}
+            		else 
+            		{
+            			klasa = 3;
+            		}
+            		List<Soba> dostupneSobe = DBManager.dajSlobodneSobe(datumOD, datumDO, klasa);
+            		DefaultListModel model1 = new DefaultListModel();
+            		for(Soba soba : dostupneSobe)
+            		{
+            			model1.addElement(soba);
+            		}
+            		jList1.setModel(model1);
+        		}
+        		catch (Exception ex1) 
+        		{
+        			System.out.println("Greska pri radu sa bazom: "+ex1.getMessage());
+            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+
+        		}
+        		//jList1 = new javax.swing.JList(new Vector<Soba>(dostupneSobe));
+        		
+        		
+        	}
+        });
+        
+        jButton2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try
+        		{
+        			if(jList1.getSelectedIndices().length != 1)
+        			{
+        				JOptionPane.showMessageDialog(null, "Morate odabrati tačno jednu sobu!", "Info", JOptionPane.ERROR_MESSAGE);
+        				return;
+        			}
+        			if(list.getSelectedIndices().length == 0)
+        			{
+        				JOptionPane.showMessageDialog(null, "Niste odabrali goste!", "Info", JOptionPane.ERROR_MESSAGE);
+        				return;
+        			}
+        			
+        			Soba soba = (Soba)jList1.getSelectedValue();
+        			List<Gost> gosti = (List<Gost>)list.getSelectedValuesList();
+        			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+            		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+        			DBManager.evidentirajBoravkeIRezervaciju(soba, gosti, datumOD, datumDO, zaposlenik);
+        			JOptionPane.showMessageDialog(null, "Rezervacija evidentirana!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        		}
+        		catch(Exception ex)
+        		{
+        			System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+        		}
+        	}
+        });
+        
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
