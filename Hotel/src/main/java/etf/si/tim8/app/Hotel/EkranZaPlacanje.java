@@ -157,7 +157,6 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         					jTextField9.setText("");
         					jTextField7.setText("");
         					JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
-        					//JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
         				}
         				
         				double popust = 0.0;
