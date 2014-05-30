@@ -367,7 +367,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				.addComponent(jLabel3)
         				.addComponent(jLabel2))
         			.addGap(18)
-        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
         				.addGroup(jPanel3Layout.createSequentialGroup()
         					.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
         						.addComponent(jTextField2)
@@ -379,7 +379,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         						.addGroup(jPanel3Layout.createSequentialGroup()
         							.addGap(10)
         							.addComponent(labelPlaceno))))
-        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(textField))
         			.addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
