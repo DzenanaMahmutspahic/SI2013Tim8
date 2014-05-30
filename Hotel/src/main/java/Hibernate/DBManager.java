@@ -77,11 +77,13 @@ public class DBManager {
 		try{
 			
 			if (datumOD.after(datumDO)) throw new Exception("Datum odlaska mora biti veći od datuma dolaska!");
+			
 		}catch(Exception e){
 			System.out.print("IZUZETAK: "+e.getMessage());
 		}
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
+		Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
 			
 			
 			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
