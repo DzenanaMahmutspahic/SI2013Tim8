@@ -86,7 +86,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         //PlacanjeMain placanje = new PlacanjeMain();
         boravci = DBManager.dajBoravke();
         
-        if( boravci.size() > 0 ){
+        if(boravci !=null && boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
 	        jList1.setModel(model);
 	        

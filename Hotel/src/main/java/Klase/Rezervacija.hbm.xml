@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="soba" class="Klase.Soba" fetch="join">
+        <many-to-one name="soba" class="Klase.Soba" fetch="join" lazy="false">
             <column name="SOBA" />
         </many-to-one>
         <property name="rezervisanoOd" type="java.util.Date">

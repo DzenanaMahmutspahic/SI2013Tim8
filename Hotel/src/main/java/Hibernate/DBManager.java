@@ -34,13 +34,12 @@ public class DBManager {
 	/*Za Ekran za placanje */
 	public static List<Boravak> dajBoravke() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		//Transaction t = session.beginTransaction();
 
 		Query q = session.createQuery("from Boravak boravak join boravak.gost as gost join gost.osoba as osoba join boravak.rezervacija as rezervacija join rezervacija.soba as soba where rezervacija.potvrdjena =true and (boravak.vrijemeOdlaska is null or boravak.vrijemeOdlaska >= :danas)");//or vrijemeOdlaska isnull
 		q.setParameter("danas", new Date());
 		
 	    List<Object[]> objekti = (List<Object[]>) q.list();
-	    List<Boravak> boravci = new ArrayList<Boravak>();//Da nesto dodam
+	    List<Boravak> boravci = new ArrayList<Boravak>();//D
 	    
 	    for(Object[] o : objekti){
 	    	for(Object o2: o){
@@ -95,7 +94,7 @@ public class DBManager {
 			}
 			return ret;
 	}
-
+	
 	
 	public static Predracun dajPredracun(Rezervacija rezervacija) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -135,6 +134,7 @@ public class DBManager {
 		Transaction t = session.beginTransaction();
 		session.save(p);
 		t.commit();
+		session.close();
 	}
 	
 	public static void updatePredracun(Predracun p){
@@ -142,6 +142,7 @@ public class DBManager {
 		Transaction t = session.beginTransaction();
 		session.update(p);
 		t.commit();
+		session.close();
 	}
 	
 	public static void unesiRacun(Racun racun){
@@ -149,6 +150,7 @@ public class DBManager {
 		Transaction t = session.beginTransaction();
 		session.save(racun);
 		t.commit();
+		session.close();
 	}
 	
 }
