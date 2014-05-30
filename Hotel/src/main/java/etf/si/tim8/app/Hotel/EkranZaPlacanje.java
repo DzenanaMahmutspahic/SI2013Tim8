@@ -265,7 +265,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
         		}
         		catch(Exception exception){
-        			JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(null, exception.getMessage() , "Greska", JOptionPane.ERROR_MESSAGE);
         		}
         	}
         });
@@ -284,7 +284,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali racun!", "Evidencija racuna", JOptionPane.INFORMATION_MESSAGE);
         		}
         		catch(Exception exception){
-        			JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(null, exception.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         		}
         	}
         });
