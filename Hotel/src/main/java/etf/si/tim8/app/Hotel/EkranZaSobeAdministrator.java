@@ -20,6 +20,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import Hibernate.DBManager;
 import Hibernate.HibernateUtil;
 import Klase.Soba;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -34,22 +35,22 @@ import java.util.List;
 public class EkranZaSobeAdministrator extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
+	private JTextField textField_2;
+	private JTextField textField_1;
+	private JTextField textField;
 	private JTextField textField_16;
-	private JTextField textField_17;
+	private JTextField textField_15;
+	private JTextField textField_14;
+	private JTextField textField_13;
+	private JTextField textField_11;
+	private JTextField textField_10;
+	private JTextField textField_9;
+	private JTextField textField_8;
+	private JTextField textField_7;
+	private JTextField textField_6;
+	private JTextField textField_5;
+	private JTextField textField_4;
 	private JTextField textField_18;
 	private JTextField textField_19;
 
@@ -96,7 +97,7 @@ public class EkranZaSobeAdministrator extends JFrame {
 		
 		JLabel label_1 = new JLabel();
 		label_1.setText("Soba 1");
-		label_1.setBounds(10, 33, 300, 14);
+		label_1.setBounds(10, 33, 50, 14);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel();
@@ -106,41 +107,41 @@ public class EkranZaSobeAdministrator extends JFrame {
 		
 		JLabel label_3 = new JLabel();
 		label_3.setText("Soba 3");
-		label_3.setBounds(10, 103, 300, 14);
+		label_3.setBounds(10, 103, 50, 14);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel();
 		label_4.setText("Soba 4");
-		label_4.setBounds(10, 138, 300, 14);
+		label_4.setBounds(10, 138, 50, 14);
 		panel.add(label_4);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		//textField_2.setBackground(Color.RED);
-		textField_2.setBounds(70, 136, 74, 17);
-		textField_2.setEnabled(false);
-		panel.add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		//textField_3.setBackground(Color.RED);
-		textField_3.setBounds(70, 101, 74, 17);
+		//textField_2.setBackground(Color.RED);
+		textField_3.setBounds(70, 136, 74, 17);
 		textField_3.setEnabled(false);
 		panel.add(textField_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		//textField_4.setBackground(Color.RED);
-		textField_4.setBounds(70, 66, 74, 17);
-		textField_4.setEnabled(false);
-		panel.add(textField_4);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		//textField_3.setBackground(Color.RED);
+		textField_2.setBounds(70, 101, 74, 17);
+		textField_2.setEnabled(false);
+		panel.add(textField_2);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		//textField_4.setBackground(Color.RED);
+		textField_1.setBounds(70, 66, 74, 17);
+		textField_1.setEnabled(false);
+		panel.add(textField_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
 		//textField_5.setBackground(Color.RED);
-		textField_5.setEnabled(false);
-		textField_5.setBounds(70, 31, 74, 17);
-		panel.add(textField_5);
+		textField.setEnabled(false);
+		textField.setBounds(70, 31, 74, 17);
+		panel.add(textField);
 		
 		JLabel label_5 = new JLabel();
 		label_5.setText("Soba 5");
@@ -162,33 +163,33 @@ public class EkranZaSobeAdministrator extends JFrame {
 		label_8.setBounds(259, 138, 51, 14);
 		panel.add(label_8);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		textField_16 = new JTextField();
+		textField_16.setColumns(10);
 		//textField_6.setBackground(Color.GREEN);
-		textField_6.setBounds(310, 136, 74, 17);
-		textField_6.setEnabled(false);
-		panel.add(textField_6);
+		textField_16.setBounds(310, 136, 74, 17);
+		textField_16.setEnabled(false);
+		panel.add(textField_16);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
+		textField_15 = new JTextField();
+		textField_15.setColumns(10);
 		//textField_7.setBackground(Color.GREEN);
-		textField_7.setEnabled(false);
-		textField_7.setBounds(310, 101, 74, 17);
-		panel.add(textField_7);
+		textField_15.setEnabled(false);
+		textField_15.setBounds(310, 101, 74, 17);
+		panel.add(textField_15);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
+		textField_14 = new JTextField();
+		textField_14.setColumns(10);
 		//textField_8.setBackground(Color.GREEN);
-		textField_8.setEnabled(false);
-		textField_8.setBounds(310, 66, 74, 17);
-		panel.add(textField_8);
+		textField_14.setEnabled(false);
+		textField_14.setBounds(310, 66, 74, 17);
+		panel.add(textField_14);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
+		textField_13 = new JTextField();
+		textField_13.setColumns(10);
 		//textField_9.setBackground(Color.GREEN);
-		textField_9.setEnabled(false);
-		textField_9.setBounds(310, 31, 74, 17);
-		panel.add(textField_9);
+		textField_13.setEnabled(false);
+		textField_13.setBounds(310, 31, 74, 17);
+		panel.add(textField_13);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -207,10 +208,10 @@ public class EkranZaSobeAdministrator extends JFrame {
 		label_9.setBounds(34, 22, 200, 14);
 		contentPane.add(label_9);
 		
-		JLabel label_10 = new JLabel();
-		label_10.setText("Pregled dostupnosti jednokrevetnih soba:");
-		label_10.setBounds(34, 261, 200, 14);
-		contentPane.add(label_10);
+		JLabel lblPregledDostupnostiDvokrevetnih = new JLabel();
+		lblPregledDostupnostiDvokrevetnih.setText("Pregled dostupnosti dvokrevetnih soba:");
+		lblPregledDostupnostiDvokrevetnih.setBounds(34, 261, 200, 14);
+		contentPane.add(lblPregledDostupnostiDvokrevetnih);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -226,51 +227,51 @@ public class EkranZaSobeAdministrator extends JFrame {
 		
 		JLabel label_12 = new JLabel();
 		label_12.setText("Soba 1");
-		label_12.setBounds(10, 33, 300, 14);
+		label_12.setBounds(10, 33, 51, 14);
 		panel_2.add(label_12);
 		
 		JLabel label_13 = new JLabel();
 		label_13.setText("Soba 2");
-		label_13.setBounds(10, 68, 300, 14);
+		label_13.setBounds(10, 68, 51, 14);
 		panel_2.add(label_13);
 		
 		JLabel label_14 = new JLabel();
 		label_14.setText("Soba 3");
-		label_14.setBounds(10, 103, 300, 14);
+		label_14.setBounds(10, 103, 51, 14);
 		panel_2.add(label_14);
 		
 		JLabel label_15 = new JLabel();
 		label_15.setText("Soba 4");
-		label_15.setBounds(10, 138, 300, 14);
+		label_15.setBounds(10, 138, 58, 14);
 		panel_2.add(label_15);
-		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		//textField_10.setBackground(Color.RED);
-		textField_10.setBounds(70, 136, 74, 17);
-		textField_10.setEnabled(false);
-		panel_2.add(textField_10);
 		
 		textField_11 = new JTextField();
 		textField_11.setColumns(10);
-		//textField_11.setBackground(Color.RED);
-		textField_11.setBounds(70, 101, 74, 17);
+		//textField_10.setBackground(Color.RED);
+		textField_11.setBounds(70, 136, 74, 17);
 		textField_11.setEnabled(false);
 		panel_2.add(textField_11);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		//textField_12.setBackground(Color.RED);
-		textField_12.setBounds(70, 66, 74, 17);
-		textField_12.setEnabled(false);
-		panel_2.add(textField_12);
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		//textField_11.setBackground(Color.RED);
+		textField_10.setBounds(70, 101, 74, 17);
+		textField_10.setEnabled(false);
+		panel_2.add(textField_10);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		//textField_12.setBackground(Color.RED);
+		textField_9.setBounds(70, 66, 74, 17);
+		textField_9.setEnabled(false);
+		panel_2.add(textField_9);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
 		//textField_13.setBackground(Color.RED);
-		textField_13.setEnabled(false);
-		textField_13.setBounds(70, 31, 74, 17);
-		panel_2.add(textField_13);
+		textField_8.setEnabled(false);
+		textField_8.setBounds(70, 31, 74, 17);
+		panel_2.add(textField_8);
 		
 		JLabel label_16 = new JLabel();
 		label_16.setText("Soba 5");
@@ -292,33 +293,33 @@ public class EkranZaSobeAdministrator extends JFrame {
 		label_19.setBounds(259, 138, 51, 14);
 		panel_2.add(label_19);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
 		//textField_14.setBackground(Color.GREEN);
-		textField_14.setEnabled(false);
-		textField_14.setBounds(310, 136, 74, 17);
-		panel_2.add(textField_14);
+		textField_7.setEnabled(false);
+		textField_7.setBounds(310, 136, 74, 17);
+		panel_2.add(textField_7);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
 		//textField_15.setBackground(Color.GREEN);
-		textField_15.setEnabled(false);
-		textField_15.setBounds(310, 101, 74, 17);
-		panel_2.add(textField_15);
+		textField_6.setEnabled(false);
+		textField_6.setBounds(310, 101, 74, 17);
+		panel_2.add(textField_6);
 		
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
 		//textField_16.setBackground(Color.GREEN);
-		textField_16.setEnabled(false);
-		textField_16.setBounds(310, 66, 74, 17);
-		panel_2.add(textField_16);
+		textField_5.setEnabled(false);
+		textField_5.setBounds(310, 66, 74, 17);
+		panel_2.add(textField_5);
 		
-		textField_17 = new JTextField();
-		textField_17.setColumns(10);
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
 		//textField_17.setBackground(Color.GREEN);
-		textField_17.setEnabled(false);
-		textField_17.setBounds(310, 31, 74, 17);
-		panel_2.add(textField_17);
+		textField_4.setEnabled(false);
+		textField_4.setBounds(310, 31, 74, 17);
+		panel_2.add(textField_4);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -411,35 +412,174 @@ public class EkranZaSobeAdministrator extends JFrame {
 		contentPane.add(btnPoetna);
 		prikaziSlobodneSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{
-				Session session = HibernateUtil.getSessionFactory().openSession();
-				Transaction t = session.beginTransaction();
-				final Query query = session.createQuery("from Soba");
-				List<Soba> sobe=new ArrayList<Soba>();
-				sobe = (ArrayList<Soba>)query.list();
-				
-				final Query query2 = session.createQuery("from Rezervacija");
-				List<Rezervacija> rezervacije=new ArrayList<Rezervacija>();
-				rezervacije = (ArrayList<Rezervacija>)query2.list();
-				//obrabrani datumi
-				java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
-        		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
-				
-        		for(Rezervacija o:rezervacije)
-        		{ 
-     			   JOptionPane.showMessageDialog(null, "Došlo je do greške pri radu s bazom!", "Error", JOptionPane.INFORMATION_MESSAGE);
+				try {
+        			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+            		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+        			//Ako je drugi datum manji od prvog, treba javiti grešku i onemogućiti prikaz
+            		if(datumOD.before(datumDO)){
+      
+        		try {
+        
+        		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
+        			        		
+	        			if(tempListaSoba.contains(1))
+	        			{
+	        				textField.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(2))
+	        			{
+	        				textField_1.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_1.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(3))
+	        			{
+	        				textField_2.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_2.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(4))
+	        			{
+	        				textField_3.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_3.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(13))
+	        			{
+	        				textField_4.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_4.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(14))
+	        			{
+	        				textField_5.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_5.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(15))
+	        			{
+	        				textField_6.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_6.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(16))
+	        			{
+	        				textField_7.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_7.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(9))
+	        			{
+	        				textField_8.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_8.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(10))
+	        			{
+	        				textField_9.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_9.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(11))
+	        			{
+	        				textField_10.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_10.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(12))
+	        			{
+	        				textField_11.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_11.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(5))
+	        			{
+	        				textField_13.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_13.setBackground(Color.GREEN);        				
+	        			}
+	        			if(tempListaSoba.contains(6))
+	        			{
+	        				textField_14.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_14.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(7))
+	        			{
+	        				textField_15.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_15.setBackground(Color.GREEN);        				
+	        			}
+	        			
+	        			if(tempListaSoba.contains(8))
+	        			{
+	        				textField_16.setBackground(Color.RED);
+	        			}
+	        			else
+	        			{
+	        				textField_16.setBackground(Color.GREEN);        				
+	        			}
+        		
+        		
+        		} catch (Exception ex1) 
+        		{
+        			System.out.println("Greska pri radu sa bazom 1: "+ex1.getMessage());
+            		JOptionPane.showMessageDialog(null, "MOrate unijeti datum za prikaz soba!", "Info", JOptionPane.INFORMATION_MESSAGE);
 
         		}
-        		
-				t.commit();
-				session.close();
-				}
-				catch(Exception e)
-				{
-			   JOptionPane.showMessageDialog(null, "Došlo je do greške pri radu s bazom!", "Error", JOptionPane.INFORMATION_MESSAGE);
-
-				}
-}
+        		}
+        			
+        			else
+        				{
+        				System.out.println("Greška: Unesite ispravne datume! ");
+        			    JOptionPane.showMessageDialog(null, "Datum odlaska mora biti poslije datuma dolaska!", "Error", JOptionPane.INFORMATION_MESSAGE);
+        				}
+        			
+        		} catch (Exception ex2) {
+        			System.out.println("Greska pri radu sa bazom 2: "+ex2.getMessage());
+        			JOptionPane.showMessageDialog(null, "Datum odlaska mora biti poslije datuma dolaska!", "Error", JOptionPane.INFORMATION_MESSAGE);
+        			}
+			}
 			
 		});
 	}
