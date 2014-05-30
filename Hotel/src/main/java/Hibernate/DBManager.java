@@ -74,11 +74,14 @@ public class DBManager {
 	
 		
 	public static List<Integer> dajZauzeteSobe(java.util.Date datumOD, java.util.Date datumDO){
+		
 		try{
 			
 			if (datumOD.after(datumDO)) throw new Exception("Datum odlaska mora biti veći od datuma dolaska!");
 			
-		}catch(Exception e){
+		}
+		catch(Exception e)
+		{
 			System.out.print("IZUZETAK: "+e.getMessage());
 		}
 		
@@ -88,6 +91,7 @@ public class DBManager {
 			
 			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
 			List<Integer> ret = new ArrayList<Integer>();
+			
 			for(Rezervacija r: rezervacije){
 				//if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
     			if((datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
