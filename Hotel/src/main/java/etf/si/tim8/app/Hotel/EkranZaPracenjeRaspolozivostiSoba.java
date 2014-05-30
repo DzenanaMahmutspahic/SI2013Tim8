@@ -460,145 +460,145 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 	        			}
 	
 	        		}*/
-        		java.util.List tempListaSoba =DBManager.dajSlobodneSobe(datumOD, datumDO);
+        		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
         		
 	        		
 	        			if(tempListaSoba.contains(1))
 	        			{
-	        				textField.setBackground(Color.GREEN);
+	        				textField.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField.setBackground(Color.RED);        				
+	        				textField.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(2))
 	        			{
-	        				textField_1.setBackground(Color.GREEN);
+	        				textField_1.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_1.setBackground(Color.RED);        				
+	        				textField_1.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(3))
 	        			{
-	        				textField_2.setBackground(Color.GREEN);
+	        				textField_2.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_2.setBackground(Color.RED);        				
+	        				textField_2.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(4))
 	        			{
-	        				textField_3.setBackground(Color.GREEN);
+	        				textField_3.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_3.setBackground(Color.RED);        				
+	        				textField_3.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(13))
 	        			{
-	        				textField_4.setBackground(Color.GREEN);
+	        				textField_4.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_4.setBackground(Color.RED);        				
+	        				textField_4.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(14))
 	        			{
-	        				textField_5.setBackground(Color.GREEN);
+	        				textField_5.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_5.setBackground(Color.RED);        				
+	        				textField_5.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(15))
 	        			{
-	        				textField_6.setBackground(Color.GREEN);
+	        				textField_6.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_6.setBackground(Color.RED);        				
+	        				textField_6.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(16))
 	        			{
-	        				textField_7.setBackground(Color.GREEN);
+	        				textField_7.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_7.setBackground(Color.RED);        				
+	        				textField_7.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(9))
 	        			{
-	        				textField_8.setBackground(Color.GREEN);
+	        				textField_8.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_8.setBackground(Color.RED);        				
+	        				textField_8.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(10))
 	        			{
-	        				textField_9.setBackground(Color.GREEN);
+	        				textField_9.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_9.setBackground(Color.RED);        				
+	        				textField_9.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(11))
 	        			{
-	        				textField_10.setBackground(Color.GREEN);
+	        				textField_10.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_10.setBackground(Color.RED);        				
+	        				textField_10.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(12))
 	        			{
-	        				textField_11.setBackground(Color.GREEN);
+	        				textField_11.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_11.setBackground(Color.RED);        				
+	        				textField_11.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(5))
 	        			{
-	        				textField_13.setBackground(Color.GREEN);
+	        				textField_13.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_13.setBackground(Color.RED);        				
+	        				textField_13.setBackground(Color.GREEN);        				
 	        			}
 	        			if(tempListaSoba.contains(6))
 	        			{
-	        				textField_14.setBackground(Color.GREEN);
+	        				textField_14.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_14.setBackground(Color.RED);        				
+	        				textField_14.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(7))
 	        			{
-	        				textField_15.setBackground(Color.GREEN);
+	        				textField_15.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_15.setBackground(Color.RED);        				
+	        				textField_15.setBackground(Color.GREEN);        				
 	        			}
 	        			
 	        			if(tempListaSoba.contains(8))
 	        			{
-	        				textField_16.setBackground(Color.GREEN);
+	        				textField_16.setBackground(Color.RED);
 	        			}
 	        			else
 	        			{
-	        				textField_16.setBackground(Color.RED);        				
+	        				textField_16.setBackground(Color.GREEN);        				
 	        			}
         		
         		
@@ -606,6 +606,8 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         		} catch (Exception ex1) 
         		{
         			System.out.println("Greska pri radu sa bazom 1: "+ex1.getMessage());
+            		JOptionPane.showMessageDialog(null, "MOrate unijeti datum za prikaz soba!", "Info", JOptionPane.INFORMATION_MESSAGE);
+
         		} 
         		
         			} catch (Exception ex2) {

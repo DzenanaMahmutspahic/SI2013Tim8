@@ -78,7 +78,7 @@ public class DBManager {
 			}
 			
 			return tempListaSoba;*/
-	public static List<Integer> dajSlobodneSobe(java.util.Date datumOD, java.util.Date datumDO){
+	public static List<Integer> dajZauzeteSobe(java.util.Date datumOD, java.util.Date datumDO){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
 		
@@ -86,9 +86,14 @@ public class DBManager {
 			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
 			List<Integer> ret = new ArrayList<Integer>();
 			for(Rezervacija r: rezervacije){
-				if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
-    			{
+				//if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
+    			if((datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
+    					|| (datumDO.before(r.getRezervisanoDo()) && datumDO.after(r.getRezervisanoOd())) 
+    					||(datumOD.before(r.getRezervisanoOd())&& datumDO.after(r.getRezervisanoDo()))
+    					|| (datumOD.after(r.getRezervisanoOd()) && datumDO.before(r.getRezervisanoDo())) )
+				{
     				ret.add(r.getSoba().getBrojSobe());
+    				System.out.println(r.getSoba().getBrojSobe());
     				
     			}
 			}
