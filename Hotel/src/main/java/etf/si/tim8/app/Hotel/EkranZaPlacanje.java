@@ -83,7 +83,6 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     	setTitle("Ekran za Placanje");
         initComponents();
         
-        //PlacanjeMain placanje = new PlacanjeMain();
         boravci = DBManager.dajBoravke();
         
         if(boravci !=null && boravci.size() > 0 ){
