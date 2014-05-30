@@ -39,6 +39,7 @@ import java.awt.Dimension;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JTextField;
 
 /**
  *
@@ -128,6 +129,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				jTextField6.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
         				jTextField8.setText(Double.toString(boravak.getRezervacija().getSoba().getCijena()));
         				
+        				textField.setText( Integer.toString(boravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(boravak.getRezervacija().getRezervisanoOd().getMonth()) + "."+Integer.toString(boravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(boravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(boravak.getRezervacija().getRezervisanoDo().getMonth()) + "."+Integer.toString(boravak.getRezervacija().getRezervisanoDo().getYear() +1900) );
+        				
         				long brojdana;
         				if(boravak.getVrijemeOdlaska() !=null) {
         					brojdana = (boravak.getVrijemeOdlaska().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
@@ -211,6 +214,11 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jTextField11.setEnabled(false);  /* read only texfield*/
+        
+        textField = new javax.swing.JTextField();
+        textField.setEnabled(false);
+        textField.setColumns(10);
+        
         jButton1 = new javax.swing.JButton();
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -290,28 +298,36 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel4.setText("Soba:");
 
         jLabel5.setText("Placeno:");
+        
+        JLabel lblRezervacija = new JLabel("Rezervacija:");
+        
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3Layout.setHorizontalGroup(
         	jPanel3Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel3Layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel2)
+        			.addGap(10)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(jPanel3Layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(jLabel4)
+        						.addComponent(lblRezervacija)))
         				.addComponent(jLabel3)
-        				.addComponent(jLabel4))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(jLabel2))
+        			.addGap(18)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(textField)
+        				.addComponent(jTextField2)
+        				.addComponent(jTextField3)
+        				.addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
         			.addGap(26)
         			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(jLabel5)
         				.addGroup(jPanel3Layout.createSequentialGroup()
         					.addGap(10)
         					.addComponent(labelPlaceno)))
-        			.addContainerGap(58, Short.MAX_VALUE))
+        			.addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
         	jPanel3Layout.createParallelGroup(Alignment.LEADING)
@@ -320,22 +336,26 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				.addGroup(jPanel3Layout.createSequentialGroup()
         					.addGap(15)
         					.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(jLabel2)
-        						.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabel2))
         					.addGap(6)
         					.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(jLabel3)
-        						.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabel3))
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(jLabel4)
-        						.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        						.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabel4)))
         				.addGroup(jPanel3Layout.createSequentialGroup()
         					.addContainerGap()
         					.addComponent(jLabel5)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
         					.addComponent(labelPlaceno)))
-        			.addContainerGap(40, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblRezervacija)
+        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.linkSize(SwingConstants.VERTICAL, new Component[] {jTextField1, jTextField2, jTextField3});
         jPanel3Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jTextField1, jTextField2, jTextField3});
@@ -684,4 +704,5 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private JPanel panel;
+    private JTextField textField;
 }

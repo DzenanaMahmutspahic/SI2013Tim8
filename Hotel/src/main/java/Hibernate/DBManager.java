@@ -56,18 +56,18 @@ public class DBManager {
 	
 	public static List<Boravak> dajBoravke2() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-
+		
 		Query q = session.createQuery("from Boravak boravak");
 		List<Boravak> boravci = q.list();
 		List<Boravak> ret = new ArrayList<Boravak>();
 		
-		for(Boravak b: boravci){
-			//System.out.println("ajd");
-			if(b.getVrijemeOdlaska() !=null ){
-				if(b.getRezervacija().getPotvrdjena() == true && ( b.getVrijemeOdlaska().after(new Date()) ));
-				ret.add(b);
+		for(Boravak b: boravci){ //System.out.println("ajd");
+			if(b.getVrijemeOdlaska() != null ) {
+				if(b.getRezervacija().getPotvrdjena() == true && ( b.getVrijemeOdlaska().after(new Date()) ))
+					ret.add(b);
 			}
 		}
+		session.close();
 		return boravci;
 	}
 	
