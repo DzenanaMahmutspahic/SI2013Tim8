@@ -57,7 +57,7 @@ public class DBManagerTest extends TestCase {
 	}
 	
 	
-	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba
+	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba, treba vratiti true
 	public void testDajZauzeteSobe() 
 	{
 		java.util.Date datumOD= new java.util.Date();

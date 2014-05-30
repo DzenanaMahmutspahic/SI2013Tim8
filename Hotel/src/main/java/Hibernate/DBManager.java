@@ -94,7 +94,8 @@ public class DBManager {
 			
 			for(Rezervacija r: rezervacije){
 				//if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
-    			if((datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
+    			
+				if((datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
     					|| (datumDO.before(r.getRezervisanoDo()) && datumDO.after(r.getRezervisanoOd())) 
     					||(datumOD.before(r.getRezervisanoOd())&& datumDO.after(r.getRezervisanoDo()))
     					|| (datumOD.after(r.getRezervisanoOd()) && datumDO.before(r.getRezervisanoDo())) )
