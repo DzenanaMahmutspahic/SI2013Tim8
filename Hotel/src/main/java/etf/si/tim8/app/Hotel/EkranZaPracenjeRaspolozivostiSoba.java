@@ -426,43 +426,15 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         btnPrikaziSlobodneSobe.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		try {
-        		/*Class.forName("com.mysql.jdbc.Driver");
-        		Connection c = DriverManager.getConnection(url, "dzenana", "dzenana");*/
+        			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
+            		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+        			//Ako je drugi datum manji od prvog, treba javiti grešku i onemogućiti prikaz
+            		if(datumOD.before(datumDO)){
+      
         		try {
-        		/*Statement st = c.createStatement();
-        		//String datumOD=datePicker.getModel().getValue().toString();
-        		//String datumDO=datePicker2.getModel().getValue().toString();
-        		//komenatar
-*/
-        		java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
-        		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
-        	
-        	//	java.util.List tempListaSoba = new java.util.ArrayList();
-        		
-	        		/*for(int i=1; i<=16;i++){
-	        			
-	        			
-	        			ResultSet rs = st.executeQuery ("select * from rezervacija where SOBA="+i+"");
-	        			
-	        			rs.next();
-	        			
-	        			java.util.Date rezervisanoOD=rs.getDate(3);
-	        			java.util.Date rezervisanoDO=rs.getDate(4);
-	        			Integer soba=rs.getInt(2);
-	        			
-	        			
-	        			if(datumDO.before(rezervisanoOD) || datumOD.after(rezervisanoDO) || (datumOD.after(rezervisanoDO) && datumDO.before(rezervisanoOD)))	        			        			
-	        			{
-	        				
-	        				tempListaSoba.add(soba);
-	        		
-	        				
-	        			}
-	
-	        		}*/
+        
         		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
-        		
-	        		
+        			        		
 	        			if(tempListaSoba.contains(1))
 	        			{
 	        				textField.setBackground(Color.RED);
@@ -602,20 +574,27 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 	        			}
         		
         		
-        		//if(datumOD>rezervisanoDO) || datumDO<rezervisanoOD || (datumOD>rezervisanoDO && datumDO<rezervisanoOD) )
         		} catch (Exception ex1) 
         		{
         			System.out.println("Greska pri radu sa bazom 1: "+ex1.getMessage());
             		JOptionPane.showMessageDialog(null, "MOrate unijeti datum za prikaz soba!", "Info", JOptionPane.INFORMATION_MESSAGE);
 
-        		} 
-        		
-        			} catch (Exception ex2) {
+        		}
+        		}
+        			
+        			else
+        				{
+        				System.out.println("Greška: Unesite ispravne datume! ");
+        			    JOptionPane.showMessageDialog(null, "Datum odlaska mora biti poslije datuma dolaska!", "Error", JOptionPane.INFORMATION_MESSAGE);
+        				}
+        			
+        		} catch (Exception ex2) {
         			System.out.println("Greska pri radu sa bazom 2: "+ex2.getMessage());
+        			JOptionPane.showMessageDialog(null, "Datum odlaska mora biti poslije datuma dolaska!", "Error", JOptionPane.INFORMATION_MESSAGE);
         			}
         		
-        		//JOptionPane.showMessageDialog(null, "Nije implementiran prikaz slobodnih soba u zavisnosti od rezervacija!", "Info", JOptionPane.INFORMATION_MESSAGE);
         	}
+
         });
         
         JLabel lblDatumDolaska = new JLabel("Datum dolaska:\r\n");
