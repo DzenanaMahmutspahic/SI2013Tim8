@@ -28,6 +28,7 @@ public class DBManager {
 		Query q = session.createQuery("from " + Zaposlenik.class.getName() + " where username = :username and password = :password");
 		q.setParameter("username", username);
 		q.setParameter("password", password);
+		
 		return (Zaposlenik)q.uniqueResult();
 	}
 	
@@ -69,7 +70,8 @@ public class DBManager {
 			}
 		}
 		session.close();
-		return boravci;
+		//return boravci; -tajma ispravila jer ne znam zasto si trazis ret kao ne vraćaš ret 
+		return ret;
 	}
 	
 	
@@ -106,6 +108,7 @@ public class DBManager {
     				
     			}
 			}
+			session.close();
 			return ret;
 		
 
@@ -119,7 +122,7 @@ public class DBManager {
 		Query q = session.createQuery("from Predracun predracun where rezervacija=:rezervacija");//or vrijemeOdlaska isnull
 		q.setParameter("rezervacija", rezervacija);
 		
-		Predracun predracun;
+		Predracun predracun=null;
 		if(!q.list().isEmpty())
 			predracun = (Predracun) q.list().get(0);
 		else predracun=null;
@@ -145,12 +148,11 @@ public class DBManager {
 	}
 	
 	/*Za Ekran za placanje */
-	public static void unesiPredracun(Predracun p){
+	public static void unesiPredracun(Predracun predracun){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
-		session.save(p);
+		session.save(predracun);
 		t.commit();
-		session.close();
 	}
 	
 	public static void updatePredracun(Predracun p){
@@ -158,7 +160,7 @@ public class DBManager {
 		Transaction t = session.beginTransaction();
 		session.update(p);
 		t.commit();
-		session.close();
+		//session.close();
 	}
 	
 	public static void unesiRacun(Racun racun){
