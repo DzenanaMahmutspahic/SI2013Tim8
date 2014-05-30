@@ -50,6 +50,10 @@ public class Login extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField1.setBackground(SystemColor.inactiveCaptionBorder);
         jButton1 = new javax.swing.JButton();
+        jButton1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
        
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField1.setBackground(SystemColor.inactiveCaptionBorder);

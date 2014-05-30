@@ -61,17 +61,17 @@ public class DBManager {
 		
 		Query q = session.createQuery("from Boravak boravak");
 		List<Boravak> boravci = q.list();
-		List<Boravak> ret = new ArrayList<Boravak>();
+		//List<Boravak> ret = new ArrayList<Boravak>();
 		
-		for(Boravak b: boravci){ //System.out.println("ajd");
-			if(b.getVrijemeOdlaska() != null ) {
-				if(b.getRezervacija().getPotvrdjena() == true && ( b.getVrijemeOdlaska().after(new Date()) ))
-					ret.add(b);
-			}
-		}
+		//for(Boravak b: boravci){ //System.out.println("ajd");
+		//	if(b.getVrijemeOdlaska() != null ) {
+		//		if(b.getRezervacija().getPotvrdjena() == true && ( b.getVrijemeOdlaska().after(new Date()) ))
+		//			ret.add(b);
+		//	}
+		//}
 		session.close();
-		//return boravci; -tajma ispravila jer ne znam zasto si trazis ret kao ne vraćaš ret 
-		return ret;
+		return boravci; 
+		//return ret;
 	}
 	
 	
