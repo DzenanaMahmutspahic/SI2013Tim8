@@ -20,7 +20,7 @@ public class DBManagerTest extends TestCase {
 	}
 
 	public void testDajZauzeteSobeProvjeraException() { 
-		//Test za provjeru bacanja izuzetka
+		//Test za provjeru bacanja izuzetka metode dajZauzeteSobe
 		
 		java.util.Date datumOD= new java.util.Date();
 		java.util.Date datumDO= new java.util.Date();
