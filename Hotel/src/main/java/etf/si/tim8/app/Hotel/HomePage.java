@@ -137,6 +137,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	dispose();
                 new Rezervacija(zaposlenik).setVisible(true);
             }
         }); 
@@ -145,6 +146,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
+        	dispose();
             new EkranZaPlacanje().setVisible(true);
         }
     }); 
@@ -153,6 +155,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
+        	dispose();
             new EvidencijaGostiju().setVisible(true);
         }
     }); 
@@ -161,6 +164,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {                                      
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
+        	dispose();
             new EkranZaPracenjeRaspolozivostiSoba().setVisible(true);
         }
     }); 
