@@ -272,9 +272,12 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		//JOptionPane.showMessageDialog(null, "Nije implementirano!", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
+        			if(oznaceniBoravak==null)
+            			JOptionPane.showMessageDialog(null, "Niste oznaćili nijednog gosta!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+        			else{
         			kreirajPredracun();
         			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
-        		}
+        		}}
         		catch(Exception exception){
         			JOptionPane.showMessageDialog(null, exception.getMessage() , "Greska", JOptionPane.ERROR_MESSAGE);
         		}
@@ -286,6 +289,9 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         		
         		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
+            		if(oznaceniBoravak==null)
+            			JOptionPane.showMessageDialog(null, "Niste oznaćili nijednog gosta!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+            		else{
         			kreirajPredracun();
         			racun = new Racun();
         			racun.setBrojRacuna(10);
@@ -293,7 +299,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         			racun.setVrijemeIzdavanja(new Date());
         			DBManager.unesiRacun(racun);
         			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali racun!", "Evidencija racuna", JOptionPane.INFORMATION_MESSAGE);
-        		}
+        		}}
         		catch(Exception exception){
         			JOptionPane.showMessageDialog(null, exception.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         		}
