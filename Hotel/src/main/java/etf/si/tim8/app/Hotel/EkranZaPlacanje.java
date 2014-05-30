@@ -112,7 +112,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        final JLabel labelPlaceno = new JLabel("/");
+        final JLabel labelPlaceno = new JLabel(" ");
         
         jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
         	public void valueChanged(ListSelectionEvent arg0) {
@@ -139,7 +139,44 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				jComboBox1.setSelectedItem(brojdana);
         				double cijenasoba = boravak.getRezervacija().getSoba().getCijena();
         				
-        				jTextField11.setText(Double.toString(brojdana *  cijenasoba));
+        				Double polja7i9 =0.0;
+        				try{
+        					if(!jTextField7.getText().equalsIgnoreCase("")) polja7i9 += Double.parseDouble(jTextField7.getText());
+        				}
+        				catch(Exception e){
+        					polja7i9=0.0;
+        					jTextField9.setText("");
+        					jTextField7.setText("");
+        					JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
+        				}
+        				try{
+        					if(!jTextField9.getText().equalsIgnoreCase(""))polja7i9 += Double.parseDouble(jTextField9.getText());
+        				}
+        				catch(Exception e){
+        					polja7i9=0.0;
+        					jTextField9.setText("");
+        					jTextField7.setText("");
+        					JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
+        					//JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
+        				}
+        				
+        				double popust = 0.0;
+        				try{
+        					if(!jTextField10.getText().equalsIgnoreCase("")) popust += Double.parseDouble(jTextField10.getText());
+        				}
+        				catch(Exception e){
+        					polja7i9=0.0;
+        					jTextField10.setText("");
+        					JOptionPane.showMessageDialog(null, "Pogresan unos", "Info", JOptionPane.ERROR_MESSAGE);
+        				}
+        				if(popust>=100 && popust<=0) popust =0.0;
+        				
+        				Double ukupno = (brojdana *  cijenasoba + polja7i9 - (brojdana *  cijenasoba + polja7i9)*(popust/100) );
+        				String uk = ukupno.toString();
+        				if(uk.length() > 5 ) uk = uk.substring(0, 5);
+        				//jTextField11.setText(Double.toString( (brojdana *  cijenasoba + polja7i9 - (brojdana *  cijenasoba + polja7i9)*(popust/100) ) ));
+        				jTextField11.setText(uk);
+        				
         				jTextField10.setText("");
         				
         				predracun = DBManager.dajPredracun(boravak.getRezervacija());
@@ -513,27 +550,26 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jTextField11.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(0, 14, Short.MAX_VALUE))
-                    .addComponent(jTextField11))
-                .addContainerGap())
+        	jPanel8Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel8Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabel16)
+        			.addGap(24))
+        		.addGroup(Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+        			.addComponent(jTextField11, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	jPanel8Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel8Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabel16)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jTextField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel8.setLayout(jPanel8Layout);
 
         jButton1.setText("Izrada predra\u010Duna");
 
