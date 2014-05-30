@@ -31,8 +31,8 @@ import javax.swing.JPanel;
 import Hibernate.DBManager;
 import Klase.*;
 
-
 import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.awt.Dimension;
@@ -116,28 +116,29 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         
         jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
         	public void valueChanged(ListSelectionEvent arg0) {
-        		//jTextField1.setText("A");
-        		for(Boravak boravak : boravci){
-        			if(boravak.getGost().getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
-        				oznaceniBoravak = boravak;
+        		//for(Boravak boravak : boravci){
+        			//if(boravak.getGost().getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
+        			if(jList1.getSelectedIndex()!=-1){
+        				oznaceniBoravak = boravci.get(jList1.getSelectedIndex());
         				
-        				jTextField1.setText(boravak.getGost().getIme());
-        				jTextField4.setText(boravak.getGost().getIme());
-        				jTextField2.setText(boravak.getGost().getPrezime());
-        				jTextField5.setText(boravak.getGost().getPrezime());
-        				jTextField3.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
-        				jTextField6.setText(Integer.toString(boravak.getRezervacija().getSoba().getBrojSobe()));
-        				jTextField8.setText(Double.toString(boravak.getRezervacija().getSoba().getCijena()));
+        				jTextField1.setText(oznaceniBoravak.getGost().getIme());
+        				jTextField4.setText(oznaceniBoravak.getGost().getIme());
+        				jTextField2.setText(oznaceniBoravak.getGost().getPrezime());
+        				jTextField5.setText(oznaceniBoravak.getGost().getPrezime());
+        				jTextField3.setText(Integer.toString(oznaceniBoravak.getRezervacija().getSoba().getBrojSobe()));
+        				jTextField6.setText(Integer.toString(oznaceniBoravak.getRezervacija().getSoba().getBrojSobe()));
+        				jTextField8.setText(Double.toString(oznaceniBoravak.getRezervacija().getSoba().getCijena()));
         				
-        				textField.setText( Integer.toString(boravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(boravak.getRezervacija().getRezervisanoOd().getMonth()) + "."+Integer.toString(boravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(boravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(boravak.getRezervacija().getRezervisanoDo().getMonth()) + "."+Integer.toString(boravak.getRezervacija().getRezervisanoDo().getYear() +1900) );
+        				textField.setText( new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoOd()) + " - " + new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoDo()));
+        				/*Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getYear() +1900)*/ 
         				
         				long brojdana;
-        				if(boravak.getVrijemeOdlaska() !=null) {
-        					brojdana = (boravak.getVrijemeOdlaska().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
+        				if(oznaceniBoravak.getVrijemeOdlaska() !=null) {
+        					brojdana = (oznaceniBoravak.getVrijemeOdlaska().getTime() - oznaceniBoravak.getVrijemeDolaska().getTime())/(1000 * 86400);
         				}
-        				else brojdana = (new Date().getTime() - boravak.getVrijemeDolaska().getTime())/(1000 * 86400);
+        				else brojdana = (new Date().getTime() - oznaceniBoravak.getVrijemeDolaska().getTime())/(1000 * 86400);
         				jComboBox1.setSelectedItem(brojdana);
-        				double cijenasoba = boravak.getRezervacija().getSoba().getCijena();
+        				double cijenasoba = oznaceniBoravak.getRezervacija().getSoba().getCijena();
         				
         				Double polja7i9 =0.0;
         				try{
@@ -172,13 +173,13 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				
         				Double ukupno = (brojdana *  cijenasoba + polja7i9 - (brojdana *  cijenasoba + polja7i9)*(popust/100) );
         				String uk = ukupno.toString();
-        				if(uk.length() > 5 ) uk = uk.substring(0, 5);
+        				if(uk.length() > 7 ) uk = uk.substring(0, 7);
         				//jTextField11.setText(Double.toString( (brojdana *  cijenasoba + polja7i9 - (brojdana *  cijenasoba + polja7i9)*(popust/100) ) ));
         				jTextField11.setText(uk);
         				
         				jTextField10.setText("");
         				
-        				predracun = DBManager.dajPredracun(boravak.getRezervacija());
+        				predracun = DBManager.dajPredracun(oznaceniBoravak.getRezervacija());
         				if(predracun!=null){
         					jTextField10.setText(Double.toString(predracun.getPopust()));
         					racun = DBManager.dajRacun(predracun);
@@ -199,7 +200,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     						jButton2.setEnabled(true);
     					}
         			}
-        		}
+        		//}
         	}
         });
         
@@ -344,25 +345,24 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         		.addGroup(jPanel3Layout.createSequentialGroup()
         			.addGap(10)
         			.addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(jPanel3Layout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(jLabel4)
-        						.addComponent(lblRezervacija)))
+        				.addComponent(jLabel4)
+        				.addComponent(lblRezervacija)
         				.addComponent(jLabel3)
         				.addComponent(jLabel2))
         			.addGap(18)
-        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(textField)
-        				.addComponent(jTextField2)
-        				.addComponent(jTextField3)
-        				.addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-        			.addGap(26)
         			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel5)
         				.addGroup(jPanel3Layout.createSequentialGroup()
-        					.addGap(10)
-        					.addComponent(labelPlaceno)))
+        					.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(jTextField2)
+        						.addComponent(jTextField3)
+        						.addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+        					.addGap(26)
+        					.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel5)
+        						.addGroup(jPanel3Layout.createSequentialGroup()
+        							.addGap(10)
+        							.addComponent(labelPlaceno))))
+        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
