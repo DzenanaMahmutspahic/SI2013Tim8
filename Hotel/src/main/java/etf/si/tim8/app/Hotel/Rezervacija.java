@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
+import javax.swing.JList;
 
 /**
  *
@@ -84,11 +85,6 @@ public class Rezervacija extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel4.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel5.setBackground(SystemColor.inactiveCaptionBorder);
         jLabel10 = new javax.swing.JLabel();
@@ -315,11 +311,7 @@ public class Rezervacija extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setText("Ime:");
-
-        jLabel7.setText("Prezime:");
-
-        jLabel8.setText("Broj sobe:");
+        jLabel6.setText("Lista gostiju:");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -352,21 +344,18 @@ public class Rezervacija extends javax.swing.JFrame {
         jLabel9.setToolTipText("");
 
         jButton2.setText("Rezervi\u0161i");
+        
+        JList list = new JList();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4Layout.setHorizontalGroup(
         	jPanel4Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel4Layout.createSequentialGroup()
-        			.addContainerGap()
+        			.addGap(20)
         			.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel6)
-        				.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING, false)
-        					.addComponent(jTextField3)
-        					.addComponent(jTextField4)
-        					.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(jLabel7)
-        				.addComponent(jLabel8))
-        			.addPreferredGap(ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+        				.addComponent(list, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel6))
+        			.addPreferredGap(ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
         			.addGroup(jPanel4Layout.createParallelGroup(Alignment.TRAILING, false)
         				.addGroup(jPanel4Layout.createSequentialGroup()
         					.addComponent(jLabel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -384,24 +373,17 @@ public class Rezervacija extends javax.swing.JFrame {
         			.addGap(12)
         			.addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(jPanel4Layout.createSequentialGroup()
-        					.addComponent(jLabel6)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jLabel9)
+        						.addComponent(jLabel6))
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jLabel7)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jLabel8)
-        					.addGap(5)
-        					.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+        					.addGap(79)
+        					.addComponent(jButton2))
         				.addGroup(jPanel4Layout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jLabel9)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(62)
-        			.addComponent(jButton2)
+        					.addGap(26)
+        					.addComponent(list, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4.setLayout(jPanel4Layout);
@@ -843,8 +825,6 @@ jButton_7.setText("Galerija");
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
@@ -875,9 +855,6 @@ jButton_7.setText("Galerija");
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private JPanel panel;
