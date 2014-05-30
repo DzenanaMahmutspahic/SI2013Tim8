@@ -37,6 +37,7 @@ public class EkranZaEditovanjeSobe {
 //neki koemntar
 	private JFrame frame;
 	private JTextField textField;
+	private JTextField textField_1;
 
 	public void setVisible(boolean t){frame.setVisible(t);}
 	/**
@@ -115,10 +116,6 @@ public class EkranZaEditovanjeSobe {
 		spinner.setBounds(79, 11, 115, 20);
 		panel_1.add(spinner);
 		
-		final JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(79, 39, 115, 20);
-		panel_1.add(spinner_1);
-		
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Jednokrevetna", "Dvokrevetna"}));
 		comboBox.setBounds(79, 64, 115, 20);
@@ -133,6 +130,11 @@ public class EkranZaEditovanjeSobe {
 		btnEditujSobu.setBounds(78, 140, 116, 23);
 		panel_1.add(btnEditujSobu);
 		
+		textField_1 = new JTextField();
+		textField_1.setBounds(79, 36, 115, 20);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		textField_1.setEnabled(false);
 		final JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(59, 15, 155, 20);
 		panel.add(comboBox_1);
@@ -181,7 +183,7 @@ public class EkranZaEditovanjeSobe {
 
 							s=o;
 							spinner.setValue(s.getSprat());
-							spinner_1.setValue(s.getBrojSobe());
+							textField_1.setText(Integer.toString(s.getBrojSobe()));
 							if(s.getBrojKreveta()==1)
 								comboBox.setSelectedIndex(0);
 							else
@@ -202,7 +204,7 @@ public class EkranZaEditovanjeSobe {
 		//spasavanje promjena klikom na dugme
 		btnEditujSobu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				try{
 				Session session = HibernateUtil.getSessionFactory().openSession();
 				Transaction t = session.beginTransaction();
 				final Query query = session.createQuery("from Soba where brojsobe="+comboBox_1.getSelectedItem().toString());
@@ -216,14 +218,30 @@ public class EkranZaEditovanjeSobe {
 					s.setBrojKreveta(1);
 				else
 					s.setBrojKreveta(2);
-				s.setSprat(Integer.parseInt(spinner.getValue().toString()));
-				s.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
+				boolean ispravna=true;
+				//soba.setCijena(Double.parseDouble(textField.getText()));
+				
+				if(Integer.parseInt(spinner.getValue().toString())>0 && Integer.parseInt(spinner.getValue().toString())<3)
+					s.setSprat(Integer.parseInt(spinner.getValue().toString()));
+                    else
+                    {
+                    	ispravna=false;
+    					JOptionPane.showMessageDialog(null, "Sprat može biti samo 1 ili 2!", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+                    }
+				s.setBrojSobe(Integer.parseInt(textField_1.getText()));
+				
 				s.setCijena(Double.parseDouble(textField.getText()));
 				
+				if(ispravna){
 				session.update(s);
 				t.commit();
 				session.close();
-				JOptionPane.showMessageDialog(null, "sve ok ", "OK", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Uspješno ste izmjenili sobu!", "Info", JOptionPane.INFORMATION_MESSAGE);}}
+				catch(Exception e) 
+				{
+					JOptionPane.showMessageDialog(null, "Morate unijeti broj kao cijenu! ", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 	}
