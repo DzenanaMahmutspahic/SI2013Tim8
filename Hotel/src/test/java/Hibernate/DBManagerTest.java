@@ -2,6 +2,8 @@ package Hibernate;
 
 import junit.framework.TestCase;
 
+import java.text.ParseException;
+
 public class DBManagerTest extends TestCase {
 //testiranje metoda iz klase DBManager
 	//komentar
@@ -17,8 +19,33 @@ public class DBManagerTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testDajZauzeteSobe() {
-		fail("Not yet implemented"); // TODO
+	public void testDajZauzeteSobeProvjeraException() { 
+		//Test za provjeru bacanja izuzetka
+		
+		java.util.Date datumOD= new java.util.Date();
+		java.util.Date datumDO= new java.util.Date();
+		
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		try{ 
+			
+		try {
+			 datumOD=sdf.parse("2014-06-10");
+	        }catch(java.text.ParseException p) {
+	            System.out.println(p.toString());
+	        }
+		
+		 try {
+			 datumDO=sdf.parse("2014-06-05");
+	        }catch(java.text.ParseException p1) {
+	            System.out.println(p1.toString());
+	        }
+		 
+		 java.util.List testnaListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
+		 
+		} catch(Exception e){
+			assertTrue(true);
+		}
+		 
 	}
 
 	public void testDajPredracun() {

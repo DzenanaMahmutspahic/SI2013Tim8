@@ -428,6 +428,7 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         		try {
         			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
             		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
+            		
         			//Ako je drugi datum manji od prvog, treba javiti grešku i onemogućiti prikaz
             		if(datumOD.before(datumDO)){
       
