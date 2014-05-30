@@ -8,10 +8,10 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="gost" class="Klase.Gost" fetch="join">
+        <many-to-one name="gost" class="Klase.Gost" fetch="join" lazy="false">
             <column name="GOST" />
         </many-to-one>
-        <many-to-one name="rezervacija" class="Klase.Rezervacija" fetch="join">
+        <many-to-one name="rezervacija" class="Klase.Rezervacija" fetch="join" lazy="false">
             <column name="REZERVACIJA" />
         </many-to-one>
         <property name="vrijemeDolaska" type="java.util.Date">
