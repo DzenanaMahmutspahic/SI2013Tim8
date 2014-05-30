@@ -72,33 +72,19 @@ public class DBManager {
 	}
 	
 	
-		/*Session session = HibernateUtil.getSessionFactory().openSession();
 		
-		java.util.List tempListaSoba = new java.util.ArrayList();
-		
-		for(int i=1; i<=16;i++){	
-			
-			//ResultSet rs = st.executeQuery ("select * from rezervacija where SOBA="+i+"");
-			Query q=session.createQuery("select * from rezervacija where SOBA="+i+"");
-			sc.next();
-			//java.util.Date rezervisanoOD=Rezervacija.class.getRezervisanoOd();
-			java.util.Date rezervisanoDO= (java.util.Date) q.setParameter("rezervisanoDo", rezervisanoDO);
-			java.util.Date rezervisanoOD= (java.util.Date) q.setParameter("rezervisanoOd", rezervisanoOD);
-			Integer soba=getInt;
-			
-			
-			if(datumDO.before(rezervisanoOD) || datumOD.after(rezervisanoDO) || (datumOD.after(rezervisanoDO) && datumDO.before(rezervisanoOD)))	        			        			
-			{
-				
-				tempListaSoba.add(soba);
-					
-			}
-			
-			return tempListaSoba;*/
 	public static List<Integer> dajZauzeteSobe(java.util.Date datumOD, java.util.Date datumDO){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
+		try{
+			
+			if (datumOD.after(datumDO)) throw new Exception("Datum odlaska mora biti veći od datuma dolaska!");
+			
+		}catch(Exception e){
+			System.out.print("IZUZETAK: "+e.getMessage());
+		}
 		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
+			
 			
 			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
 			List<Integer> ret = new ArrayList<Integer>();
@@ -115,6 +101,8 @@ public class DBManager {
     			}
 			}
 			return ret;
+		
+
 	}
 	
 	
