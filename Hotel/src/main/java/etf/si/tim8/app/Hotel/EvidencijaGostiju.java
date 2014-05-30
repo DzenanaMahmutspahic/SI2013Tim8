@@ -558,7 +558,7 @@ public class EvidencijaGostiju extends JFrame {
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(674, 325, 200, 191);
+		panel_3.setBounds(674, 325, 200, 40);
 		contentPane.add(panel_3);
 
 		ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
@@ -913,6 +913,16 @@ public class EvidencijaGostiju extends JFrame {
 		});
 		btnSpasiPromjene.setBounds(511, 503, 122, 23);
 		panel_1.add(btnSpasiPromjene);
+		
+		JButton btnRezervacija = new JButton("Rezervacija");
+		btnRezervacija.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				new Rezervacija().setVisible(true);
+			}
+		});
+		btnRezervacija.setBounds(674, 466, 200, 50);
+		contentPane.add(btnRezervacija);
 
 	}
 }

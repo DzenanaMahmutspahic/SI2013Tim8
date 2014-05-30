@@ -181,19 +181,22 @@ public class Rezervacija extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
         		new HomePage().setVisible(true);
         	}
         });
         jButton6 = new javax.swing.JButton();
         jButton6.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
         		new EkranZaPlacanje().setVisible(true);
         	}
         });
         jButton_7 = new javax.swing.JButton();
         jButton_7.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		new EkranZaPlacanje().setVisible(true);
+        		dispose();
+        		new EvidencijaGostiju().setVisible(true);
         	}
         });
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -684,7 +687,7 @@ public class Rezervacija extends javax.swing.JFrame {
         jButton5.setText("Po\u010Detna stranica");
 
         jButton6.setText("Pla\u0107anje");
-jButton_7.setText("Galerija");
+jButton_7.setText("Evidencija gostiju");
         
         panel = new JPanel();
         panel.setSize(200,200);
