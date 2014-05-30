@@ -30,19 +30,25 @@ public class DBManagerTest extends TestCase {
 			
 		try {
 			 datumOD=sdf.parse("2014-06-10");
-	        }catch(java.text.ParseException p) {
-	            System.out.println(p.toString());
 	        }
+		catch(java.text.ParseException p)
+		{
+	            System.out.println(p.toString());
+	      }
 		
 		 try {
 			 datumDO=sdf.parse("2014-06-05");
-	        }catch(java.text.ParseException p1) {
+	       }
+		 catch(java.text.ParseException p1) 
+		 {
 	            System.out.println(p1.toString());
-	        }
+	      }
 		 
 		 java.util.List testnaListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
 		 
-		} catch(Exception e){
+		} 
+		catch(Exception e)
+		{
 			assertTrue(true);
 		}
 		 
