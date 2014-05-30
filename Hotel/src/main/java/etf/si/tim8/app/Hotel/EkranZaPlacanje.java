@@ -116,7 +116,6 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         
         jList1.addListSelectionListener(new ListSelectionListener() { // Listener za klik na jList1
         	public void valueChanged(ListSelectionEvent arg0) {
-        		//jTextField1.setText("A");
         		//for(Boravak boravak : boravci){
         			//if(boravak.getGost().getOsoba().getImePrezime() == jList1.getSelectedValue().toString() ){
         			if(jList1.getSelectedIndex()!=-1){
