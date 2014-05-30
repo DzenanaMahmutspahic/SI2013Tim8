@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 public class DBManagerTest extends TestCase {
 //testiranje metoda iz klase DBManager
+	//komentar
 	public void testProvjeriLogin() {
 		fail("Not yet implemented"); // TODO
 	}
