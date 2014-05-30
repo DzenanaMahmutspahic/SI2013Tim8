@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import Klase.Gost;
 import Klase.Racun;
 import Klase.Rezervacija;
 import Klase.Boravak;
@@ -161,6 +162,84 @@ public class DBManager {
 		session.save(racun);
 		t.commit();
 		session.close();
+	}
+	
+	/* Ekran  za rezevacije */
+	public static List<Soba> dajSlobodneSobe(java.util.Date datumOD, java.util.Date datumDO, int klasa){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from " + Rezervacija.class.getName() + " rezervacija where rezervacija.soba is not null");
+		
+			
+			List<Rezervacija> rezervacije = (List<Rezervacija>)q.list();
+			List<Long> ret = new ArrayList<Long>();//lista zauzetih soba
+			for(Rezervacija r: rezervacije){
+				//if(datumDO.before(r.getRezervisanoOd()) || datumOD.after(r.getRezervisanoDo()) || (datumOD.after(r.getRezervisanoDo()) && datumDO.before(r.getRezervisanoOd())))	        			        			
+    			if((datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
+    					|| (datumDO.before(r.getRezervisanoDo()) && datumDO.after(r.getRezervisanoOd())) 
+    					||(datumOD.before(r.getRezervisanoOd())&& datumDO.after(r.getRezervisanoDo()))
+    					|| (datumOD.after(r.getRezervisanoOd()) && datumDO.before(r.getRezervisanoDo())) )
+				{
+    				ret.add(r.getSoba().getId());	
+    			}
+			}
+    			
+    			Query q2 = session.createQuery("from " + Soba.class.getName());
+    			List<Soba> sveSobe = (List<Soba>)q2.list();
+    			
+    			List<Soba> dostupneSobe = new ArrayList<Soba>();
+    			for(Soba soba : sveSobe)
+    			{
+    				if(!ret.contains(soba.getId()))
+    				{
+    					if(klasa == 1 || klasa == 2)
+    					{
+    						if(soba.getBrojKreveta() == klasa)
+    						{
+    							dostupneSobe.add(soba);
+    						}
+    					}
+    					else
+    					{
+    						dostupneSobe.add(soba);
+    					}
+    					
+    				}
+    			}
+    				
+    			return dostupneSobe;	
+			}
+	
+	public static List<Gost> dajSveGoste()
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Gost.class.getName());
+		return (List<Gost>)q.list();
+		
+	}
+	
+	public static void evidentirajBoravkeIRezervaciju(Soba soba, List<Gost> gosti, Date datumOD, Date datumDo, Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Rezervacija rezervacija = new Rezervacija();
+		rezervacija.setBrojRezervacije(1);
+		rezervacija.setKreiraoZaposlenik(zaposlenik);
+		rezervacija.setPotvrdjena(true);
+		rezervacija.setRezervisanoDo(datumDo);
+		rezervacija.setRezervisanoOd(datumOD);
+		rezervacija.setSoba(soba);
+		session.save(rezervacija);
+		for(Gost gost : gosti)
+		{
+			Boravak boravak = new Boravak();
+			boravak.setGost(gost);
+			boravak.setRezervacija(rezervacija);
+			boravak.setVrijemeDolaska(datumOD);
+			boravak.setVrijemeOdlaska(datumDo);
+			session.save(boravak);		
+		}
+		t.commit();
+		
 	}
 	
 }
