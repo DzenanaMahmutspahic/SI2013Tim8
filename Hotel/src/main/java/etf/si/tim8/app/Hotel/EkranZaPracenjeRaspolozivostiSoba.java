@@ -96,6 +96,7 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
         		new HomePage().setVisible(true);
         	}
         });
@@ -695,8 +696,8 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(jLabel22, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         					.addGap(188)))
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(jButton1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addGroup(layout.createParallelGroup(Alignment.LEADING)
         					.addComponent(jLabel23)
         					.addComponent(jLabel24)

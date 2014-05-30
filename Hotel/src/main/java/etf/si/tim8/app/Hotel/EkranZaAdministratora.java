@@ -49,6 +49,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnSobe = new JButton();
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new EkranZaSobeAdministrator().setVisible(true);;
 			}
 		});
@@ -61,7 +62,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton button = new JButton();
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+			dispose();
 			 new Rezervacija().setVisible(true);
 			 
 			}
@@ -75,6 +76,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnPlaanje = new JButton();
 		btnPlaanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 				new EkranZaPlacanje().setVisible(true);
 			}
 		});
@@ -87,6 +89,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnEvidencijaGostiju = new JButton();
 		btnEvidencijaGostiju.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new EvidencijaGostiju().setVisible(true);
 			}
 		});
@@ -99,6 +102,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnOsoblje = new JButton();
 		btnOsoblje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new OsobljeN().setVisible(true);
 			}
 		});
@@ -121,6 +125,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnSobe = new JButton();
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new EkranZaSobeAdministrator().setVisible(true);;
 			}
 		});
@@ -134,7 +139,7 @@ public class EkranZaAdministratora extends JFrame {
 		final Zaposlenik zap = zaposlenik;
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+			dispose();
 			 new Rezervacija(zap).setVisible(true);
 			 
 			}
@@ -148,6 +153,7 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnPlaanje = new JButton();
 		btnPlaanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 				new EkranZaPlacanje().setVisible(true);
 			}
 		});

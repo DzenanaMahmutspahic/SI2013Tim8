@@ -553,6 +553,12 @@ public class EvidencijaGostiju extends JFrame {
 		panel_2.add(textField_27);
 
 		JButton btnPoetnaStranica = new JButton("Po\u010Detna stranica");
+		btnPoetnaStranica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				new HomePage().setVisible(true);
+			}
+		});
 		btnPoetnaStranica.setBounds(674, 527, 200, 50);
 		contentPane.add(btnPoetnaStranica);
 

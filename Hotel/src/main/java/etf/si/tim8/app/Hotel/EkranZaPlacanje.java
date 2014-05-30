@@ -113,7 +113,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	setTitle("Hotel Ksenon Plaza-Pla�anje");
+    	setTitle("Hotel Ksenon Plaza-Placanje");
         jPanel1 = new javax.swing.JPanel();
         jPanel1.setBackground(SystemColor.inactiveCaptionBorder);
         jPanel2 = new javax.swing.JPanel();

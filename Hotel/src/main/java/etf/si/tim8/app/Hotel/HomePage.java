@@ -28,7 +28,7 @@ public class HomePage extends javax.swing.JFrame {
     	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
-        setTitle("Hotel Ksenon Plaza-Dobrodo�li!");
+        setTitle("Hotel Ksenon Plaza-Dobrodosli!");
     }
     
     public HomePage(Zaposlenik zaposlenik) {
@@ -36,7 +36,7 @@ public class HomePage extends javax.swing.JFrame {
     	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
-        setTitle("Hotel Ksenon Plaza-Dobrodo�li!");
+        setTitle("Hotel Ksenon Plaza-Dobrodosli!");
         
     }
 

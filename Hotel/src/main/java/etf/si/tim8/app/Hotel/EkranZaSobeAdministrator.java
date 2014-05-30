@@ -359,6 +359,7 @@ public class EkranZaSobeAdministrator extends JFrame {
 		JButton btnNewButton = new JButton("Ure\u0111ivanje soba");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//dispose();
 				new EkranZaEditovanjeSobe().setVisible(true);
 			}
 		});
@@ -372,6 +373,7 @@ public class EkranZaSobeAdministrator extends JFrame {
 		JButton btnDodavanjeSoba = new JButton("Dodavanje soba");
 		btnDodavanjeSoba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//dispose();
 				new EkranZaDodavanjeSobe().setVisible(true);
 			}
 		});
@@ -405,6 +407,7 @@ public class EkranZaSobeAdministrator extends JFrame {
 		JButton btnPoetna = new JButton("Po\u010Detna");
 		btnPoetna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new HomePage();
 			}
 		});
