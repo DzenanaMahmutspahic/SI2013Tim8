@@ -595,7 +595,7 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         			}
         		
         	}
-
+//komenatar
         });
         
         JLabel lblDatumDolaska = new JLabel("Datum dolaska:\r\n");
