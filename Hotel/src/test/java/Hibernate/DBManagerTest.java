@@ -187,9 +187,9 @@ public class DBManagerTest extends TestCase {
 		assertTrue(tempListaSoba.contains(1) && tempListaSoba.contains(2));
 		
 	}
-	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba, treba vratiti false
-	//jer nisu zauzete obje sobe u datom periodu
-	/*public void testDajZauzeteSobeFalse() 
+	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba jer je prva soba zauzeta
+	//samo dio perioda, a ne cijeli period koji trazimo
+	public void testDajZauzeteSobeDioPerioda() 
 	{
 		java.util.Date datumOD= new java.util.Date();
 		java.util.Date datumDO= new java.util.Date();
@@ -219,7 +219,7 @@ public class DBManagerTest extends TestCase {
 		
 		try
 		{
-			 rezervisanoOD=sdf.parse("2014-06-10");
+			 rezervisanoOD=sdf.parse("2014-06-16");
 	     }
 		catch(java.text.ParseException p)
 		{
@@ -228,7 +228,7 @@ public class DBManagerTest extends TestCase {
 		
 		 try
 		 {
-			 rezervisanoDO=sdf.parse("2014-06-20");
+			 rezervisanoDO=sdf.parse("2014-06-18");
 	       }
 		 catch(java.text.ParseException p1) 
 		 {
@@ -245,7 +245,7 @@ public class DBManagerTest extends TestCase {
 		
 		 try 
 		 {
-			 rezervisanoDO1=sdf.parse("2014-06-14");
+			 rezervisanoDO1=sdf.parse("2014-06-30");
 	       }
 		 catch(java.text.ParseException p1) 
 		 {
@@ -277,16 +277,16 @@ public class DBManagerTest extends TestCase {
 		r1.setRezervisanoOd(rezervisanoOD1);
 		r1.setRezervisanoDo(rezervisanoDO1);
 		
-		rez.add(r);
-		rez.add(r1);
+		//rez.add(r);
+		//rez.add(r1);
 		
-		for(Rezervacija rez1: rez){
+	//	for(Rezervacija rez1: rez){
 		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
-		assertFalse(tempListaSoba.contains(2));
-		}
-		//assertTrue(tempListaSoba.contains(1));
+		assertTrue(tempListaSoba.contains(2) && tempListaSoba.contains(1));
+		//}
 		
-	}*/
+		
+	}
 
 	public void testDajPredracun() {
 		fail("Not yet implemented"); // TODO
