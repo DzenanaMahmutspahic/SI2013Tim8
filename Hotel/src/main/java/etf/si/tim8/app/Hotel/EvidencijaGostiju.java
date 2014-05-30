@@ -29,6 +29,7 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,6 +40,7 @@ import Klase.Gost;
 import Klase.Osoba;
 import Klase.Soba;
 import Klase.StraniGost;
+import Hibernate.EvidencijaGostijuMain;
 
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -50,6 +52,8 @@ public class EvidencijaGostiju extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	// private JComboBox comboBox_1;
+	// private JComboBox comboBox;
 	private JTextField textField_12;
 	private JTextField textField_25;
 	private JTextField textField_26;
@@ -58,9 +62,7 @@ public class EvidencijaGostiju extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_13;
 	private JTextField textField_14;
@@ -71,6 +73,15 @@ public class EvidencijaGostiju extends JFrame {
 	private JTextField textField_20;
 	private JTextField textField_21;
 	private JTextField textField_22;
+	private JTextField textField_3;
+	private JDatePickerImpl datePicker;
+	private JComboBox 	comboBox;
+	private JDatePickerImpl datePicker2;
+	private JDatePickerImpl datePicker3;
+	private JDatePickerImpl	datePicker6 ;
+	private JDatePickerImpl	datePicker4 ;
+	private JDatePickerImpl	datePicker5 ;
+	// private JDatePickerImpl datePicker;
 
 	/**
 	 * Launch the application.
@@ -140,34 +151,16 @@ public class EvidencijaGostiju extends JFrame {
 					textField_27.setText(Integer.toString(brojtrenutnih));
 					textField_25.setText(Integer.toString(brojstarih));
 
-					// t.commit();
-
 					Query query2 = session.createQuery("from Soba");
 
 					List<Object[]> objekti2 = (List<Object[]>) query2.list();
 					List<Soba> sobe = new ArrayList<Soba>();
 					for (Object[] o : objekti2) {
 						for (Object o2 : o) {
-							// if (o2.getClass().equals(Soba.class)) {
-							// sobe.add((Soba) o2);
+							if (o2.getClass().equals(Soba.class)) {
+								sobe.add((Soba) o2);
 
-							// }
-							//Probaj ovako Kopicu-tajma
-							//Query query = session.createQuery("from Soba");
-							//try{
-							//	List<Soba> sobe = (ArrayList<Soba>)query.list();
-							//	for (Soba o : sobe) {
-									
-							//		comboBox_1.addItem(Integer.toString(o.getBrojSobe()));
-							
-							//	}
-								
-							//}
-							
-							//catch(Exception e)
-							//{
-								
-							//}
+							}
 						}
 
 					}
@@ -208,6 +201,19 @@ public class EvidencijaGostiju extends JFrame {
 		lblAdresa.setText("Adresa:");
 		lblAdresa.setBounds(20, 129, 94, 14);
 		panel.add(lblAdresa);
+		final JComboBox comboBox_2 = new JComboBox();
+
+		comboBox_2.addItem("Pasoš");
+		comboBox_2.addItem("Diplomatski pasoš");
+		comboBox_2.addItem("Službeni pasoš");
+		comboBox_2.addItem("Zajednički pasoš");
+		comboBox_2.addItem("Putni list");
+		comboBox_2.addItem("Brodarska knjižica");
+		comboBox_2.addItem("Međunarodni ugovor");
+		comboBox_2.setSelectedItem("Pasoš");
+
+		comboBox_2.setBounds(171, 275, 149, 26);
+		panel.add(comboBox_2);
 
 		JLabel lblDatumRoenja = new JLabel();
 		lblDatumRoenja.setText("Datum ro\u0111enja:");
@@ -226,30 +232,41 @@ public class EvidencijaGostiju extends JFrame {
 
 		// JButton btnUnesiGosta = new JButton("Unesi gosta");
 
-		final JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Domaci", "Strani"}));
+	//	final JComboBox 
+		comboBox = new JComboBox();
 		comboBox.setBounds(171, 11, 149, 30);
-		comboBox.addItem("Doma�i");
+		comboBox.addItem("Domaci");
 		comboBox.addItem("Strani");
+		comboBox.setSelectedIndex(0);
+		comboBox.setSelectedItem("Domaci");
+
+		final JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(171, 352, 149, 23);
+		comboBox_3.addItem("Aerodromska tranzitna viza");
+		comboBox_3.addItem("Tranzitna viza");
+		comboBox_3.addItem("Ulazna viza za kratkoročni boravak");
+		comboBox_3.addItem("Ulazna viza za dugoročni boravak");
+		comboBox_3.addItem("Nacionalna viza");
+		comboBox_3.setSelectedItem("Ulazna viza za kratkoročni boravak");
+
+		panel.add(comboBox_3);
 
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedIndex() == 1) {
 					textField_5.setEditable(true);
-					textField_6.setEditable(true);
+					comboBox_2.setEditable(true);
 					textField_7.setEditable(true);
-					textField_8.setEditable(true);
+					comboBox_3.setEditable(true);
 					textField_9.setEditable(true);
-					// textField_10.setEditable(true);
-					// textField_11.setEditable(true);
+
 				} else {
 					textField_5.setEditable(false);
-					textField_6.setEditable(false);
+					comboBox_2.setEditable(false);
 					textField_7.setEditable(false);
-					textField_8.setEditable(false);
+					comboBox_3.setEditable(false);
 					textField_9.setEditable(false);
-					// textField_10.setEditable(false);
-					// textField_11.setEditable(false);
+
 				}
 			}
 		});
@@ -304,17 +321,9 @@ public class EvidencijaGostiju extends JFrame {
 		textField_5.setBounds(171, 234, 149, 26);
 		panel.add(textField_5);
 
-		textField_6 = new JTextField();
-		textField_6.setBounds(171, 272, 149, 26);
-		panel.add(textField_6);
-
 		textField_7 = new JTextField();
 		textField_7.setBounds(171, 312, 149, 26);
 		panel.add(textField_7);
-
-		textField_8 = new JTextField();
-		textField_8.setBounds(171, 349, 149, 26);
-		panel.add(textField_8);
 
 		textField_9 = new JTextField();
 		textField_9.setBounds(171, 386, 149, 26);
@@ -322,7 +331,7 @@ public class EvidencijaGostiju extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
@@ -350,63 +359,23 @@ public class EvidencijaGostiju extends JFrame {
 		JButton btnIzbrisi = new JButton("Izbrisi");
 		btnIzbrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
+
 				if (listG.getSelectedValue() instanceof Klase.Gost) {
 					Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
-					Query query2 = session
-							.createQuery("from StraniGost stranigost join stranigost.gost as gost join gost.osoba as osoba");
-
-					List<Object[]> objekti2 = (List<Object[]>) query2.list();
-					List<StraniGost> stranigosti = new ArrayList<StraniGost>();
-
-					for (Object[] o : objekti2) {
-						for (Object o2 : o) {
-							if (o2.getClass().equals(StraniGost.class)) {
-								stranigosti.add((StraniGost) o2);
-						}
-
-					}		}
-					//
-				//	t.commit();
-				//	session.close();
-					for (StraniGost sg : stranigosti) {
-						if (sg.getGost().getId() == g.getId()) {
-							
-						session.delete(sg);
-						
-						}
-
+					izbrisiGosta(g);
+					DefaultListModel model = (DefaultListModel) listG
+							.getModel();
+					int selectedIndex = listG.getSelectedIndex();
+					if (selectedIndex != -1) {
+						model.remove(selectedIndex);
 					}
-					
-					
-					// String hql = "DELETE FROM osoba " +
-					// "WHERE ID = :osobaid";
-					// Query query = session.createQuery(hql);
-					// query.setParameter("osobaid", g.getOsoba().getId());
-
-				//	session.delete(g.getOsoba());
-					Osoba o=g.getOsoba();
-					
-			//		session.delete(g);
-			//		session.delete(o);
-					t.commit();
-					
-					
 
 				}
-				
-
-
-				session.close();
 
 			}
 		});
 		btnIzbrisi.setBounds(385, 503, 116, 23);
 		panel_1.add(btnIzbrisi);
-
-		
 
 		textField_13 = new JTextField();
 		textField_13.setBounds(484, 203, 149, 26);
@@ -478,16 +447,6 @@ public class EvidencijaGostiju extends JFrame {
 		label_16.setBounds(333, 27, 68, 14);
 		panel_1.add(label_16);
 
-	    final JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent arg0) {				
-			}
-		});
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "Domaci",
-				"Strani" }));
-		comboBox_1.setBounds(484, 17, 149, 30);
-		panel_1.add(comboBox_1);
-
 		textField_16 = new JTextField();
 		textField_16.setBounds(484, 55, 149, 26);
 		panel_1.add(textField_16);
@@ -553,18 +512,12 @@ public class EvidencijaGostiju extends JFrame {
 		panel_2.add(textField_27);
 
 		JButton btnPoetnaStranica = new JButton("Po\u010Detna stranica");
-		btnPoetnaStranica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				new HomePage().setVisible(true);
-			}
-		});
 		btnPoetnaStranica.setBounds(674, 527, 200, 50);
 		contentPane.add(btnPoetnaStranica);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(674, 325, 200, 40);
+		panel_3.setBounds(674, 325, 200, 191);
 		contentPane.add(panel_3);
 
 		ImageIcon guy = new ImageIcon("C:\\Users\\X\\Desktop\\hotel.png");
@@ -573,7 +526,8 @@ public class EvidencijaGostiju extends JFrame {
 
 		UtilDateModel model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
-		final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+	//	final JDatePickerImpl
+		datePicker = new JDatePickerImpl(datePanel);
 		datePicker.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker.setLocation(170, 160);
 		datePicker.setSize(150, 26);
@@ -581,7 +535,8 @@ public class EvidencijaGostiju extends JFrame {
 
 		UtilDateModel model2 = new UtilDateModel();
 		JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
-		final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
+		//final JDatePickerImpl 
+		datePicker2 = new JDatePickerImpl(datePanel2);
 		datePicker2.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker2.setLocation(170, 420);
 		datePicker2.setSize(150, 26);
@@ -589,7 +544,8 @@ public class EvidencijaGostiju extends JFrame {
 
 		UtilDateModel model3 = new UtilDateModel();
 		JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
-		final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePanel3);
+		
+		datePicker3 = new JDatePickerImpl(datePanel3);
 		datePicker3.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker3.setLocation(170, 460);
 		datePicker3.setSize(150, 26);
@@ -598,7 +554,7 @@ public class EvidencijaGostiju extends JFrame {
 		// azuriranje gosta
 		UtilDateModel model4 = new UtilDateModel();
 		JDatePanelImpl datePanel4 = new JDatePanelImpl(model4);
-		final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePanel4);
+	 datePicker4 = new JDatePickerImpl(datePanel4);
 		datePicker4.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker4.setLocation(485, 170);
 		datePicker4.setSize(150, 26);
@@ -606,7 +562,7 @@ public class EvidencijaGostiju extends JFrame {
 
 		UtilDateModel model5 = new UtilDateModel();
 		JDatePanelImpl datePanel5 = new JDatePanelImpl(model5);
-		final JDatePickerImpl datePicker5 = new JDatePickerImpl(datePanel5);
+		datePicker5 = new JDatePickerImpl(datePanel5);
 		datePicker5.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker5.setLocation(485, 430);
 		datePicker5.setSize(150, 26);
@@ -614,42 +570,55 @@ public class EvidencijaGostiju extends JFrame {
 
 		UtilDateModel model6 = new UtilDateModel();
 		JDatePanelImpl datePanel6 = new JDatePanelImpl(model6);
-		final JDatePickerImpl datePicker6 = new JDatePickerImpl(datePanel6);
+		
+		datePicker6 = new JDatePickerImpl(datePanel6);
 		datePicker6.setBackground(SystemColor.inactiveCaptionBorder);
 		datePicker6.setLocation(485, 470);
 		datePicker6.setSize(150, 26);
 		panel_1.add(datePicker6);
 
-	
 		listG.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent ev) {
-				// if (listG.getSelectedValue() instanceof Klase.Gost) {
+				ocistiKontrole();
+				if (listG.getModel().getSize() == 0)
+					return;
+
 				Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
-				Query query2 = session
-						.createQuery("from StraniGost stranigost join stranigost.gost as gost join gost.osoba as osoba");
+				if (g == null)
+					return;
 
-				List<Object[]> objekti2 = (List<Object[]>) query2.list();
-				List<StraniGost> stranigosti = new ArrayList<StraniGost>();
+				if (isStraniGost(g)) {
 
-				for (Object[] o : objekti2) {
-					for (Object o2 : o) {
-						if (o2.getClass().equals(StraniGost.class)) {
-							stranigosti.add((StraniGost) o2);
-						}
-					}
+					textField_3.setText("Strani");
+					textField_14.setEditable(true);
+					textField_15.setEditable(true);
+					textField_20.setEditable(true);
+					textField_21.setEditable(true);
+					textField_22.setEditable(true);
+
+				} else {
+
+					textField_3.setText("Domaci");
 
 				}
-				t.commit();
-				session.close();
 
-				textField_16.setText(g.getOsoba().getImePrezime());
-				textField_17.setText(g.getOsoba().getImePrezime());
+				List<StraniGost> stranigosti = new ArrayList<StraniGost>();
+				stranigosti = EvidencijaGostijuMain.dajStraneGoste();
+
+				String imeprezime = g.getOsoba().getImePrezime();
+
+				String[] parts = imeprezime.split(" ");
+
+				String ime = parts[0];
+				String prezime = parts[1];
+
+				textField_16.setText(ime);
+				textField_17.setText(prezime);
 				textField_18.setText(g.getOsoba().getAdresa());
 				textField_13.setText(g.getMjestoRodjenja());
-				// datePicker4.getJFormattedTextField().setText(g.getDatumRodjenja());
+				textField_3.setText("Domaci");
+				datePicker4.getJFormattedTextField().setText(
+						g.getOsoba().getDatumRodjenja().toString());
 
 				StraniGost sg = null;
 				for (StraniGost pom : stranigosti) {
@@ -658,16 +627,16 @@ public class EvidencijaGostiju extends JFrame {
 
 				}
 				if (sg != null) {
-					// textField_17.setText(sg.getGost().getOsoba().getDatumRodjenja());
-
-					textField_16.setText(sg.getGost().getMjestoRodjenja());
 					textField_20.setText(sg.getBrojPutneIsprave());
 					textField_22.setText(sg.getBrojVize());
 					textField_21.setText(sg.getVrstaVize());
 					textField_14.setText(sg.getDrzavljanstvo());
 					textField_15.setText(sg.getVrstaPutneIsprave());
-					// textField_16.setText(sg.getDatumDozvoleBoravka());
-					// textField_16.setText(sg.getDatumUlaskaUBih());
+					textField_3.setText("Strani");
+					datePicker5.getJFormattedTextField().setText(
+							sg.getDatumDozvoleBoravka().toString());
+					datePicker5.getJFormattedTextField().setText(
+							sg.getDatumUlaskaUBih().toString());
 
 				}
 
@@ -678,25 +647,9 @@ public class EvidencijaGostiju extends JFrame {
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
 
-				Query query = session
-						.createQuery("from Gost gost join gost.osoba as osoba");
-
-				List<Object[]> objekti = (List<Object[]>) query.list();
 				List<Gost> gosti = new ArrayList<Gost>();
-
-				for (Object[] o : objekti) {
-					for (Object o2 : o) {
-						if (o2.getClass().equals(Gost.class)) {
-							gosti.add((Gost) o2);
-						}
-					}
-
-				}
-
+				gosti = EvidencijaGostijuMain.dajGoste();
 				listG.setModel(new DefaultListModel());
 				for (Gost g : gosti) {
 					String imeprezime = g.getIme() + " " + g.getPrezime();
@@ -706,229 +659,307 @@ public class EvidencijaGostiju extends JFrame {
 					}
 
 				}
-				t.commit();
 
-				session.close();
 			}
 
 		});
 		btnUnesiGosta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
+
+				if (validiraj() != "") {
+					JOptionPane.showMessageDialog(null,
+							validiraj(),
+							"Info", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 
 				Osoba o = new Osoba();
 				o.setAdresa(textField_2.getText());
-				// o.setDatumRodjenja((Date) datePicker.getJFormattedTextField()
-				// .getValue());
+				o.setDatumRodjenja((Date) datePicker.getModel().getValue());
+
 				o.setImePrezime(textField.getText() + " "
 						+ textField_1.getText());
 
 				Klase.Gost g = new Klase.Gost();
 				g.setOsoba(o);
-				session.save(o);
+				EvidencijaGostijuMain.saveOsobu(o);
 				System.out.println("snmimljena osoba!");
 				g.setMjestoRodjenja(textField_4.getText());
 				// g.setPrimjedba(textField_1.getText());
 				// g.setRbrPrijave(textField_1.getText());
-				session.save(g);
+				EvidencijaGostijuMain.saveGosta(g);
 				System.out.println("Snimljen gost !");
 				if (comboBox.getSelectedItem().toString() == "Strani") {
 					Klase.StraniGost sg = new Klase.StraniGost();
 
 					sg.setBrojPutneIsprave(textField_7.getText());
 					sg.setBrojVize(textField_9.getText());
-					// sg.setDatumDozvoleBoravka((Date) datePicker2
-					// .getJFormattedTextField().getValue());
-					// sg.setDatumUlaskaUBih((Date) datePicker3
-					// .getJFormattedTextField().getValue());
-					sg.setDrzavljanstvo(textField_6.getText());
+					sg.setDatumDozvoleBoravka((Date) datePicker.getModel()
+							.getValue());
+					sg.setDatumUlaskaUBih((Date) datePicker.getModel()
+							.getValue());
+					sg.setDrzavljanstvo(textField_5.getText());
 					sg.setGost(g);
-					sg.setVrstaPutneIsprave(textField_6.getText());
-					sg.setVrstaVize(textField_8.getText());
-					session.save(sg);
+					sg.setVrstaPutneIsprave((String) comboBox_2
+							.getSelectedItem());
+					sg.setVrstaVize((String) comboBox_3.getSelectedItem());
+					EvidencijaGostijuMain.saveStranogGosta(sg);
 					System.out.println("Snimljen strani gost !");
 				}
-
-				t.commit();
-
-				session.close();
+ocistiKontroleUnos();
 				System.out.println("SVE JE OK !");
 			}
 		});
 		JButton btnSpasiPromjene = new JButton("Spasi promjene");
 		btnSpasiPromjene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
+
 				Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
-				if (isStraniGost()) {
-					
-					Long id= g.getId();
-				
-				//	Query query = session.createQuery("from StraniGost where gost = :gostid ");
-				//	query.setParameter("gostid", id);
-					
-				String 	q = "FROM StraniGost qt WHERE qt.gost = :tag";
-				Query	query = (Query) session.createQuery(q);
-					query.setParameter("tag", g);
-					List<StraniGost> stranigosti = query.list();
-					
-				//	List<Object[]> objekti2 = (List<Object[]>) query.list();
-					
-					//List<StraniGost> stranigosti = new ArrayList<StraniGost>();
-					
-				//	for (Object[] o : objekti2) {
-				//		for (Object o2 : o) {
-			//				if (o2.getClass().equals(StraniGost.class)) {
-			//					stranigosti.add((StraniGost) o2);
-			//			}
-//
-			//		}		}
-					StraniGost sg=new StraniGost();
-					sg=stranigosti.get(0);
-					if (comboBox_1.getSelectedItem().toString() == "Strani") {
-						JOptionPane.showMessageDialog(null, "Gost je domaci",
-								"Info", JOptionPane.INFORMATION_MESSAGE);
-						sg.getGost()
-								.getOsoba()
-								.setImePrezime(
-										textField_16.getText() + " "
-												+ textField_16.getText());
-						// sg.getGost().getOsoba()
-						// .setDatumRodjenja(textField_16.getText());
-						sg.getGost().getOsoba()
-								.setAdresa(textField_18.getText());
-						sg.getGost().setMjestoRodjenja(textField_13.getText());
-						sg.setBrojPutneIsprave(textField_20.getText());
-						sg.setBrojVize(textField_22.getText());
-						// sg.setDatumDozvoleBoravk(textField_12.getText());
-						// sg.setDatumUlaskaUBih(textField_12.getText());
-						sg.setDrzavljanstvo(textField_14.getText());
-						sg.setVrstaPutneIsprave(textField_15.getText());
 
-						sg.setVrstaVize(textField_21.getText());
-						session.update(sg);
-
-					} else if (comboBox_1.getSelectedItem().toString() == "Domaci") {
-						JOptionPane.showMessageDialog(null, "Gost je domaci",
-								"Info", JOptionPane.INFORMATION_MESSAGE);
-						sg.getGost().getOsoba().setImePrezime(textField_16.getText() + " "+ textField_16.getText());
-						// sg.getGost().getOsoba()
-						// .setDatumRodjenja(textField_16.getText());
-						sg.getGost().getOsoba()
-								.setAdresa(textField_18.getText());
-						sg.getGost().setMjestoRodjenja(textField_13.getText());
-						sg.setBrojPutneIsprave(textField_20.getText());
-						sg.setBrojVize(textField_22.getText());
-						// sg.setDatumDozvoleBoravk(textField_12.getText());
-						// sg.setDatumUlaskaUBih(textField_12.getText());
-						sg.setDrzavljanstvo(textField_14.getText());
-						sg.setVrstaPutneIsprave(textField_15.getText());
-
-						sg.setVrstaVize(textField_21.getText());
-						session.update(sg);
-						Query query2 = session
-								.createQuery("delete StraniGost where id = :idgosta");
-						query2.setParameter("idgosta", sg);
-						query2.executeUpdate();
-
-					}
-				} else {
-
-					if (comboBox_1.getSelectedItem().toString() == "Strani") {
-					
-						StraniGost sg = new StraniGost();
-
-						g.getOsoba().setImePrezime(
-								textField_16.getText() + " "
-										+ textField_16.getText());
-						// g.getOsoba()
-						// .setDatumRodjenja(textField_16.getText());
-						g.getOsoba().setAdresa(textField_18.getText());
-						g.setMjestoRodjenja(textField_13.getText());
-						sg.setGost(g);
-						sg.setBrojPutneIsprave(textField_20.getText());
-						sg.setBrojVize(textField_22.getText());
-						// sg.setDatumDozvoleBoravk(textField_12.getText());
-						// sg.setDatumUlaskaUBih(textField_12.getText());
-						sg.setDrzavljanstvo(textField_14.getText());
-						sg.setVrstaPutneIsprave(textField_15.getText());
-
-						sg.setVrstaVize(textField_21.getText());
-						session.save(sg);
-
-					} else if (comboBox_1.getSelectedItem().toString() == "Domaci") {
-				
-
-						g.getOsoba().setImePrezime(
-								textField_16.getText() + " "
-										+ textField_16.getText());
-						// g.getOsoba()
-						// .setDatumRodjenja(textField_16.getText());
-						g.getOsoba().setAdresa(textField_18.getText());
-						g.setMjestoRodjenja(textField_13.getText());
-						session.update(g);
-
-					}
-					
-
+				Date datumRodjenja = (Date) datePicker4.getModel().getValue();
+				Date datumDozvole = (Date) datePicker5.getModel().getValue();
+				Date datumUlaska = (Date) datePicker6.getModel().getValue();
+				spasiPromjene(g, datumRodjenja, datumDozvole, datumUlaska);
+				DefaultListModel model = (DefaultListModel) listG.getModel();
+				int selectedIndex = listG.getSelectedIndex();
+				if (selectedIndex != -1) {
+					model.remove(selectedIndex);
 				}
-
-				t.commit();
-				session.close();
+				ocistiKontrole();
 
 			}
 
-			public boolean isStraniGost() {
-				Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
-				Session session = HibernateUtil.getSessionFactory()
-						.openSession();
-				Transaction t = session.beginTransaction();
-				Query query2 = session
-						.createQuery("from StraniGost stranigost join stranigost.gost as gost join gost.osoba as osoba");
-
-				List<Object[]> objekti2 = (List<Object[]>) query2.list();
-				List<StraniGost> stranigosti = new ArrayList<StraniGost>();
-
-				for (Object[] o : objekti2) {
-					for (Object o2 : o) {
-						if (o2.getClass().equals(StraniGost.class)) {
-							stranigosti.add((StraniGost) o2);
-					}
-
-				}		}
-				
-				t.commit();
-				session.close();
-				for (StraniGost sg : stranigosti) {
-					if (sg.getGost().getId() == g.getId()) {
-
-						JOptionPane.showMessageDialog(null, "Gost je strani",
-								"Info", JOptionPane.INFORMATION_MESSAGE);
-						return true;
-					}
-
-				}
-				return false;
-
-			}
 		});
 		btnSpasiPromjene.setBounds(511, 503, 122, 23);
 		panel_1.add(btnSpasiPromjene);
-		
-		JButton btnRezervacija = new JButton("Rezervacija");
-		btnRezervacija.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				new Rezervacija().setVisible(true);
-			}
-		});
-		btnRezervacija.setBounds(674, 466, 200, 50);
-		contentPane.add(btnRezervacija);
+
+		textField_3 = new JTextField();
+		textField_3.setBounds(484, 26, 149, 20);
+		textField_3.setEditable(false);
+		panel_1.add(textField_3);
+		textField_3.setColumns(10);
 
 	}
+
+	public void spasiPromjene(Gost g, Date dr, Date dd, Date du) {
+		if (validirajIzmjene() != "") {
+			JOptionPane.showMessageDialog(null, validirajIzmjene(), "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+
+		StraniGost sg = new StraniGost();
+		if (isStraniGost(g)) {
+			sg = EvidencijaGostijuMain.dajStranogZaGosta(g);
+
+		}
+		g.getOsoba().setImePrezime(
+				textField_16.getText() + " " + textField_17.getText());
+		g.getOsoba().setDatumRodjenja(dr);
+		g.getOsoba().setAdresa(textField_18.getText());
+		g.setMjestoRodjenja(textField_13.getText());
+
+		EvidencijaGostijuMain.updateGosta(g);
+		EvidencijaGostijuMain.updateOsobu(g.getOsoba());
+		if (textField_3.getText() == "Strani") {
+			sg.setBrojPutneIsprave(textField_20.getText());
+			sg.setBrojVize(textField_22.getText());
+			sg.setDatumDozvoleBoravka(dd);
+			sg.setDatumUlaskaUBih(du);
+			sg.setDrzavljanstvo(textField_14.getText());
+			sg.setVrstaPutneIsprave(textField_15.getText());
+
+			sg.setVrstaVize(textField_21.getText());
+			EvidencijaGostijuMain.updateStranogGosta(sg);
+
+		}
+
+	}
+	
+	
+	
+	
+	public void izbrisiGosta(Gost g)
+	{
+		List<StraniGost> stranigosti = new ArrayList<StraniGost>();
+		stranigosti = EvidencijaGostijuMain.dajStraneGoste();
+
+		for (StraniGost sg : stranigosti) {
+			if (sg.getGost().getId() == g.getId()) {
+				EvidencijaGostijuMain.obrisiStranogGosta(sg);
+			}
+		}
+
+		Osoba o = g.getOsoba();
+
+		EvidencijaGostijuMain.obrisiGosta(g);
+
+		EvidencijaGostijuMain.obrisiOsobu(o);
+
+		ocistiKontrole();
+
+	}
+
+	public boolean isStraniGost(Klase.Gost g) {
+		if (g == null)
+			System.out.printf("gost je null");
+
+		List<StraniGost> stranigosti = new ArrayList<StraniGost>();
+		stranigosti = EvidencijaGostijuMain.dajStraneGoste();
+		for (StraniGost sg : stranigosti) {
+			if (sg.getGost() == null)
+				System.out.printf("gost  u sg je null");
+			if (sg.getGost().getId() == g.getId()) {
+
+				JOptionPane.showMessageDialog(null, "Gost je strani", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void ocistiKontrole() {
+		textField_13.setText("");
+		textField_14.setText("");
+		textField_15.setText("");
+		textField_16.setText("");
+		textField_17.setText("");
+		textField_18.setText("");
+		textField_20.setText("");
+		textField_21.setText("");
+		textField_22.setText("");
+
+		textField_14.setEditable(false);
+		textField_15.setEditable(false);
+		textField_20.setEditable(false);
+		textField_21.setEditable(false);
+		textField_22.setEditable(false);
+	}
+	
+	public void ocistiKontroleUnos()
+	{
+		textField.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		textField_7.setText("");
+		textField_9.setText("");
+	
+	}
+	
+	
+	
+	
+	
+	
+
+	public String validiraj() {
+		String poruka = "";
+
+		if (!validateFirstName(textField.getText()))
+			poruka += "Ime mora biti dugo bar 2 znaka, prvo slovo veliko\n";
+
+		if (!validateLastName(textField_1.getText()))
+			poruka += "Prezime prezime biti dugo bar 2 znaka, prvo slovo veliko\n";
+
+		if (!validateCity(textField_4.getText()))
+			poruka += "Naziv mjesta nije validan\n";
+
+		if((Date)datePicker.getModel().getValue()!=null)
+		{
+		if (!validateDatumRodjenja((Date)datePicker.getModel().getValue()))
+			poruka += "Datum rodjenja ne moze biti u buducnosti\n";
+		}
+		else poruka+="Morate unijeti datum rodjenja";
+		// if(!validateAddress(textField_2.getText()))
+		// poruka+="Adresa treba biti u formatu 100, Ulica\n";
+
+		
+		 if(comboBox.getSelectedItem()=="Strani"){
+		 
+			if (!validateNationality(textField_5.getText()))
+				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
+			if (!validateBrojPutneIspave(textField_7.getText()))
+				poruka += "Putna isprava treba da bude u formatu A000000\n";
+			if ((Date) datePicker2.getModel().getValue() == null
+					|| (Date) datePicker3.getModel().getValue() == null)
+				poruka += "Morate unijeti sve datume";
+		 }
+		 
+		return poruka;
+	}
+
+	public String validirajIzmjene() {
+		String poruka = "";
+
+		if (!validateFirstName(textField_16.getText()))
+			poruka += "Ime mora biti dugo bar 2 znaka, prvo slovo veliko\n";
+
+		if (!validateLastName(textField_17.getText()))
+			poruka += "Prezime prezime biti dugo bar 2 znaka, prvo slovo veliko\n";
+
+		if (!validateCity(textField_13.getText()))
+			poruka += "Naziv mjesta nije validan\n";
+
+		
+		if((Date)datePicker4.getModel().getValue()!=null)
+		{
+		if (!validateDatumRodjenja((Date)datePicker4.getModel().getValue()))
+			poruka += "Datum rodjenja ne moze biti u buducnosti\n";
+		}
+		else poruka+="Morate unijeti datum rodjenja";
+		// if(!validateAddress(textField_18.getText()))
+		// poruka+="Adresa treba biti u formatu 100, Ulica\n";
+
+		
+		 if(textField_3.getText()=="Strani"){
+		
+		 if(!validateNationality(textField_14.getText())) 
+			poruka+= "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
+		 
+
+		 
+		 if(!validateBrojPutneIspave(textField_20.getText()))
+		 poruka+="Putna isprava treba da bude u formatu A000000\n"; }
+		 
+		 if((Date)datePicker4.getModel().getValue()==null||(Date)datePicker5.getModel().getValue()==null||(Date)datePicker6.getModel().getValue()==null)
+			 poruka+="Morate unijeti sve datume";
+		 
+		return poruka;
+	}
+
+	public static boolean validateFirstName(String firstName) {
+		return firstName.matches("[A-Z][a-zA-Z]*");
+	} // end method validateFirstName
+
+	// validate last name
+	public static boolean validateLastName(String lastName) {
+		return lastName.matches("[A-Z][a-zA-Z]*");
+	}
+
+	public static boolean validateCity(String address) {
+		return address.matches("([A-Z]{1}[a-z]{1,} *)+");
+	} // end method validateAddress
+
+	public static boolean validateAddress(String address) {
+		return address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+	}
+
+	public static boolean validateNationality(String nationality) {
+		return nationality.matches("[A-Z]{2,}");
+	}
+
+	public static boolean validateBrojPutneIspave(String brojPutneIspave) {
+		return brojPutneIspave.matches("[A-Z]{1}\\d{7}");
+	}
+
+	public static boolean validateDatumRodjenja(Date datumrodjenja) {
+		Date today = new Date();
+		if (datumrodjenja.after(today))
+			return false;
+		return true;
+	}
+
 }
