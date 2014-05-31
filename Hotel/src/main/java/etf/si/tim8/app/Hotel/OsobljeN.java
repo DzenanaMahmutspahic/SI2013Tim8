@@ -31,7 +31,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import Hibernate.DBManager;
+import Hibernate.HibernateUtil;
 import Klase.Gost;
 import Klase.Osoba;
 import Klase.Zaposlenik;
@@ -691,7 +695,13 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     		public void actionPerformed(ActionEvent e) {
     			try
     			{
-    				Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				Zaposlenik zaposlenik;
+    				if(tabbedPane.getSelectedIndex()==0)
+    				
+    				 zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				else
+    				 zaposlenik = (Zaposlenik)list_1.getSelectedValue();
+    				
     				if(zaposlenik == null || list.getSelectedValues().length > 1)
     				{
     					JOptionPane.showMessageDialog(null, "Morate odabrati jednog zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
@@ -729,7 +739,13 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     		public void actionPerformed(ActionEvent e) {
     			try
     			{
-    				Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				Zaposlenik zaposlenik;
+    				if(tabbedPane.getSelectedIndex()==0)
+    				
+    				 zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				else
+    				 zaposlenik = (Zaposlenik)list_1.getSelectedValue();
+    				
     				if(zaposlenik == null)
     				{
     					JOptionPane.showMessageDialog(null, "Greska! Niste odabrali zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
@@ -792,8 +808,9 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				{
     	    					zaposlenik.setUloga("");
     	    				}
-    	    				
+    	    				//
     	    				DBManager.urediZaposlenika(zaposlenik);
+    	    				
     	    				JOptionPane.showMessageDialog(null, "Izmjene spasene!", "Info", JOptionPane.INFORMATION_MESSAGE);
     					
     			}
