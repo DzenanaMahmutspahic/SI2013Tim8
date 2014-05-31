@@ -451,6 +451,18 @@ public class DBManager {//komentar
 		return sobe;
 	
 	}
+	
+	public static List<Zaposlenik> dajSveZaposlenike(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		final Query query = session.createQuery("from Zaposlenik");
+		List<Zaposlenik> zaposlenici=new ArrayList<Zaposlenik>();
+		zaposlenici = (ArrayList<Zaposlenik>)query.list();
+		t.commit();
+		session.close();
+		return zaposlenici;
+	
+	}
 public static void spasiSobu(Soba soba){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
@@ -490,6 +502,48 @@ public static void spasiBoravak(Boravak boravak){
 		
 		
 		
+	}
+	
+	/*forma za osoblje*/
+	public static List<Zaposlenik> dajZaposlenike(String pretraga)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Zaposlenik.class.getName());
+		List<Zaposlenik> sviZaposlenici = (List<Zaposlenik>)q.list();
+		List<Zaposlenik> zaposlenici = new ArrayList<Zaposlenik>();
+		pretraga = pretraga.toLowerCase();
+		
+		for(Zaposlenik zaposlenik : sviZaposlenici)
+		{
+			if(zaposlenik.getOsoba() != null && zaposlenik.getOsoba().getImePrezime().toLowerCase().contains(pretraga))
+			{
+				zaposlenici.add(zaposlenik);
+			}
+		}
+		
+		return zaposlenici;
+		
+	}
+	
+	public static void spremiZaposlenika(Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(zaposlenik.getOsoba());
+		session.save(zaposlenik);
+		t.commit();
+	}
+	
+	public static void obrisiZaposlenika(Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Query q = session.createQuery("from " + Zaposlenik.class.getName() + " zaposlenik where id = :zaposlenikid");
+		q.setParameter("zaposlenikid", zaposlenik.getId());
+		Zaposlenik zap = (Zaposlenik)q.uniqueResult();
+		session.delete(zap.getOsoba());
+		session.delete(zap);
+		t.commit();
 	}
 	
 }

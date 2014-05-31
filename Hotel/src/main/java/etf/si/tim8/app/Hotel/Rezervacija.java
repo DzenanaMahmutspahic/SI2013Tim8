@@ -70,7 +70,8 @@ public class Rezervacija extends javax.swing.JFrame {
         }
         catch(Exception ex)
         {
-        	
+        	System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+    		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
         this.zaposlenik = zaposlenik;
@@ -92,7 +93,8 @@ public class Rezervacija extends javax.swing.JFrame {
         }
         catch(Exception ex)
         {
-        	
+        	System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+    		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
         

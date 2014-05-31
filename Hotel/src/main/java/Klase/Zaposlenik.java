@@ -103,7 +103,14 @@ public class Zaposlenik implements Serializable {
 		this.isAdministrator = isAdministrator;
 	}
 	
-	
+	@Override public String toString() {
+		if(this.osoba != null)
+		{
+			return this.osoba.getImePrezime();
+		}
+		
+		return "";
+	}
 	
 	
 }
