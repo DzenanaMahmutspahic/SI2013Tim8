@@ -405,6 +405,40 @@ public class DBManager {
 		session.save(o);
 		t.commit();
 		}
+	public static void spasiRezervaciju(Rezervacija rezervacija){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(rezervacija);
+		t.commit();
+		}
+	
+	public static List<Soba> dajSveSobe(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		final Query query = session.createQuery("from Soba");
+		List<Soba> sobe=new ArrayList<Soba>();
+		sobe = (ArrayList<Soba>)query.list();
+		t.commit();
+		return sobe;
+	
+	}
+public static void spasiSobu(Soba soba){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(soba);
+		t.commit();
+		
+	}
+
+public static void spasiZaposlenika(Zaposlenik zaposlenik){
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	Transaction t = session.beginTransaction();
+	session.save(zaposlenik);
+	t.commit();
+	
+}
+
+
 	
 	public static void obrisiStranogZaGosta(StraniGost sg)
 	{

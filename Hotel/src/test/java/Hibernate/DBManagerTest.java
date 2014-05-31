@@ -9,6 +9,7 @@ import Klase.Soba;
 import Klase.StraniGost;
 import Klase.Racun;
 import Klase.Predracun;
+import Klase.Zaposlenik;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -558,9 +559,125 @@ public class DBManagerTest extends TestCase {
 	
 	
 
-	public void testDajPredracun() {
-		fail("Not yet implemented"); // TODO
-	}
+	/*public void testDajPredracun() {
+		//fail("Not yet implemented"); // TODO
+		Predracun predracun=new Predracun();
+		Predracun temp=new Predracun();
+		Rezervacija r=new Rezervacija();
+		Soba s=new Soba();
+		Gost g=new Gost();
+		Osoba o=new Osoba();
+		Osoba o1=new Osoba();
+		Zaposlenik z=new Zaposlenik();
+		
+		s.setBrojSobe(1);
+		s.setBrojKreveta(1);
+		s.setBalkon(true);
+		s.setSprat(1);
+		s.setZauzeta(false);
+		DBManager.spasiSobu(s);
+		
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			try {
+				o.setDatumRodjenja(sdf.parse("1990-10-21"));
+			} catch (java.text.ParseException p) {
+				System.out.println(p.toString());
+			}
+			o.setAdresa("Vitkovac 166");
+			g.setMjestoRodjenja("Beograd");
+			DBManager.saveOsobu(o);
+			g.setOsoba(o);
+			
+			try {
+				o1.setDatumRodjenja(sdf.parse("1992-10-21"));
+			} catch (java.text.ParseException p) {
+				System.out.println(p.toString());
+			}
+			o1.setAdresa("Otoka");
+			z.setDrzavljanstvo("BIH");
+			z.setOsoba(o);
+			DBManager.spasiZaposlenika(z);
+			
+			DBManager.saveOsobu(o1);
+			DBManager.saveGosta(g);
+			
+			List<Gost> gosti=new ArrayList<Gost>();
+			gosti.add(g);
+
+		//	DBManager.saveOsobu(o);
+			//DBManager.saveGosta(g);
+			
+			java.util.Date datumOD= new java.util.Date();
+			java.util.Date datumDO= new java.util.Date();
+			
+			try
+			{
+				 datumOD=sdf.parse("2014-06-15");
+		    }
+			catch(java.text.ParseException p)
+			{
+		            System.out.println(p.toString());
+		    }
+			
+			 try
+			 {
+				 datumDO=sdf.parse("2014-06-20");
+		     }
+			 catch(java.text.ParseException p1) 
+			 {
+		            System.out.println(p1.toString());
+		      }
+		
+				
+		r.setBrojRezervacije(1);
+		r.setPotvrdjena(true);
+		DBManager.spasiRezervaciju(r);
+		//DBManager.evidentirajBoravkeIRezervaciju(s,gosti,datumOD,datumDO,z);
+		//DBManager.evidentirajBoravkeIRezervaciju(s,gosti,datumOD,datumDO,z);
+		predracun.setRezervacija(r);
+		predracun.setPopust(10);
+		predracun.setUkupnaCijena(200);
+		DBManager.unesiPredracun(predracun);
+		temp=DBManager.dajPredracun(r);
+		
+		Boolean tacno=false;
+        if(predracun.getUkupnaCijena()==temp.getUkupnaCijena() /*&& predracun.getPopust()==temp.getPopust())
+        		tacno=true;
+        
+        assertTrue(tacno);
+		
+	}*/
+	   
+	   public void testDajPredracun(){
+		 fail("Not yet implemented"); // TODO
+		 /*  Rezervacija r=new Rezervacija();
+		   Predracun p=new Predracun();
+		   Predracun temp=new Predracun();
+		   Soba soba=new Soba();
+		   soba.setBrojKreveta(1);
+		   soba.setBrojSobe(1);
+		   soba.setBalkon(true);
+		   soba.setZauzeta(true);
+		   DBManager.spasiSobu(soba);
+		   
+		   r.setBrojRezervacije(1);
+		   r.setSoba(soba);
+		  r.setPotvrdjena(true);
+		  DBManager.spasiRezervaciju(r);
+		  p.setRezervacija(r);
+		  p.setPopust(10);
+		  p.setUkupnaCijena(200);
+		  DBManager.unesiPredracun(p);
+		  temp=DBManager.dajPredracun(r);
+		  
+		  Boolean tacno=false;
+	        if(p.getUkupnaCijena()==temp.getUkupnaCijena() && p.getPopust()==temp.getPopust())
+	        		tacno=true;
+	        
+	        assertTrue(tacno);*/
+		  
+	   }
 
 	public void testDajRacun() {
 		//fail("Not yet implemented"); // TODO
