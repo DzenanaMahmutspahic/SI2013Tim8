@@ -428,8 +428,8 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setEmail(textField_9.getText());
     				zaposlenik.setTelefon(textField_10.getText());
     				zaposlenik.setMobitel(textField_11.getText());
-    				zaposlenik.setUsername(textField_11.getText());
-    				zaposlenik.setPassword(textField_12.getText());
+    				zaposlenik.setUsername(textField_12.getText());
+    				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
     				if(radioButton.isSelected())
     				{
@@ -776,8 +776,8 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				zaposlenik.setEmail(textField_9.getText());
     	    				zaposlenik.setTelefon(textField_10.getText());
     	    				zaposlenik.setMobitel(textField_11.getText());
-    	    				zaposlenik.setUsername(textField_11.getText());
-    	    				zaposlenik.setPassword(textField_12.getText());
+    	    				zaposlenik.setUsername(textField_12.getText());
+    	    				zaposlenik.setPassword(textField_13.getText());
     	    				zaposlenik.setIsAdministrator(false);
     	    				if(radioButton.isSelected())
     	    				{
