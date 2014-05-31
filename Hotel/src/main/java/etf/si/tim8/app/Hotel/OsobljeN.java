@@ -571,6 +571,86 @@ public class OsobljeN extends javax.swing.JFrame {
     			}
     		}
     	});
+        
+        button_1.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			try
+    			{
+    				Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				if(zaposlenik == null)
+    				{
+    					JOptionPane.showMessageDialog(null, "Greska! Niste odabrali zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				if(textField_1.getText() == "" || textField_2.getText() == "" ||
+    	    				   textField_4.getText() == "" || textField_5.getText() == "" ||
+    	    				   textField_6.getText() == "" || textField_7.getText() == "" ||
+    	    				   textField_8.getText() == "" || textField_9.getText() == "" ||
+    	    				   textField_10.getText() == "" || textField_11.getText() == "" ||
+    	    				   textField_12.getText() == "" || textField_13.getText() == "" ||
+    	    				   datePicker.getModel().getValue() == null)
+    	    				{
+    	    					JOptionPane.showMessageDialog(null, "Greska! Niste unijeli sve podatke!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				if(zaposlenik.getOsoba() == null)
+    	    				{
+    	    					zaposlenik.setOsoba(new Osoba());
+    	    				}
+    	    				zaposlenik.getOsoba().setImePrezime(textField_1.getText() + " " + textField_2.getText());
+    	    				zaposlenik.setJMB(textField_4.getText());
+    	    				zaposlenik.getOsoba().setAdresa(textField_5.getText());
+    	    				zaposlenik.getOsoba().setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
+    	    				zaposlenik.setDrzavljanstvo(textField_6.getText());
+    	    				zaposlenik.setTitula(textField_7.getText());
+    	    				zaposlenik.setObrazovanje(textField_8.getText());
+    	    				zaposlenik.setEmail(textField_9.getText());
+    	    				zaposlenik.setTelefon(textField_10.getText());
+    	    				zaposlenik.setMobitel(textField_11.getText());
+    	    				zaposlenik.setUsername(textField_11.getText());
+    	    				zaposlenik.setPassword(textField_12.getText());
+    	    				zaposlenik.setIsAdministrator(false);
+    	    				if(radioButton.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Recepcioner");
+    	    				}
+    	    				else if(radioButton_1.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Cistacica");
+    	    				}
+    	    				else if(radioButton_2.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Ekonomista");
+    	    				}
+    	    				else if(radioButton_3.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Kuhar");
+    	    				}
+    	    				else if(radioButton_4.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Manager");
+    	    				}
+    	    				else if(radioButton_5.isSelected())
+    	    				{
+    	    					zaposlenik.setUloga("Administrator");
+    	    					zaposlenik.setIsAdministrator(true);
+    	    				}
+    	    				else
+    	    				{
+    	    					zaposlenik.setUloga("");
+    	    				}
+    	    				
+    	    				DBManager.urediZaposlenika(zaposlenik);
+    	    				JOptionPane.showMessageDialog(null, "Izmjene spasene!", "Info", JOptionPane.INFORMATION_MESSAGE);
+    					
+    			}
+    			catch(Exception ex)
+    			{
+    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+    			}
+    		}
+    	});
         initComponents();
     }
 

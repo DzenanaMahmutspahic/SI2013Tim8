@@ -562,4 +562,30 @@ public static void spasiBoravak(Boravak boravak){
 		t.commit();
 	}
 	
+	public static void urediZaposlenika(Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Zaposlenik zap = (Zaposlenik)session.get(Zaposlenik.class, zaposlenik.getId());
+		//Query q1 = session.createQuery("from " + Osoba.class.getName() + " osoba where id = :osobaid");
+		//q1.setParameter("osobaid", zaposlenik.getOsoba().getId());
+		//Osoba osoba = (Osoba)q1.uniqueResult();
+		zap.setDrzavljanstvo(zaposlenik.getDrzavljanstvo());
+		zap.setEmail(zaposlenik.getEmail());
+		zap.setIsAdministrator(zaposlenik.getIsAdministrator());
+		zap.setJMB(zaposlenik.getJMB());
+		zap.setMobitel(zaposlenik.getMobitel());
+		zap.setObrazovanje(zaposlenik.getObrazovanje());
+		zap.setPassword(zaposlenik.getPassword());
+		zap.setTelefon(zaposlenik.getTelefon());
+		zap.setTitula(zaposlenik.getTitula());
+		zap.setUloga(zaposlenik.getUloga());
+		zap.setUsername(zaposlenik.getUsername());
+		zap.getOsoba().setAdresa(zaposlenik.getOsoba().getAdresa());
+		zap.getOsoba().setDatumRodjenja(zaposlenik.getOsoba().getDatumRodjenja());
+		zap.getOsoba().setImePrezime(zaposlenik.getOsoba().getImePrezime());
+		session.update(zap);
+		t.commit();
+	}
+	
 }
