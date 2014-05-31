@@ -136,11 +136,10 @@ public class EkranZaAdministratora extends JFrame {
 		contentPane.add(btnSobe);
 		
 		JButton button = new JButton();
-		final Zaposlenik zap = zaposlenik;
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
-			 new Rezervacija(zap).setVisible(true);
+			 new Rezervacija().setVisible(true);
 			 
 			}
 		});
@@ -160,12 +159,13 @@ public class EkranZaAdministratora extends JFrame {
 		btnPlaanje.setText("Pla\u0107anje");
 		btnPlaanje.setOpaque(true);
 		btnPlaanje.setActionCommand("Rezervacija");
-		btnPlaanje.setBounds(274, 80, 179, 74);
+		btnPlaanje.setBounds(275, 130, 179, 74);
 		contentPane.add(btnPlaanje);
 		
 		JButton btnEvidencijaGostiju = new JButton();
 		btnEvidencijaGostiju.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new EvidencijaGostiju().setVisible(true);
 			}
 		});
@@ -178,21 +178,15 @@ public class EkranZaAdministratora extends JFrame {
 		JButton btnOsoblje = new JButton();
 		btnOsoblje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				new OsobljeN().setVisible(true);
 			}
 		});
 		btnOsoblje.setText("Osoblje");
 		btnOsoblje.setOpaque(true);
 		btnOsoblje.setActionCommand("Rezervacija");
-		btnOsoblje.setBounds(273, 190, 179, 74);
+		btnOsoblje.setBounds(497, 204, 179, 74);
 		contentPane.add(btnOsoblje);
-		
-		JButton btnGalerija = new JButton();
-		btnGalerija.setText("Galerija");
-		btnGalerija.setOpaque(true);
-		btnGalerija.setActionCommand("Rezervacija");
-		btnGalerija.setBounds(497, 190, 179, 74);
-		contentPane.add(btnGalerija);
 		
 	}
 }

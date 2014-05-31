@@ -14,7 +14,7 @@ public class Zaposlenik implements Serializable {
 	private String telefon;
 	private String mobitel;
 	private String uloga;
-	private Boolean isAdministrator;
+	private boolean isAdministrator;
 	private Osoba osoba;
 	
 	public Osoba getOsoba() {
@@ -96,10 +96,10 @@ public class Zaposlenik implements Serializable {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	public Boolean getIsAdministrator() {
+	public boolean getIsAdministrator() {
 		return isAdministrator;
 	}
-	public void setIsAdministrator(Boolean isAdministrator) {
+	public void setIsAdministrator(boolean isAdministrator) {
 		this.isAdministrator = isAdministrator;
 	}
 	
