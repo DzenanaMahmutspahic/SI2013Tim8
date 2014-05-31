@@ -622,8 +622,36 @@ public class DBManagerTest extends TestCase {
 	   // TODO }
 	   }
 	   
-	   public void testUpdateOsobu() { fail("Not yet implemented");
-	   // TODO }
+	   public void testUpdateOsobu() {
+		  // fail("Not yet implemented"); // TODO }
+		Osoba o=new Osoba();
+		o.setImePrezime("Dzena Mahmut"); 
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			try {
+				o.setDatumRodjenja(sdf.parse("1992-10-21"));
+			} catch (java.text.ParseException p) {
+				System.out.println(p.toString());
+			}
+			o.setAdresa("Vitkovac bb");
+		
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(o);
+			t.commit();
+			
+			DBManager.saveOsobu(o);
+			o.setAdresa("Otoka");
+			DBManager.updateOsobu(o);
+			assertTrue(o.getAdresa().equals("Otoka"));
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(o);
+			
+			t1.commit();
+		   
+		   
 	   }
 	   
 	   
@@ -707,7 +735,7 @@ public class DBManagerTest extends TestCase {
 	  
 	   DBManager.spasiZaposlenika(z);
 	   
-	 //  assertTrue(DBManager.dajZaposlenika(o).equals(z));
+	 assertTrue(DBManager.dajZaposlenika(o).equals(z));
 	  
 	 /*  List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
 		 
@@ -1091,5 +1119,57 @@ public class DBManagerTest extends TestCase {
 		session.delete(racun);
 		t1.commit();	
 	}
+	
+	
+
+/*public void testUrediZaposlenika() {
+		
+		   Osoba o=new Osoba();
+		   Zaposlenik z=new Zaposlenik();
+	       o.setImePrezime("Dzenana Mahmut");
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			o.setDatumRodjenja(sdf.parse("1992-10-20"));
+		} catch (java.text.ParseException p) {
+			System.out.println(p.toString());
+		}
+	  
+	   o.setAdresa("Vitkovac 166");
+	
+	 
+	   DBManager.saveOsobu(o);
+	   z.setDrzavljanstvo("BIH");
+	   z.setJMB("0706992179147");
+	   z.setMobitel("061827141");
+	   z.setEmail("dzenana.ma@gmail.com");
+	   z.setIsAdministrator(false);
+	   z.setUsername("dzenana");
+	   z.setPassword("dzenana");
+	   z.setTitula("recepcioner");
+	   z.setObrazovanje("skola");
+	   z.setTelefon("032741723");
+	  z.setUloga("recepcioner");
+	  z.setOsoba(o);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(z);
+		t.commit();
+		
+		DBManager.spasiZaposlenika(z);
+		z.setIsAdministrator(true);
+		DBManager.urediZaposlenika(z);
+		
+		Boolean tacno=false;
+		if(z.getIsAdministrator()==true) tacno=true;
+		assertTrue(tacno);
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(o);
+		session.delete(z);	
+		t1.commit();		
+	}*/
+
 
 }
