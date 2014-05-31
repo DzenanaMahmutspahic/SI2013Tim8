@@ -678,6 +678,29 @@ public class DBManagerTest extends TestCase {
 	        assertTrue(tacno);*/
 		  
 	   }
+	   
+	   public void testDajSveRezervacije(){
+		   Rezervacija r=new Rezervacija();
+		   Soba soba=new Soba();
+		   soba.setBrojKreveta(1);
+		   soba.setBrojSobe(1);
+		   soba.setBalkon(true);
+		   soba.setZauzeta(true);
+		   DBManager.spasiSobu(soba);
+		   
+		   r.setBrojRezervacije(1);
+		   r.setSoba(soba);
+		  r.setPotvrdjena(true);
+		 DBManager.spasiRezervaciju(r);
+		 
+		 List<Rezervacija> rezervacije=DBManager.dajSveRezervacije();
+		 Boolean tacno=false;
+		 for(Rezervacija rez: rezervacije){
+	        if(rez.getBrojRezervacije()==r.getBrojRezervacije())
+	        		tacno=true;
+		 }
+	        assertTrue(tacno);
+	   }
 
 	public void testDajRacun() {
 		//fail("Not yet implemented"); // TODO
