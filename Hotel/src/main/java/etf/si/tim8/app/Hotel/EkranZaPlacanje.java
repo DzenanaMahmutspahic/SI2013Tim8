@@ -95,7 +95,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     	setTitle("Ekran za Placanje");
         initComponents();
         //dodavanje rezervacija u listu
-        boravci = DBManager.dajBoravke();
+        boravci = DBManager.dajBoravke2();
         
         if(boravci !=null && boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
