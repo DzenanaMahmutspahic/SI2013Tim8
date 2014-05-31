@@ -7,6 +7,8 @@ import Klase.Osoba;
 import Klase.Rezervacija;
 import Klase.Soba;
 import Klase.StraniGost;
+import Klase.Racun;
+import Klase.Predracun;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -561,7 +563,36 @@ public class DBManagerTest extends TestCase {
 	}
 
 	public void testDajRacun() {
-		fail("Not yet implemented"); // TODO
+		//fail("Not yet implemented"); // TODO
+				Racun r=new Racun();
+				Racun racun=new Racun();
+				Predracun predracun=new Predracun();
+				predracun.setPopust(10);
+				predracun.setUkupnaCijena(200);
+				DBManager.unesiPredracun(predracun);
+				r.setPredracun(predracun);
+				r.setBrojRacuna(1);
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+				
+				try
+				{
+					 r.setVrijemeIzdavanja(sdf.parse("2014-05-31"));
+			    }
+				catch(java.text.ParseException p)
+				{
+			            System.out.println(p.toString());
+			    }
+				
+				DBManager.unesiRacun(r);
+				
+		        racun=DBManager.dajRacun(predracun);
+		        
+		        Boolean temp=false;
+		        if(racun.getBrojRacuna()==r.getBrojRacuna()) 
+		        		temp=true;
+		        
+		        assertTrue(temp);
+
 	}
 
 	public void testUnesiPredracun() {
