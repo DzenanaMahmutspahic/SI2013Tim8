@@ -52,5 +52,10 @@ public class Boravak implements Serializable {
 		this.vrijemeOdlaska = vrijemeOdlaska;
 	}
 	
-	
+	@Override
+	public boolean equals(Object o){
+		if(!o.getClass().equals(Boravak.class)) return false;
+		if(!(this.getId() == ((Boravak)o).getId())) return false;
+		return true;
+	}
 }

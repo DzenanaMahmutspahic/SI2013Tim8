@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 public class DBManagerTest extends TestCase {
 //testiranje metoda iz klase DBManager
 	//komentar
@@ -25,12 +28,136 @@ public class DBManagerTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
+	//Test da li ce se ispravno kreiran objekat naci u listi boravaka
 	public void testDajBoravke() {
-		fail("Not yet implemented"); // TODO
+		Boravak boravak = new Boravak();
+		Gost gost = new Gost();
+		Rezervacija rezervacija = new Rezervacija();
+		Osoba osoba = new Osoba();
+		osoba.setImePrezime("Test Test");
+		gost.setOsoba(osoba);
+		rezervacija.setPotvrdjena(true);
+		boravak.setRezervacija(rezervacija);
+		boravak.setGost(gost);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(osoba);		
+		session.save(gost);
+		session.save(rezervacija);
+		session.save(boravak);
+		t.commit();
+		
+		List<Boravak> boravci = DBManager.dajBoravke();
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(boravak);
+		session.delete(rezervacija);
+		session.delete(gost);
+		session.delete(osoba);		
+		t1.commit();
+		
+		assertTrue(boravci.contains(boravak));		
 	}
+	
+	//Test da li ce se nepotvrdjena rezervacija naci u listi boravaka
+	public void testDajNepotrvdjenaRezervacijaBoravke() {
+		Boravak boravak = new Boravak();
+		Gost gost = new Gost();
+		Rezervacija rezervacija = new Rezervacija();
+		Osoba osoba = new Osoba();
+		osoba.setImePrezime("Test Test");
+		gost.setOsoba(osoba);
+		rezervacija.setPotvrdjena(false);
+		boravak.setRezervacija(rezervacija);
+		boravak.setGost(gost);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(osoba);		
+		session.save(gost);
+		session.save(rezervacija);
+		session.save(boravak);
+		t.commit();
+		
+		List<Boravak> boravci = DBManager.dajBoravke();
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(boravak);
+		session.delete(rezervacija);
+		session.delete(gost);
+		session.delete(osoba);		
+		t1.commit();
+		
+		assertFalse(boravci.contains(boravak));		
+	}
+	
+	//Test da li ce se boravak iz proslosti naci u listi
+		public void testDajProsleBoravke() {
+			Boravak boravak = new Boravak();
+			Gost gost = new Gost();
+			Rezervacija rezervacija = new Rezervacija();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("Test Test");
+			gost.setOsoba(osoba);
+			rezervacija.setPotvrdjena(true);
+			boravak.setRezervacija(rezervacija);
+			boravak.setGost(gost);			
+			Date danas = new Date();
+			
+			danas.setTime(danas.getTime()-( (24 * 60 * 60 * 1000)));
+			
+			boravak.setVrijemeOdlaska(danas); 
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(osoba);		
+			session.save(gost);
+			session.save(rezervacija);
+			session.save(boravak);
+			t.commit();
+			
+			List<Boravak> boravci = DBManager.dajBoravke();
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(boravak);
+			session.delete(rezervacija);
+			session.delete(gost);
+			session.delete(osoba);		
+			t1.commit();
+			
+			assertFalse(boravci.contains(boravak));		
+		}
 
 	public void testDajBoravke2() {
-		fail("Not yet implemented"); // TODO
+		Boravak boravak = new Boravak();
+		Gost gost = new Gost();
+		Rezervacija rezervacija = new Rezervacija();
+		Osoba osoba = new Osoba();
+		osoba.setImePrezime("Test Test");
+		gost.setOsoba(osoba);
+		rezervacija.setPotvrdjena(true);
+		boravak.setRezervacija(rezervacija);
+		boravak.setGost(gost);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(osoba);		
+		session.save(gost);
+		session.save(rezervacija);
+		session.save(boravak);
+		t.commit();
+		
+		List<Boravak> boravci = DBManager.dajBoravke();
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(boravak);
+		session.delete(rezervacija);
+		session.delete(gost);
+		session.delete(osoba);		
+		t1.commit();
+		
+		assertTrue(boravci.contains(boravak));		
 	}
 
 	public void testDajZauzeteSobeProvjeraException() { 
@@ -838,15 +965,79 @@ public class DBManagerTest extends TestCase {
 	}
 
 	public void testUnesiPredracun() {
-		fail("Not yet implemented"); // TODO
+		Rezervacija rezervacija = new Rezervacija();
+		rezervacija.setPotvrdjena(true);
+		
+		Predracun predracun = new Predracun();
+		predracun.setPopust(10);
+		predracun.setRezervacija(rezervacija);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(rezervacija);
+		t.commit();
+		
+		DBManager.unesiPredracun(predracun);
+		
+		assertTrue(DBManager.dajPredracun(rezervacija).equals(predracun));
+		
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(rezervacija);
+		session.delete(predracun);	
+		t1.commit();		
 	}
 
 	public void testUpdatePredracun() {
-		fail("Not yet implemented"); // TODO
+		Rezervacija rezervacija = new Rezervacija();
+		rezervacija.setPotvrdjena(true);
+		
+		Predracun predracun = new Predracun();
+		predracun.setPopust(10);
+		predracun.setRezervacija(rezervacija);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(rezervacija);
+		t.commit();
+		
+		DBManager.unesiPredracun(predracun);
+		predracun.setPopust(21);
+		DBManager.updatePredracun(predracun);
+		assertTrue(predracun.getPopust()==21);
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(rezervacija);
+		session.delete(predracun);	
+		t1.commit();		
 	}
 
 	public void testUnesiRacun() {
-		fail("Not yet implemented"); // TODO
+		Rezervacija rezervacija = new Rezervacija();
+		rezervacija.setPotvrdjena(true);		
+		Predracun predracun = new Predracun();
+		predracun.setPopust(10);
+		predracun.setRezervacija(rezervacija);
+		
+		Racun racun = new Racun();
+		racun.setPredracun(predracun);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(rezervacija);
+		session.save(predracun);
+		t.commit();
+		
+		DBManager.unesiRacun(racun);
+		
+		assertTrue(DBManager.dajRacun(predracun).equals(racun));
+		
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(rezervacija);
+		session.delete(predracun);	
+		session.delete(racun);
+		t1.commit();	
 	}
 
 }
