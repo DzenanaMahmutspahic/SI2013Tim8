@@ -614,8 +614,37 @@ public class DBManagerTest extends TestCase {
 	   stranigosti=DBManager.dajStraneGoste();
 	   Assert.assertFalse(sg==newsg); }
 	   
-	   public void testUpdateStranogGosta() { fail("Not yet implemented"); 
-	   //	   TODO }
+	   public void testUpdateStranogGosta() { 
+		   //fail("Not yet implemented"); //	   TODO }
+		   Gost gost = new Gost();
+			Osoba osoba = new Osoba();
+			StraniGost sg=new StraniGost();
+			osoba.setImePrezime("Test Test");
+			gost.setOsoba(osoba);
+			gost.setMjestoRodjenja("Visoko");
+			sg.setGost(gost);
+			sg.setDrzavljanstvo("Njemacka");
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(gost);
+			session.save(osoba);
+			session.save(sg);
+			t.commit();
+			
+			DBManager.saveOsobu(osoba);
+			DBManager.saveGosta(gost);
+			DBManager.saveStranogGosta(sg);
+			sg.setDrzavljanstvo("Austrija");
+			DBManager.updateStranogGosta(sg);
+			assertTrue(sg.getDrzavljanstvo().equals("Austrija"));
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(gost);
+			session.delete(osoba);
+			session.delete(sg);
+			t1.commit();
+		   
 	   }
 	   
 	   public void testUpdateGosta() { 
