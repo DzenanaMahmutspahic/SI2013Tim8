@@ -93,7 +93,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     	setTitle("Ekran za Placanje");
         initComponents();
         //dodavanje rezervacija u listu
-        boravci = DBManager.dajBoravke2();
+        boravci = DBManager.dajBoravke();
         
         if(boravci !=null && boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
@@ -273,10 +273,10 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         		//JOptionPane.showMessageDialog(null, "Nije implementirano!", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
         			if(oznaceniBoravak==null)
-            			JOptionPane.showMessageDialog(null, "Niste oznaćili nijednog gosta!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+            			JOptionPane.showMessageDialog(null, "Niste označili nijednog gosta!", "Evidencija predačuna", JOptionPane.INFORMATION_MESSAGE);
         			else{
         			kreirajPredracun();
-        			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali predracun!", "Evidencija predačuna", JOptionPane.INFORMATION_MESSAGE);
         		}}
         		catch(Exception exception){
         			JOptionPane.showMessageDialog(null, exception.getMessage() , "Greska", JOptionPane.ERROR_MESSAGE);
@@ -290,7 +290,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         		//JOptionPane.showMessageDialog(null, "Nije implementirano", "Info", JOptionPane.INFORMATION_MESSAGE);
         		try{
             		if(oznaceniBoravak==null)
-            			JOptionPane.showMessageDialog(null, "Niste oznaćili nijednog gosta!", "Evidencija predacuna", JOptionPane.INFORMATION_MESSAGE);
+            			JOptionPane.showMessageDialog(null, "Niste označili nijednog gosta!", "Evidencija računa", JOptionPane.INFORMATION_MESSAGE);
             		else{
         			kreirajPredracun();
         			racun = new Racun();
@@ -298,10 +298,10 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         			racun.setPredracun(predracun);
         			racun.setVrijemeIzdavanja(new Date());
         			DBManager.unesiRacun(racun);
-        			JOptionPane.showMessageDialog(null, "Uspjesno ste evidentirali racun!", "Evidencija racuna", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Uspješno ste evidentirali račun!", "Evidencija računa", JOptionPane.INFORMATION_MESSAGE);
         		}}
         		catch(Exception exception){
-        			JOptionPane.showMessageDialog(null, exception.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(null, exception.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
         		}
         	}
         });

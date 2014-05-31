@@ -38,25 +38,15 @@ public class DBManager {
 	/*Za Ekran za placanje */
 	public static List<Boravak> dajBoravke() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		Query q = session.createQuery("from Boravak boravak join boravak.gost as gost join gost.osoba as osoba join boravak.rezervacija as rezervacija join rezervacija.soba as soba where rezervacija.potvrdjena =true and (boravak.vrijemeOdlaska is null or boravak.vrijemeOdlaska >= :danas)");//or vrijemeOdlaska isnull
+		Query q = session.createQuery("from Boravak boravak where boravak.rezervacija.potvrdjena=true and (boravak.vrijemeOdlaska is null or boravak.vrijemeOdlaska>=:danas)");
 		q.setParameter("danas", new Date());
 		
-	    List<Object[]> objekti = (List<Object[]>) q.list();
-	    List<Boravak> boravci = new ArrayList<Boravak>();//D
-	    
-	    for(Object[] o : objekti){
-	    	for(Object o2: o){
-	    		if(o2.getClass().equals(Boravak.class)){
-	    			boravci.add((Boravak)o2);
-	    		}
-	    	}
-	    	
-	    }
-	    //List<Osoba> osoba = (List<Osoba>) q1.list();//t.commit();
+		List<Boravak> boravci = q.list();
 		session.close();
-		return boravci;
+		return boravci; 
+		//return ret;
 	}
+	
 	
 	public static List<Boravak> dajBoravke2() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
