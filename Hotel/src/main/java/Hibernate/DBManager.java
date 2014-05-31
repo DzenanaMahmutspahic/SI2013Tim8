@@ -19,7 +19,7 @@ import Klase.Soba;
 import Klase.StraniGost;
 import Klase.Zaposlenik;
 
-public class DBManager {
+public class DBManager {//komentar
 	
 	private static Scanner sc = new Scanner(System.in);
 	
