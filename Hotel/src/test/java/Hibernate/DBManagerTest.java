@@ -966,7 +966,31 @@ public class DBManagerTest extends TestCase {
 	}
 
 	public void testUnesiRacun() {
-		fail("Not yet implemented"); // TODO
+		Rezervacija rezervacija = new Rezervacija();
+		rezervacija.setPotvrdjena(true);		
+		Predracun predracun = new Predracun();
+		predracun.setPopust(10);
+		predracun.setRezervacija(rezervacija);
+		
+		Racun racun = new Racun();
+		racun.setPredracun(predracun);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(rezervacija);
+		session.save(predracun);
+		t.commit();
+		
+		DBManager.unesiRacun(racun);
+		
+		assertTrue(DBManager.dajRacun(predracun).equals(racun));
+		
+		
+		Transaction t1 = session.beginTransaction();
+		session.delete(rezervacija);
+		session.delete(predracun);	
+		session.delete(racun);
+		t1.commit();	
 	}
 
 }

@@ -52,6 +52,11 @@ public class Racun implements Serializable {
 		this.predracun = predracun;
 	}
 	
-	
+	@Override
+	public boolean equals(Object o){
+		if(!o.getClass().equals(Racun.class)) return false;
+		if(!(this.getId() == ((Racun)o).getId())) return false;
+		return true;
+	}
 
 }
