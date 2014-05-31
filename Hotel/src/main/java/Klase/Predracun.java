@@ -42,5 +42,10 @@ public class Predracun implements Serializable {
 		this.ukupnaCijena = ukupnaCijena;
 	}
 	
-	
+	@Override
+	public boolean equals(Object o){
+		if(!o.getClass().equals(Predracun.class)) return false;
+		if(!(this.getId() == ((Predracun)o).getId())) return false;
+		return true;
+	}
 }
