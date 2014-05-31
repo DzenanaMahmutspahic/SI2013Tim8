@@ -339,13 +339,9 @@ public class DBManager {//komentar
 		List<Rezervacija> rezervacijeUDatomPeriodu = new ArrayList();
 		for(Rezervacija r : sveRezervacijeZaSobu)
 		{
-			//(rez.getRezervisanoOd().before(datumOD) && rez.getRezervisanoDo().before(datumOD)) ||
-			//(rez.getRezervisanoOd().after(datumDO) && rez.getRezervisanoDo().after(datumDO)) || 
 			if(
-					(datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
-					|| (datumDO.before(r.getRezervisanoDo()) && datumDO.after(r.getRezervisanoOd())) 
-					||(datumOD.before(r.getRezervisanoOd())&& datumDO.after(r.getRezervisanoDo()))
-					|| (datumOD.after(r.getRezervisanoOd()) && datumDO.before(r.getRezervisanoDo())))
+					(r.getRezervisanoOd().before(datumOD) && r.getRezervisanoDo().before(datumOD)) ||
+					(r.getRezervisanoOd().after(datumDO) && r.getRezervisanoDo().after(datumDO)))
 
 			{
 				continue;

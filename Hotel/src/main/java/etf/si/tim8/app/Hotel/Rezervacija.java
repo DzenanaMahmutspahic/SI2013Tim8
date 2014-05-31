@@ -985,6 +985,10 @@ jButton_7.setText("Evidencija gostiju");
                 			java.util.Date datumOD = (java.util.Date) datePicker5.getModel().getValue();
                     		java.util.Date datumDO = (java.util.Date) datePicker6.getModel().getValue();
                 			Klase.Rezervacija rezerv = DBManager.dajRezervacijuZaSobu(soba, datumOD, datumDO, redniBroj);
+                			if(rezerv == null)
+                			{
+                				return;
+                			}
                 			Gost gost = DBManager.getGostRezervacija(rezerv);
                 			if(gost != null && gost.getOsoba() != null)
                 			{
