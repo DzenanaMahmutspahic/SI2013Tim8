@@ -504,4 +504,34 @@ public static void spasiBoravak(Boravak boravak){
 		
 	}
 	
+	/*forma za osoblje*/
+	public static List<Zaposlenik> dajZaposlenike(String pretraga)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Zaposlenik.class.getName());
+		List<Zaposlenik> sviZaposlenici = (List<Zaposlenik>)q.list();
+		List<Zaposlenik> zaposlenici = new ArrayList<Zaposlenik>();
+		pretraga = pretraga.toLowerCase();
+		
+		for(Zaposlenik zaposlenik : sviZaposlenici)
+		{
+			if(zaposlenik.getOsoba() != null && zaposlenik.getOsoba().getImePrezime().toLowerCase().contains(pretraga))
+			{
+				zaposlenici.add(zaposlenik);
+			}
+		}
+		
+		return zaposlenici;
+		
+	}
+	
+	public static void spremiZaposlenika(Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(zaposlenik.getOsoba());
+		session.save(zaposlenik);
+		t.commit();
+	}
+	
 }
