@@ -2,6 +2,7 @@ package Hibernate;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import Klase.Boravak;
 import Klase.Gost;
 import Klase.Osoba;
 import Klase.Rezervacija;
@@ -679,6 +680,7 @@ public class DBManagerTest extends TestCase {
 		  
 	   }
 	   
+	   //Testira da li ova metoda zaista vraća sve rezervacije, ukljucujuci i one koje su tek dodane
 	   public void testDajSveRezervacije(){
 		   Rezervacija r=new Rezervacija();
 		   Soba soba=new Soba();
@@ -694,12 +696,65 @@ public class DBManagerTest extends TestCase {
 		 DBManager.spasiRezervaciju(r);
 		 
 		 List<Rezervacija> rezervacije=DBManager.dajSveRezervacije();
+		 
 		 Boolean tacno=false;
 		 for(Rezervacija rez: rezervacije){
 	        if(rez.getBrojRezervacije()==r.getBrojRezervacije())
 	        		tacno=true;
 		 }
 	        assertTrue(tacno);
+	   }
+	   
+	   
+	   
+	   //testira da li ova metoda vraca gosta za datu rezervaciju
+	   public void testGetGostRezervacija(){
+		   Rezervacija r=new Rezervacija();
+		   Boravak b=new Boravak();
+		   Gost g=new Gost();
+		   Gost novi=new Gost();
+		   Osoba o=new Osoba();
+		   Soba soba=new Soba();
+		   
+		   soba.setBrojKreveta(1);
+		   soba.setBrojSobe(1);
+		   soba.setBalkon(true);
+		   soba.setZauzeta(true);
+		   DBManager.spasiSobu(soba);
+		   
+		   r.setBrojRezervacije(1);
+		   r.setSoba(soba);
+		  r.setPotvrdjena(true);
+		 DBManager.spasiRezervaciju(r);
+		 
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			o.setImePrezime("Dzenana Mahmutspahic");
+			try {
+				o.setDatumRodjenja(sdf.parse("1992-10-21"));
+			} catch (java.text.ParseException p) {
+				System.out.println(p.toString());
+			}
+			o.setAdresa("Vitkovac 166");
+			g.setMjestoRodjenja("Beograd");
+			g.setOsoba(o);
+
+			DBManager.saveOsobu(o);
+			DBManager.saveGosta(g);
+			b.setGost(g);
+			b.setRezervacija(r);
+			DBManager.spasiBoravak(b);
+			
+			novi=DBManager.getGostRezervacija(r);
+			List<Gost> gosti=new ArrayList<Gost>();
+			gosti.add(novi);
+			Boolean tacno=false;
+			for(Gost i: gosti ){
+			if(i.getMjestoRodjenja().equals(g.getMjestoRodjenja()))
+				tacno=true;
+			}
+			
+			assertTrue(tacno);	
+		   
 	   }
 
 	public void testDajRacun() {
