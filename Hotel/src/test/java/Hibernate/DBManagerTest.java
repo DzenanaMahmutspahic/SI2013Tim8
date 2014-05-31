@@ -618,8 +618,32 @@ public class DBManagerTest extends TestCase {
 	   //	   TODO }
 	   }
 	   
-	   public void testUpdateGosta() { fail("Not yet implemented");
-	   // TODO }
+	   public void testUpdateGosta() { 
+		   //fail("Not yet implemented");// TODO }
+		   Gost gost = new Gost();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("Test Test");
+			gost.setOsoba(osoba);
+			gost.setMjestoRodjenja("Visoko");
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(gost);
+			session.save(osoba);
+			t.commit();
+			
+			DBManager.saveOsobu(osoba);
+			DBManager.saveGosta(gost);
+			gost.setMjestoRodjenja("Sarajevo");
+			DBManager.updateGosta(gost);
+			assertTrue(gost.getMjestoRodjenja().equals("Sarajevo"));
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(gost);
+			session.delete(osoba);
+			t1.commit();
+		   
+		   
 	   }
 	   
 	   public void testUpdateOsobu() {
@@ -1158,12 +1182,10 @@ public class DBManagerTest extends TestCase {
 		t.commit();
 		
 		DBManager.spasiZaposlenika(z);
-		z.setIsAdministrator(true);
+		z.setTelefon("033741723");
 		DBManager.urediZaposlenika(z);
 		
-		Boolean tacno=false;
-		if(z.getIsAdministrator()==true) tacno=true;
-		assertTrue(tacno);
+		assertTrue(z.getTelefon().equals("033741723"));
 		
 		Transaction t1 = session.beginTransaction();
 		session.delete(o);
