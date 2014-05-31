@@ -290,7 +290,7 @@ statistika();
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
@@ -615,8 +615,6 @@ statistika();
 			List<Object[]> objekti = (List<Object[]>) query.list();*/
 			List<Boravak> boravci =  DBManager.dajBoravke2();
 			
-			
-
 			int brojtrenutnih = 0, brojstarih = 0;
 			Date today = new Date();
 			for (Boravak b : boravci) {
@@ -849,7 +847,7 @@ statistika();
 				System.out.printf("gost  u sg je null");
 			if (sg.getGost().getId() == g.getId()) {
 
-				JOptionPane.showMessageDialog(null, "Gost je strani", "Info",
+				JOptionPane.showMessageDialog(null, "Gost je strani!", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
 				return true;
 			}
