@@ -24,9 +24,9 @@ import org.hibernate.Transaction;
 public class DBManagerTest extends TestCase {
 //testiranje metoda iz klase DBManager
 	//komentar
-	public void testProvjeriLogin() {
+	/*public void testProvjeriLogin() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	//Test da li ce se ispravno kreiran objekat naci u listi boravaka
 	public void testDajBoravke() {
@@ -305,19 +305,23 @@ public class DBManagerTest extends TestCase {
 		s.setBalkon(true);
 		s.setBrojKreveta(2);
 		s.setSprat(2);
+		DBManager.spasiSobu(s);
 		
 		s1.setBrojSobe(2);
 		s1.setBalkon(true);
 		s1.setBrojKreveta(2);
 		s1.setSprat(2);
+		DBManager.spasiSobu(s1);
 		
 		r.setSoba(s);
 		r.setRezervisanoOd(rezervisanoOD);
 		r.setRezervisanoDo(rezervisanoDO);
+		DBManager.spasiRezervaciju(r);
 		
 		r1.setSoba(s1);
 		r1.setRezervisanoOd(rezervisanoOD1);
 		r1.setRezervisanoDo(rezervisanoDO1);
+		DBManager.spasiRezervaciju(r1);
 		
 		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
 		
@@ -588,11 +592,15 @@ public class DBManagerTest extends TestCase {
 	   stranigosti=DBManager.dajStraneGoste();
 	   Assert.assertFalse(stranigosti.contains(sg)); }
 	   
-	   public void testObrisiOsobu() { Osoba o=new Osoba();
-	   o.setImePrezime("Alen Kopic"); Date datumRodjenja=new Date(1992,10,21);
+	   public void testObrisiOsobu() {
+		   Osoba o=new Osoba();
+	   o.setImePrezime("Alen Kopic");
+	   Date datumRodjenja=new Date(1992,10,21);
 	   
-	   o.setDatumRodjenja(datumRodjenja); o.setAdresa("Vitkovac 166");
-	   DBManager.saveOsobu(o); DBManager.obrisiOsobu(o);
+	   o.setDatumRodjenja(datumRodjenja);
+	   o.setAdresa("Vitkovac 166");
+	   DBManager.saveOsobu(o);
+	   DBManager.obrisiOsobu(o);
 	   List<Osoba> osobe=DBManager.dajOsobe();
 	   Assert.assertFalse(osobe.contains(o)); }
 	   
@@ -980,7 +988,7 @@ public class DBManagerTest extends TestCase {
 		
 	}*/
 	   
-	   public void testDajPredracun(){
+	/*   public void testDajPredracun(){
 		 fail("Not yet implemented"); // TODO
 		 /*  Rezervacija r=new Rezervacija();
 		   Predracun p=new Predracun();
@@ -1006,9 +1014,9 @@ public class DBManagerTest extends TestCase {
 	        if(p.getUkupnaCijena()==temp.getUkupnaCijena() && p.getPopust()==temp.getPopust())
 	        		tacno=true;
 	        
-	        assertTrue(tacno);*/
+	        assertTrue(tacno);
 		  
-	   }
+	   }*/
 	   
 	   //Testira da li ova metoda zaista vraća sve rezervacije, ukljucujuci i one koje su tek dodane
 	   public void testDajSveRezervacije(){

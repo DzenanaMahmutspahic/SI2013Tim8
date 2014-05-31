@@ -340,7 +340,7 @@ public class DBManager {//komentar
 	}
 
 	
-	public static List<Osoba> dajOsobe() {
+	/*public static List<Osoba> dajOsobe() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 
@@ -362,6 +362,12 @@ public class DBManager {//komentar
 
 		session.close();
 		return osobe;
+	}*/
+	
+	public static List<Osoba> dajOsobe(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Osoba.class.getName());
+		return (List<Osoba>)q.list();
 	}
 	
 	
