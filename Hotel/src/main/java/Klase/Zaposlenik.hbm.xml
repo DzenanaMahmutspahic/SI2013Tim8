@@ -41,7 +41,7 @@
         <property name="isAdministrator" type="java.lang.Boolean">
             <column name="ISADMINISTRATOR" />
         </property>
-        <many-to-one name="osoba" class="Klase.Osoba" fetch="join">
+        <many-to-one name="osoba" class="Klase.Osoba" fetch="join" lazy="false">
             <column name="OSOBA" />
         </many-to-one>
     </class>
