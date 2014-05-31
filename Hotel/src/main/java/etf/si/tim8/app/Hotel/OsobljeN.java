@@ -24,6 +24,8 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JList;
@@ -44,6 +46,8 @@ import java.awt.SystemColor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 /**
  *
@@ -84,7 +88,7 @@ public class OsobljeN extends javax.swing.JFrame {
     	getContentPane().add(panel);
     	panel.setLayout(null);
     	
-    	JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    	final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     	tabbedPane.setBackground(SystemColor.inactiveCaptionBorder);
     	tabbedPane.setBounds(0, 0, 374, 538);
     	tabbedPane.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -116,7 +120,7 @@ public class OsobljeN extends javax.swing.JFrame {
     	panel_2.add(panel_3);
     	
     	JLabel label_1 = new JLabel("Rezultati pretrage:");
-    	label_1.setBounds(128, 5, 91, 14);
+    	label_1.setBounds(61, 5, 158, 14);
     	panel_3.add(label_1);
     	
     	final JList list = new JList();
@@ -124,10 +128,38 @@ public class OsobljeN extends javax.swing.JFrame {
     	panel_3.add(list);
     	
     	JPanel panel_4 = new JPanel();
+    
     	panel_4.setBackground(SystemColor.inactiveCaptionBorder);
-    	panel_4.setLayout(null);
     	tabbedPane.addTab("Lista svih radnika", null, panel_4, null);
+    	panel_4.setLayout(null);
     	
+    	
+    	final JList list_1 = new JList();
+    	list_1.setBounds(10, 11, 347, 486);
+    	panel_4.add(list_1);
+    	 tabbedPane.addChangeListener(new ChangeListener() {
+    	        public void stateChanged(ChangeEvent e) {
+    	            if(tabbedPane.getSelectedIndex()==1){
+    	            	try
+    	    			{
+    	    				List<Zaposlenik> zaposlenici = DBManager.dajZaposlenike("");
+    	    				DefaultListModel model = new DefaultListModel();
+    	    				for(Zaposlenik zaposlenik : zaposlenici)
+    	    				{
+    	    					model.addElement(zaposlenik);
+    	    				}
+    	    				
+    	    				list_1.setModel(model);
+    	    				
+    	    			}
+    	    			catch(Exception ex)
+    	    			{
+    	    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+    	            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    			}
+    	            }
+    	        }
+    	    });
     	JPanel panel_1 = new JPanel();
     	panel_1.setBackground(SystemColor.inactiveCaptionBorder);
     	panel_1.setBounds(402, 11, 497, 538);
@@ -214,11 +246,11 @@ public class OsobljeN extends javax.swing.JFrame {
     	panel_5.add(label_3);
     	
     	JLabel label_4 = new JLabel("JMBG:");
-    	label_4.setBounds(10, 77, 200, 50);
+    	label_4.setBounds(10, 112, 200, 50);
     	panel_5.add(label_4);
     	
     	JLabel label_5 = new JLabel("Datum ro\u0111enja:");
-    	label_5.setBounds(10, 115, 200, 50);
+    	label_5.setBounds(10, 74, 200, 50);
     	panel_5.add(label_5);
     	
     	JLabel label_6 = new JLabel("Adresa:");
@@ -379,6 +411,7 @@ public class OsobljeN extends javax.swing.JFrame {
     					JOptionPane.showMessageDialog(null, "Greska! Niste unijeli sve podatke!", "Info", JOptionPane.ERROR_MESSAGE);
     					return;
     				}
+    				else{
     				Osoba osoba = new Osoba();
     				Zaposlenik zaposlenik = new Zaposlenik();
     				osoba.setImePrezime(textField_1.getText() + " " + textField_2.getText());
@@ -427,6 +460,7 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setOsoba(osoba);
     				DBManager.spremiZaposlenika(zaposlenik);
     				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
+    				}
     				
     			}
     			catch(Exception ex)
@@ -545,7 +579,114 @@ public class OsobljeN extends javax.swing.JFrame {
                 }
             }
         });
-        
+list_1.addListSelectionListener(new ListSelectionListener() {
+
+            
+        	public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	try
+                	{
+                		Zaposlenik zaposlenik = (Zaposlenik)list_1.getSelectedValue();
+                		if(zaposlenik != null)
+                		{
+                			if(zaposlenik.getOsoba() != null)
+                			{
+                				textField_1.setText(zaposlenik.getOsoba().getIme());
+                				textField_2.setText(zaposlenik.getOsoba().getPrezime());
+                				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				textField_5.setText(zaposlenik.getOsoba().getAdresa());
+                				
+                			}
+                			else
+                			{
+                				textField_1.setText("");
+                				textField_2.setText("");
+                				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				textField_5.setText("");
+                			}
+                			textField_4.setText(zaposlenik.getJMB());
+                			textField_6.setText(zaposlenik.getDrzavljanstvo());
+                			textField_7.setText(zaposlenik.getTitula());
+                			textField_8.setText(zaposlenik.getObrazovanje());
+                			textField_9.setText(zaposlenik.getEmail());
+                			textField_10.setText(zaposlenik.getTelefon());
+                			textField_11.setText(zaposlenik.getMobitel());
+                			textField_12.setText(zaposlenik.getUsername());
+                			textField_13.setText(zaposlenik.getPassword());
+                			if(zaposlenik.getUloga() == "Recepcioner")
+                			{
+                				radioButton.setSelected(true);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Cistacica")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(true);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Ekonomista")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(true);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Kuhar")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(true);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Manager")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(true);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Administrator")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(true);
+                			}
+                			else
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			
+                		}
+                	}
+                	catch(Exception ex)
+                	{
+                		System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+                		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+                	}
+                }
+            }
+        });
         button_2.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			try
@@ -560,6 +701,18 @@ public class OsobljeN extends javax.swing.JFrame {
         			int dialogResult = JOptionPane.showConfirmDialog (null, "Da li ste sigurni?","Warning",dialogButton);
         			if(dialogResult == JOptionPane.YES_OPTION){
         				DBManager.obrisiZaposlenika(zaposlenik);
+        				textField_4.setText("");
+            			textField_6.setText("");
+            			textField_7.setText("");
+            			textField_8.setText("");
+            			textField_9.setText("");
+            			textField_10.setText("");
+            			textField_11.setText("");
+            			textField_12.setText("");
+            			textField_13.setText("");
+            			textField_5.setText("");
+            			textField_1.setText("");
+            			textField_2.setText("");
         				JOptionPane.showMessageDialog(null, "Zaposlenik obrisan!", "Info", JOptionPane.INFORMATION_MESSAGE);
         			}
     					
@@ -698,5 +851,4 @@ public class OsobljeN extends javax.swing.JFrame {
             }
         });
     }
-    // End of variables declaration                   
 }
