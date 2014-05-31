@@ -473,6 +473,15 @@ statistika();
 
 		JButton btnPoetnaStranica = new JButton("Po\u010Detna stranica");
 		btnPoetnaStranica.setBounds(674, 527, 200, 50);
+		btnPoetnaStranica.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+                new HomePage().setVisible(true);
+
+			}
+
+		});
 		contentPane.add(btnPoetnaStranica);
 
 		JPanel panel_3 = new JPanel();
