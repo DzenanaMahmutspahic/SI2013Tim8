@@ -467,6 +467,14 @@ public static void spasiZaposlenika(Zaposlenik zaposlenik){
 	
 }
 
+public static void spasiBoravak(Boravak boravak){
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	Transaction t = session.beginTransaction();
+	session.save(boravak);
+	t.commit();
+	
+}
+
 
 	
 	public static void obrisiStranogZaGosta(StraniGost sg)
