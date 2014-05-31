@@ -294,6 +294,96 @@ public class DBManager {//komentar
 		
 	}
 	
+	public static List<Soba> dajRezervisaneSobe(Date datumOD, Date datumDO, int klasa)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Soba.class.getName());
+		List<Soba> slobodneSobe = DBManager.dajSlobodneSobe(datumOD, datumDO, klasa);
+		List<Long> slobodneSobeIds = new ArrayList();
+		List<Soba> zauzeteSobe = new ArrayList();
+		for(Soba soba : slobodneSobe)
+		{
+			slobodneSobeIds.add(soba.getId());
+		}
+		
+		List<Soba> sveSobe = (List<Soba>)q.list();
+		for(Soba soba  : sveSobe)
+		{
+			if(!slobodneSobeIds.contains(soba.getId()))
+			{
+				if(klasa == 1 || klasa == 2)
+				{
+					if(soba.getBrojKreveta() == klasa)
+					{
+						zauzeteSobe.add(soba);
+					}
+				}
+				else
+				{
+					zauzeteSobe.add(soba);
+				}
+			}
+		}
+		
+		return zauzeteSobe;
+	}
+	
+	public static Rezervacija dajRezervacijuZaSobu(Soba soba, Date datumOD, Date datumDO, int redniBroj)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Rezervacija.class.getName() + 
+				" rezervacija where rezervacija.soba is not null and rezervacija.soba.id = :sobaid");
+		q.setParameter("sobaid", soba.getId());
+		
+		List<Rezervacija> sveRezervacijeZaSobu = (List<Rezervacija>)q.list();
+		List<Rezervacija> rezervacijeUDatomPeriodu = new ArrayList();
+		for(Rezervacija r : sveRezervacijeZaSobu)
+		{
+			//(rez.getRezervisanoOd().before(datumOD) && rez.getRezervisanoDo().before(datumOD)) ||
+			//(rez.getRezervisanoOd().after(datumDO) && rez.getRezervisanoDo().after(datumDO)) || 
+			if(
+					(datumOD.before(r.getRezervisanoDo())&&datumOD.after(r.getRezervisanoOd()))
+					|| (datumDO.before(r.getRezervisanoDo()) && datumDO.after(r.getRezervisanoOd())) 
+					||(datumOD.before(r.getRezervisanoOd())&& datumDO.after(r.getRezervisanoDo()))
+					|| (datumOD.after(r.getRezervisanoOd()) && datumDO.before(r.getRezervisanoDo())))
+
+			{
+				continue;
+			}
+			else
+			{
+				rezervacijeUDatomPeriodu.add(r);
+			}
+		}
+		
+		if(rezervacijeUDatomPeriodu.size() >= redniBroj + 1)
+		{
+			return rezervacijeUDatomPeriodu.get(redniBroj);
+		}
+		return null;
+		
+	}
+	
+	public static Boolean daLiJePlaceno(Rezervacija rezervacija)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Predracun.class.getName() + " predracun where predracun.rezervacija.id = :rezId");
+		q.setParameter("rezId", rezervacija.getId());
+		Predracun predracun = (Predracun)q.uniqueResult();
+		
+		if(predracun == null)
+		{
+			return false;
+		}
+		
+		Query q1 = session.createQuery("from " + Racun.class.getName() + " racun where racun.predracun.id = :predId");
+		q1.setParameter("predId", predracun.getId());
+		Racun racun = (Racun)q1.uniqueResult();
+		
+		return racun != null;
+		
+	}
+	
 	public static List<StraniGost> dajStraneGoste() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();

@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 
 import java.awt.Component;
@@ -907,6 +908,108 @@ jButton_7.setText("Evidencija gostiju");
         			
         		}
         	}
+        });
+        
+        jButton4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try
+        		{
+        			java.util.Date datumOD = (java.util.Date) datePicker5.getModel().getValue();
+            		java.util.Date datumDO = (java.util.Date) datePicker6.getModel().getValue();
+            		if(datumOD == null)
+            		{
+            			JOptionPane.showMessageDialog(null, "Niste unjeli datum dolaska!", "Info", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
+            		if(datumDO == null)
+            		{
+            			JOptionPane.showMessageDialog(null, "Niste unjeli datum odlaska!", "Info", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
+            		
+            		int klasa;
+            		if(jComboBox1.getSelectedIndex() == 0)
+            		{
+            			klasa = 3;
+            		}
+            		else if(jComboBox1.getSelectedIndex() == 1)
+            		{
+            			klasa = 1;
+            		}
+            		else 
+            		{
+            			klasa = 2;
+            		}
+            		List<Soba> rezervisaneSobe = DBManager.dajRezervisaneSobe(datumOD, datumDO, klasa);
+            		DefaultListModel model = new DefaultListModel();
+            		for(Soba soba : rezervisaneSobe)
+            		{
+            			model.addElement(soba);
+            		}
+            		jList3.setModel(model);
+
+        		}
+        		catch (Exception ex1) 
+        		{
+        			System.out.println("Greska pri radu sa bazom: "+ex1.getMessage());
+            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+
+        		}
+        		//jList1 = new javax.swing.JList(new Vector<Soba>(dostupneSobe));
+        		
+        		
+        	}
+        });
+        
+        jList3.addListSelectionListener(new ListSelectionListener() {
+
+            
+        	public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	try
+                	{
+                		Soba soba = (Soba)jList3.getSelectedValue();
+                		if(soba != null)
+                		{
+                			int index = jList3.getSelectedIndex();
+                			int redniBroj = 0;
+                			ListModel model = jList3.getModel(); 
+                			for(int i=0; i<index; i++)
+                			{
+                				Soba x = (Soba)model.getElementAt(i);
+                				if(x.getId() == soba.getId())
+                				{
+                					redniBroj++;
+                				}
+                			}
+                			java.util.Date datumOD = (java.util.Date) datePicker5.getModel().getValue();
+                    		java.util.Date datumDO = (java.util.Date) datePicker6.getModel().getValue();
+                			Klase.Rezervacija rezerv = DBManager.dajRezervacijuZaSobu(soba, datumOD, datumDO, redniBroj);
+                			Gost gost = DBManager.getGostRezervacija(rezerv);
+                			if(gost != null && gost.getOsoba() != null)
+                			{
+                				jTextField15.setText(gost.getOsoba().getIme());
+                				jTextField16.setText(gost.getOsoba().getPrezime());
+                				if(DBManager.daLiJePlaceno(rezerv))
+                				{
+                					jComboBox2.setSelectedIndex(0);
+                				}
+                				else
+                				{
+                					jComboBox2.setSelectedIndex(1);
+                				}
+                				
+                			}
+                			
+                		}
+                	}
+                	catch(Exception ex)
+                	{
+                		System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+                		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+                	}
+                }
+            }
         });
         
         pack();
