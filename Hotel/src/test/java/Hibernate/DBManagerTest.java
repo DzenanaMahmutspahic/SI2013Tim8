@@ -528,15 +528,62 @@ public class DBManagerTest extends TestCase {
 			 	   
 			   }
 	   
-	   public void testSaveOsobu() { Osoba o=new Osoba();
-	   o.setImePrezime("Alen Kopic"); Date datumRodjenja=new Date(1992,10,21);
+	   public void testSaveOsobu() {
+		   Osoba o=new Osoba();
+	   o.setImePrezime("Alen Kopic"); 
+	   Date datumRodjenja=new Date(1992,10,21);
 	   
-	   o.setDatumRodjenja(datumRodjenja); o.setAdresa("Vitkovac 166");
-	   DBManager.saveOsobu(o); List<Osoba>
-	   osobe=DBManager.dajOsobe();
+	   o.setDatumRodjenja(datumRodjenja);
+	   o.setAdresa("Vitkovac 166");
+	   DBManager.saveOsobu(o);
+	   List<Osoba>osobe=DBManager.dajOsobe();
 	   Assert.assertTrue(osobe.contains(o));
 	   
 	   }
+	   
+	   
+	   
+	 /*  public void testSpasiZaposlenika() { 
+		   
+		   Osoba o=new Osoba();
+		   Zaposlenik z=new Zaposlenik();
+	       o.setImePrezime("Dzenana Mahmutspahic");
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			o.setDatumRodjenja(sdf.parse("1992-10-20"));
+		} catch (java.text.ParseException p) {
+			System.out.println(p.toString());
+		}
+	  
+	   o.setAdresa("Vitkovac 166");
+	
+	   z.setOsoba(o);
+	   DBManager.saveOsobu(o);
+	   z.setDrzavljanstvo("BIH");
+	   z.setJMB("0706992179147");
+	   z.setMobitel("061827141");
+	   z.setEmail("dzenana.ma@gmail.com");
+	   z.setIsAdministrator(false);
+	   z.setUsername("dzenana");
+	   z.setPassword("dzenana");
+	   z.setTitula("recepcioner");
+	   z.setObrazovanje("skola");
+	   z.setTelefon("032741723");
+	  z.setUloga("recepcioner");
+	   DBManager.spasiZaposlenika(z);
+	   
+	   List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
+	 
+	  Boolean tacno=false;
+		for (Zaposlenik i : zaposlenici) {
+			if(	i.getMobitel().equals(z.getMobitel()))
+				tacno=true;
+		}
+	  assertTrue(tacno);	   
+	   
+	   }*/
+	   
 	   
 	   public void testObrisiStranogZaGosta() { Osoba o=new Osoba();
 	   o.setImePrezime("Alen Kopic"); Date datumRodjenja=new Date(1992,10,21);

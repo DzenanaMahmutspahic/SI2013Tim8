@@ -461,6 +461,18 @@ public class DBManager {
 		return sobe;
 	
 	}
+	
+	public static List<Zaposlenik> dajSveZaposlenike(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		final Query query = session.createQuery("from Zaposlenik");
+		List<Zaposlenik> zaposlenici=new ArrayList<Zaposlenik>();
+		zaposlenici = (ArrayList<Zaposlenik>)query.list();
+		t.commit();
+		session.close();
+		return zaposlenici;
+	
+	}
 public static void spasiSobu(Soba soba){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
