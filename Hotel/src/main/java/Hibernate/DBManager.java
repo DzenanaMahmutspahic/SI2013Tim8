@@ -250,6 +250,44 @@ public class DBManager {
 		t.commit();
 		
 	}
+	
+	public static List<Rezervacija> dajSveRezervacije(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Rezervacija.class.getName());
+		return (List<Rezervacija>)q.list();
+	}
+	
+	public static Gost getGostRezervacija(Rezervacija rezervacija){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Boravak.class.getName() + " boravak where boravak.rezervacija.id = :rezervacijaid");
+		q.setParameter("rezervacijaid", rezervacija.getId());
+		List<Boravak> boravci = (List<Boravak>)q.list();
+		if(boravci.size() == 0)
+		{
+			return null;
+		}
+		return boravci.get(0).getGost();
+		
+	}
+	
+	public static void otkaziRezervaciju(Rezervacija rezervacija){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Query q = session.createQuery("from " + Boravak.class.getName() + " boravak where boravak.rezervacija.id = :rezervacijaid");
+		q.setParameter("rezervacijaid", rezervacija.getId());
+		List<Boravak> boravci = (List<Boravak>)q.list();
+		for(int i=0; i<boravci.size(); i++)
+		{
+			session.delete(boravci.get(i));
+		}
+		Query q2 = session.createQuery("from " + Rezervacija.class.getName() + " where id = :rezervacijaid");
+		q2.setParameter("rezervacijaid", rezervacija.getId());
+		Rezervacija rez = (Rezervacija)q2.uniqueResult();
+		session.delete(rez);
+		t.commit();
+		
+	}
+	
 	public static List<StraniGost> dajStraneGoste() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();

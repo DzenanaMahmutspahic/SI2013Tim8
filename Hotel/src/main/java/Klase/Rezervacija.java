@@ -1,6 +1,8 @@
 package Klase;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Rezervacija implements Serializable {
@@ -55,6 +57,11 @@ public class Rezervacija implements Serializable {
 	}
 	public void setKreiraoZaposlenik(Zaposlenik kreiraoZaposlenik) {
 		this.kreiraoZaposlenik = kreiraoZaposlenik;
+	}
+	
+	@Override public String toString() {
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		return "Soba " + this.soba.getBrojSobe() + " " + df.format(this.rezervisanoOd) + " - " + df.format(this.rezervisanoDo);
 	}
 	
 	
