@@ -11,6 +11,9 @@
         <property name="popust" type="double">
             <column name="POPUST" />
         </property>
+        <property name="ukupnaCijena" type="double">
+            <column name="UKUPNACIJENA" />
+        </property>
         <many-to-one name="rezervacija" class="Klase.Rezervacija" fetch="join">
             <column name="REZERVACIJA" />
         </many-to-one>
