@@ -955,9 +955,9 @@ public class DBManagerTest extends TestCase {
 		t.commit();
 		
 		DBManager.unesiPredracun(predracun);
-		predracun.setPopust(20);
+		predracun.setPopust(21);
 		DBManager.updatePredracun(predracun);
-		assertTrue(predracun.getPopust()==20);
+		assertTrue(predracun.getPopust()==21);
 		
 		Transaction t1 = session.beginTransaction();
 		session.delete(rezervacija);
