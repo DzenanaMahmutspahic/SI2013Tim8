@@ -13,6 +13,8 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 import Klase.Zaposlenik;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -56,6 +58,10 @@ public class HomePage extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton3.setBackground(UIManager.getColor("Button.background"));
         jButton4 = new javax.swing.JButton();
+        jButton4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
         jButton4.setBackground(UIManager.getColor("Button.background"));
 
         jButton1.setText("Rezervacija");

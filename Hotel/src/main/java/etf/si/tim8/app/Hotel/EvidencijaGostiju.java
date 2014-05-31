@@ -290,7 +290,7 @@ statistika();
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
@@ -319,7 +319,7 @@ statistika();
 		JButton btnIzbrisi = new JButton("Izbrisi");
 		btnIzbrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+try{
 				if (listG.getSelectedValue() instanceof Klase.Gost) {
 					Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
 					izbrisiGosta(g);
@@ -330,7 +330,11 @@ statistika();
 						model.remove(selectedIndex);
 					}
 
-				}
+				}}
+catch(Exception ec){
+	JOptionPane.showMessageDialog(null,"Ne možete izbrisati gosta koji ima evidentiranu rezervaciju!", "Info",
+			JOptionPane.INFORMATION_MESSAGE);
+}
 
 			}
 		});
