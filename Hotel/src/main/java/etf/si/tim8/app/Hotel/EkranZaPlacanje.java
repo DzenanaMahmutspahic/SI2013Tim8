@@ -160,8 +160,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         					if(!tf_minibar.getText().equalsIgnoreCase("")) polja7i9 += Double.parseDouble(tf_minibar.getText());
         				}
         				catch(Exception e){
-        					polja7i9=0.0;
-        					//tf_telefon.setText("");
+        					polja7i9=0.0;//tf_telefon.setText("");
         					tf_minibar.setText("");
         					JOptionPane.showMessageDialog(null, "Pogresan unos cijene minibara", "Info", JOptionPane.ERROR_MESSAGE);
         				}
@@ -170,8 +169,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				}
         				catch(Exception e){
         					polja7i9=0.0;
-        					tf_telefon.setText("");
-        					//tf_minibar.setText("");
+        					tf_telefon.setText("");//tf_minibar.setText("");
         					JOptionPane.showMessageDialog(null, "Pogresan unos cijene telefona", "Info", JOptionPane.ERROR_MESSAGE);
         				}
         				
