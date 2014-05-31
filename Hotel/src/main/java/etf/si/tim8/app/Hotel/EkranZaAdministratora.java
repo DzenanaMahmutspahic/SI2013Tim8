@@ -126,7 +126,7 @@ public class EkranZaAdministratora extends JFrame {
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new EkranZaSobeAdministrator().setVisible(true);;
+				new EkranZaPracenjeRaspolozivostiSobaAdmin().setVisible(true);;
 			}
 		});
 		btnSobe.setText("Sobe");
