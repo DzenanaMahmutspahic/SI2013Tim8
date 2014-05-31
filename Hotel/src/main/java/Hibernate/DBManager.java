@@ -437,6 +437,7 @@ public class DBManager {
 		session.save(g);
 		t.commit();
 		}
+	
 	public static void saveOsobu(Osoba o){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
