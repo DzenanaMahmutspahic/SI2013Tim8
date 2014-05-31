@@ -848,7 +848,7 @@ public class DBManagerTest extends TestCase {
 		      session.save(z);
 		      t.commit();
 		      
-		      //DBManager.spasiZaposlenika(z);
+		     // DBManager.spasiZaposlenika(z);
 		      
 		      Zaposlenik zap = DBManager.dajZaposlenika(o);
 		      System.out.println(zap.getUsername());
@@ -859,14 +859,6 @@ public class DBManagerTest extends TestCase {
 		      if(isti==true) System.out.print("\nISTI\n"); else System.out.print("\nRAZLICITI\n");
 		      assertTrue(isti);
 		      
-		      /*List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
-			 
-			  Boolean tacno=false;
-			  for (Zaposlenik i : zaposlenici) {
-				  if(	i.getMobitel().equals(z.getMobitel()))
-					  tacno=true;
-			  }
-			  assertTrue(tacno);*/
 			  
 			  Transaction t1 = session.beginTransaction();
 			  session.delete(o);
