@@ -35,7 +35,7 @@ public class DBManager {//komentar
 	}
 	
 	
-	/*Za Ekran za placanje */
+	/*Za Ekran za placanje *///ne radi ova metoda uopce
 	public static List<Boravak> dajBoravke() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query q = session.createQuery("from Boravak boravak where boravak.rezervacija.potvrdjena=true and (boravak.vrijemeOdlaska is null or boravak.vrijemeOdlaska>=:danas)");
