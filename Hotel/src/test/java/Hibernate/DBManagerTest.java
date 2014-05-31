@@ -670,8 +670,8 @@ public class DBManagerTest extends TestCase {
 	   
 	   
 	   
-	 /*  public void testSpasiZaposlenika() { 
-		   
+	  public void testSpasiZaposlenika() { 
+		  	
 		   Osoba o=new Osoba();
 		   Zaposlenik z=new Zaposlenik();
 	       o.setImePrezime("Dzenana Mahmutspahic");
@@ -687,7 +687,7 @@ public class DBManagerTest extends TestCase {
 	
 	   z.setOsoba(o);
 	   DBManager.saveOsobu(o);
-	   z.setDrzavljanstvo("BIH");
+	   /*z.setDrzavljanstvo("BIH");
 	   z.setJMB("0706992179147");
 	   z.setMobitel("061827141");
 	   z.setEmail("dzenana.ma@gmail.com");
@@ -697,19 +697,34 @@ public class DBManagerTest extends TestCase {
 	   z.setTitula("recepcioner");
 	   z.setObrazovanje("skola");
 	   z.setTelefon("032741723");
-	  z.setUloga("recepcioner");
+	  z.setUloga("recepcioner");*/
+	  
+	  Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(o);
+		session.save(z);
+		t.commit();
+	  
 	   DBManager.spasiZaposlenika(z);
 	   
-	   List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
-	 
-	  Boolean tacno=false;
-		for (Zaposlenik i : zaposlenici) {
-			if(	i.getMobitel().equals(z.getMobitel()))
-				tacno=true;
-		}
-	  assertTrue(tacno);	   
+	 //  assertTrue(DBManager.dajZaposlenika(o).equals(z));
+	  
+	 /*  List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
+		 
+		  Boolean tacno=false;
+			for (Zaposlenik i : zaposlenici) {
+				if(	i.getMobitel().equals(z.getMobitel()))
+					tacno=true;
+			}
+		  assertTrue(tacno);*/
 	   
-	   }*/
+		Transaction t1 = session.beginTransaction();
+		session.delete(o);
+		session.delete(z);	
+		t1.commit();
+	     
+	   
+	   }
 	   
 	   
 	   public void testObrisiStranogZaGosta() { Osoba o=new Osoba();
@@ -879,6 +894,43 @@ public class DBManagerTest extends TestCase {
 	        assertTrue(tacno);
 	   }
 	   
+	  /* public void testSpasiSobu(){
+		   Soba s=new Soba();
+		   s.setBrojSobe(10);
+		   s.setBrojKreveta(2);
+		  // s.setBalkon(true);
+		  s.setSprat(2);
+		  s.setCijena(50);
+		  s.setZauzeta(false);
+		  DBManager.spasiSobu(s);
+		 		
+		  
+		  List<Soba> sobe=DBManager.dajSveSobe();
+			 
+			 Boolean tacno=false;
+			 for(Soba i: sobe){
+				 if(i==null) continue;
+		        if(i.getBrojSobe()==s.getBrojSobe() && i.getSprat()==s.getSprat())
+		        		tacno=true;
+			 }
+		        assertTrue(tacno);
+	   }*/
+	   
+	   public void testObrisiZaposlenika() { 
+		   Osoba o=new Osoba();
+	   o.setImePrezime("Alen Kopic"); 
+	   Date datumRodjenja=new Date(1992,10,21);
+	   
+	   o.setDatumRodjenja(datumRodjenja); 
+	   o.setAdresa("Vitkovac 166");
+	   Zaposlenik z=new Zaposlenik();
+	   z.setDrzavljanstvo("BIH");
+	   z.setOsoba(o);
+	   DBManager.saveOsobu(o);
+	   DBManager.spasiZaposlenika(z);
+	   DBManager.obrisiZaposlenika(z);
+	   List<Zaposlenik> zaposlenici=DBManager.dajSveZaposlenike();
+	   Assert.assertFalse(zaposlenici.contains(z)); }
 	   
 	   
 	   //testira da li ova metoda vraca gosta za datu rezervaciju

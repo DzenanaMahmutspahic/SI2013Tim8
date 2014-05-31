@@ -139,6 +139,22 @@ public class DBManager {//komentar
 		return racun;
 	}
 	
+	public static Zaposlenik dajZaposlenika(Osoba osoba) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		//Transaction t = session.beginTransaction();
+
+		Query q = session.createQuery("from Zaposlenik zaposlenik where osoba=:osoba");//or vrijemeOdlaska isnull
+		q.setParameter("osoba", osoba);
+		Zaposlenik zaposlenik;
+		
+		if(!q.list().isEmpty())
+			zaposlenik = (Zaposlenik) q.list().get(0);
+		else zaposlenik=null;
+	    
+		session.close();
+		return zaposlenik;
+	}
+	
 	/*Za Ekran za placanje */
 	public static void unesiPredracun(Predracun predracun){
 		Session session = HibernateUtil.getSessionFactory().openSession();
