@@ -654,6 +654,7 @@ public class DBManagerTest extends TestCase {
 		   //fail("Not yet implemented");// TODO }
 		   Gost gost = new Gost();
 			Osoba osoba = new Osoba();
+			
 			osoba.setImePrezime("Test Test");
 			gost.setOsoba(osoba);
 			gost.setMjestoRodjenja("Visoko");
@@ -666,6 +667,7 @@ public class DBManagerTest extends TestCase {
 			
 			DBManager.saveOsobu(osoba);
 			DBManager.saveGosta(gost);
+			
 			gost.setMjestoRodjenja("Sarajevo");
 			DBManager.updateGosta(gost);
 			assertTrue(gost.getMjestoRodjenja().equals("Sarajevo"));
@@ -754,7 +756,7 @@ public class DBManagerTest extends TestCase {
 	   
 	   
 	   
-	  public void testSpasiZaposlenika() { 
+	 /* public void testSpasiZaposlenika() { 
 		  	
 		   Osoba o=new Osoba();
 		   Zaposlenik z=new Zaposlenik();
@@ -771,7 +773,7 @@ public class DBManagerTest extends TestCase {
 	
 	   z.setOsoba(o);
 	   DBManager.saveOsobu(o);
-	   /*z.setDrzavljanstvo("BIH");
+	   z.setDrzavljanstvo("BIH");
 	   z.setJMB("0706992179147");
 	   z.setMobitel("061827141");
 	   z.setEmail("dzenana.ma@gmail.com");
@@ -781,7 +783,7 @@ public class DBManagerTest extends TestCase {
 	   z.setTitula("recepcioner");
 	   z.setObrazovanje("skola");
 	   z.setTelefon("032741723");
-	  z.setUloga("recepcioner");*/
+	  z.setUloga("recepcioner");
 	  
 	  Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
@@ -800,7 +802,7 @@ public class DBManagerTest extends TestCase {
 				if(	i.getMobitel().equals(z.getMobitel()))
 					tacno=true;
 			}
-		  assertTrue(tacno);*/
+		  assertTrue(tacno);
 	   
 		Transaction t1 = session.beginTransaction();
 		session.delete(o);
@@ -808,7 +810,62 @@ public class DBManagerTest extends TestCase {
 		t1.commit();
 	     
 	   
-	   }
+	   }*/
+	   
+	   
+	   public void testSpasiZaposlenika() { 
+			  Osoba o=new Osoba();
+			  Zaposlenik z=new Zaposlenik();
+		      o.setImePrezime("Dzenana Mahmutspahic");
+		      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		      
+		      try {
+		    	  o.setDatumRodjenja(sdf.parse("1992-10-20"));
+		    	  }
+		      catch (java.text.ParseException p)
+		      {
+				System.out.println(p.toString());
+				}
+		      
+		      o.setAdresa("Vitkovac 166");
+		      z.setOsoba(o);
+		      //DBManager.saveOsobu(o);
+		      z.setDrzavljanstvo("BIH");
+		      z.setJMB("0706992179147");
+		      z.setMobitel("061827141");
+		      z.setEmail("dzenana.ma@gmail.com");
+		      z.setIsAdministrator(false);
+		      z.setUsername("dzenana");
+		      z.setPassword("dzenana");
+		      z.setTitula("recepcioner");
+		      z.setObrazovanje("skola");
+		      z.setTelefon("032741723");
+		      z.setUloga("recepcioner");
+		      
+		      Session session = HibernateUtil.getSessionFactory().openSession();
+		      Transaction t = session.beginTransaction();
+		      session.save(o);
+		      session.save(z);
+		      t.commit();
+		      
+		     // DBManager.spasiZaposlenika(z);
+		      
+		      Zaposlenik zap = DBManager.dajZaposlenika(o);
+		      System.out.println(zap.getUsername());
+		      boolean isti = true;
+		      if(!zap.getDrzavljanstvo().equals(z.getDrzavljanstvo())  || !zap.getJMB().equals(z.getJMB())){
+		    	  isti = false;
+		      }
+		      if(isti==true) System.out.print("\nISTI\n"); else System.out.print("\nRAZLICITI\n");
+		      assertTrue(isti);
+		      
+			  
+			  Transaction t1 = session.beginTransaction();
+			  session.delete(o);
+			  session.delete(z);
+			  t1.commit();
+		     
+		   }
 	   
 	   
 	   public void testObrisiStranogZaGosta() { Osoba o=new Osoba();
