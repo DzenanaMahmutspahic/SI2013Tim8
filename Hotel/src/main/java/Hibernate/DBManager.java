@@ -678,4 +678,44 @@ public static void spasiBoravak(Boravak boravak){
 		session.close();
 	}
 	
+	//gosti
+		public static int dajUkupanBrojRazlicitihGostiju()
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from " + Boravak.class.getName());
+			List<Boravak> sviBoravci = (List<Boravak>)q.list();
+			List<Long> gostIds = new ArrayList();
+			for(Boravak boravak : sviBoravci)
+			{
+				if(boravak.getGost() != null)
+				{
+					if(!gostIds.contains(boravak.getGost().getId()))
+					{
+						gostIds.add(boravak.getGost().getId());
+					}
+				}
+			}
+			
+			return gostIds.size();
+		}
+		
+		public static int dajTrenutniBrojGostiju()
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from " + Boravak.class.getName());
+			List<Boravak> sviBoravci = (List<Boravak>)q.list();
+			Date today = new Date();
+			int trBroj = 0;
+			for(Boravak boravak : sviBoravci)
+			{
+				if(today.after(boravak.getVrijemeDolaska()) && today.before(boravak.getVrijemeOdlaska()))
+				{
+					trBroj++;
+				}
+			}
+			
+			return trBroj;
+			
+		}
+	
 }

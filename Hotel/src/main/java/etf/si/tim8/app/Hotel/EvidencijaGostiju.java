@@ -290,7 +290,7 @@ statistika();
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		tabbedPane.addTab("Azuriranje gostiju", null, panel_1, null);
+		tabbedPane.addTab("A�uriranje gostiju", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel();
@@ -613,29 +613,39 @@ statistika();
 					.createQuery("from Boravak boravak join boravak.gost as gost join boravak.rezervacija as rezervacija");
 
 			List<Object[]> objekti = (List<Object[]>) query.list();*/
-			List<Boravak> boravci =  DBManager.dajBoravke2();
+			//List<Boravak> boravci =  DBManager.dajBoravke2();
 			
-			int brojtrenutnih = 0, brojstarih = 0;
+			
+
+			//int brojtrenutnih = 0, brojstarih = 0;
+			
+			//Date today = new Date();
+			//for (Boravak b : boravci) {
+				
+				
+				
+				//if (today.after(b.getVrijemeDolaska())
+					//	&& today.before(b.getVrijemeOdlaska()))
+					//brojtrenutnih++;
+				//if (today.before(b.getVrijemeOdlaska()))
+					//brojstarih++;
+			//}
+
+			//textField_27.setText(Integer.toString(brojtrenutnih));
+			//textField_25.setText(Integer.toString(brojstarih));
+			
+
 			Date today = new Date();
-			for (Boravak b : boravci) {
-				if (today.after(b.getVrijemeDolaska())
-						&& today.before(b.getVrijemeOdlaska()))
-					brojtrenutnih++;
-				if (today.before(b.getVrijemeOdlaska()))
-					brojstarih++;
-			}
-
-			textField_27.setText(Integer.toString(brojtrenutnih));
-			textField_25.setText(Integer.toString(brojstarih));
-			
-
-			
 			List<Soba> sobe1 =DBManager.dajSlobodneSobe(today, today, 1);
 			List<Soba> sobe2 =DBManager.dajSlobodneSobe(today, today, 2);
 			
 	
 			textField_26.setText(Integer.toString(sobe1.size()+sobe2.size()));
-
+			int ukupanBroj = DBManager.dajUkupanBrojRazlicitihGostiju();
+			textField_25.setText(Integer.toString(ukupanBroj));
+			
+			int trenutniBroj = DBManager.dajTrenutniBrojGostiju();
+			textField_27.setText(Integer.toString(trenutniBroj));
 
 
 		}
@@ -847,7 +857,7 @@ statistika();
 				System.out.printf("gost  u sg je null");
 			if (sg.getGost().getId() == g.getId()) {
 
-				JOptionPane.showMessageDialog(null, "Gost je strani!", "Info",
+				JOptionPane.showMessageDialog(null, "Gost je strani", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
 				return true;
 			}
