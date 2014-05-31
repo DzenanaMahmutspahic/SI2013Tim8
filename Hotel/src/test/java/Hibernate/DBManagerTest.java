@@ -104,7 +104,6 @@ public class DBManagerTest extends TestCase {
 			boravak.setRezervacija(rezervacija);
 			boravak.setGost(gost);			
 			Date danas = new Date();
-			Long vrijeme = danas.getTime();
 			
 			danas.setTime(danas.getTime()-( (24 * 60 * 60 * 1000)));
 			
