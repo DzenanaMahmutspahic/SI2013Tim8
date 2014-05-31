@@ -890,7 +890,7 @@ public class DBManagerTest extends TestCase {
 	   sg.setGost(g); sg.setVrstaPutneIsprave("Neka"); sg.setVrstaVize("Neka");
 	   
 	   DBManager.saveStranogGosta(sg);
-	   DBManager.obrisiStranogZaGosta(sg); List<StraniGost>
+	   DBManager.obrisiStranogGosta(sg); List<StraniGost>
 	   stranigosti=DBManager.dajStraneGoste();
 	   Assert.assertFalse(stranigosti.contains(sg)); }
 	
