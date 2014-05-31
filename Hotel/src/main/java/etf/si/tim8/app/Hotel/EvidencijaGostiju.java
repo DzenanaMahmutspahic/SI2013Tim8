@@ -86,6 +86,12 @@ public class EvidencijaGostiju extends JFrame {
 	private JList listG;
 	private JComboBox 	comboBox_3;
 	private JComboBox 	comboBox_2;
+	private UtilDateModel 	model2; 
+	private UtilDateModel 	model; 
+	private UtilDateModel 	model3; 
+	private UtilDateModel 	model4; 
+	private UtilDateModel 	model5; 
+	private UtilDateModel 	model6; 
 
 	// private JDatePickerImpl datePicker;
 
@@ -478,7 +484,8 @@ statistika();
 		JLabel pn = new JLabel(guy);
 		panel_3.add(pn);
 
-		UtilDateModel model = new UtilDateModel();
+		
+		model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		// final JDatePickerImpl
 		datePicker = new JDatePickerImpl(datePanel);
@@ -487,7 +494,8 @@ statistika();
 		datePicker.setSize(150, 26);
 		panel.add(datePicker);
 
-		UtilDateModel model2 = new UtilDateModel();
+	
+		model2 = new UtilDateModel();
 		JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
 		// final JDatePickerImpl
 		datePicker2 = new JDatePickerImpl(datePanel2);
@@ -496,7 +504,8 @@ statistika();
 		datePicker2.setSize(150, 26);
 		panel.add(datePicker2);
 
-		UtilDateModel model3 = new UtilDateModel();
+	
+		model3 = new UtilDateModel();
 		JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
 
 		datePicker3 = new JDatePickerImpl(datePanel3);
@@ -506,7 +515,8 @@ statistika();
 		panel.add(datePicker3);
 
 		// azuriranje gosta
-		UtilDateModel model4 = new UtilDateModel();
+
+		model4 = new UtilDateModel();
 		JDatePanelImpl datePanel4 = new JDatePanelImpl(model4);
 		datePicker4 = new JDatePickerImpl(datePanel4);
 		datePicker4.setBackground(SystemColor.inactiveCaptionBorder);
@@ -514,7 +524,8 @@ statistika();
 		datePicker4.setSize(150, 26);
 		panel_1.add(datePicker4);
 
-		UtilDateModel model5 = new UtilDateModel();
+	
+		model5 = new UtilDateModel();
 		JDatePanelImpl datePanel5 = new JDatePanelImpl(model5);
 		datePicker5 = new JDatePickerImpl(datePanel5);
 		datePicker5.setBackground(SystemColor.inactiveCaptionBorder);
@@ -522,7 +533,8 @@ statistika();
 		datePicker5.setSize(150, 26);
 		panel_1.add(datePicker5);
 
-		UtilDateModel model6 = new UtilDateModel();
+	
+		model6 = new UtilDateModel();
 		JDatePanelImpl datePanel6 = new JDatePanelImpl(model6);
 
 		datePicker6 = new JDatePickerImpl(datePanel6);
@@ -532,69 +544,11 @@ statistika();
 		panel_1.add(datePicker6);
 
 		listG.addListSelectionListener(new ListSelectionListener() {
+			
+			@SuppressWarnings("deprecation")
 			public void valueChanged(ListSelectionEvent ev) {
-				ocistiKontrole();
-				if (listG.getModel().getSize() == 0)
-					return;
-
-				Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
-				if (g == null)
-					return;
-
-				if (isStraniGost(g)) {
-
-					textField_3.setText("Strani");
-					textField_14.setEditable(true);
-					textField_15.setEditable(true);
-					textField_20.setEditable(true);
-					textField_21.setEditable(true);
-					textField_22.setEditable(true);
-
-				} else {
-					textField_3.setText("Domaci");
-				}
-
-				List<StraniGost> stranigosti = new ArrayList<StraniGost>();
-				stranigosti = DBManager.dajStraneGoste();
-
-				String imeprezime = g.getOsoba().getImePrezime();
-
-				String[] parts = imeprezime.split(" ");
-
-				String ime = parts[0];
-				String prezime = parts[1];
-
-				textField_16.setText(ime);
-				textField_17.setText(prezime);
-				textField_18.setText(g.getOsoba().getAdresa());
-				textField_13.setText(g.getMjestoRodjenja());
-				textField_3.setText("Domaci");
-				datePicker4.getJFormattedTextField().setText(
-						g.getOsoba().getDatumRodjenja().toString());
-				// datePicker4.getModel().setValue(g.getOsoba().getDatumRodjenja());
-
-				StraniGost sg = null;
-				for (StraniGost pom : stranigosti) {
-					if (pom.getGost().getId() == g.getId())
-						sg = pom;
-
-				}
-				if (sg != null) {
-					textField_20.setText(sg.getBrojPutneIsprave());
-					textField_22.setText(sg.getBrojVize());
-					textField_21.setText(sg.getVrstaVize());
-					textField_14.setText(sg.getDrzavljanstvo());
-					textField_15.setText(sg.getVrstaPutneIsprave());
-					textField_3.setText("Strani");
-					datePicker5.getJFormattedTextField().setText(
-							sg.getDatumDozvoleBoravka().toString());
-					datePicker5.getJFormattedTextField().setText(
-							sg.getDatumUlaskaUBih().toString());
-
-				}
-
+				ucitajPodatke();
 			}
-
 		});
 
 		button.addActionListener(new ActionListener() {
@@ -796,6 +750,74 @@ statistika();
 
 	}
 
+	
+	
+	public void ucitajPodatke()
+	{
+		ocistiKontrole();
+		if (listG.getModel().getSize() == 0)
+			return;
+
+		Klase.Gost g = (Klase.Gost) listG.getSelectedValue();
+		if (g == null)
+			return;
+
+		if (isStraniGost(g)) {
+
+			textField_3.setText("Strani");
+			textField_14.setEditable(true);
+			textField_15.setEditable(true);
+			textField_20.setEditable(true);
+			textField_21.setEditable(true);
+			textField_22.setEditable(true);
+
+		} else {
+			textField_3.setText("Domaci");
+		}
+
+		List<StraniGost> stranigosti = new ArrayList<StraniGost>();
+		stranigosti = DBManager.dajStraneGoste();
+
+		String imeprezime = g.getOsoba().getImePrezime();
+
+		String[] parts = imeprezime.split(" ");
+
+		String ime = parts[0];
+		String prezime = parts[1];
+
+		textField_16.setText(ime);
+		textField_17.setText(prezime);
+		textField_18.setText(g.getOsoba().getAdresa());
+		textField_13.setText(g.getMjestoRodjenja());
+		textField_3.setText("Domaci");
+		
+		
+        model4.setDate(g.getOsoba().getDatumRodjenja().getYear()+1900, g.getOsoba().getDatumRodjenja().getMonth(), g.getOsoba().getDatumRodjenja().getDay());
+       
+		StraniGost sg = null;
+		for (StraniGost pom : stranigosti) {
+			if (pom.getGost().getId() == g.getId())
+				sg = pom;
+
+		}
+		if (sg != null) {
+			textField_20.setText(sg.getBrojPutneIsprave());
+			textField_22.setText(sg.getBrojVize());
+			textField_21.setText(sg.getVrstaVize());
+			textField_14.setText(sg.getDrzavljanstvo());
+			textField_15.setText(sg.getVrstaPutneIsprave());
+			textField_3.setText("Strani");
+		
+			 model5.setDate(sg.getDatumDozvoleBoravka().getYear()+1900, sg.getDatumDozvoleBoravka().getMonth(),sg.getDatumDozvoleBoravka().getDay());
+			 model6.setDate(sg.getDatumUlaskaUBih().getYear()+1900, sg.getDatumUlaskaUBih().getMonth(),sg.getDatumUlaskaUBih().getDay());
+		
+
+		}
+
+	}
+		
+	
+	
 	public void izbrisiGosta(Gost g) {
 		List<StraniGost> stranigosti = new ArrayList<StraniGost>();
 		stranigosti = DBManager.dajStraneGoste();
