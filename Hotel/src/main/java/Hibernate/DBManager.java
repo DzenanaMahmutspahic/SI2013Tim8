@@ -384,7 +384,7 @@ public class DBManager {//komentar
 		
 	}
 	
-	public static List<StraniGost> dajStraneGoste() {
+	/*public static List<StraniGost> dajStraneGoste() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		Query query2 = session
@@ -403,9 +403,9 @@ public class DBManager {//komentar
 		session.close();
 		t.commit();
 		return stranigosti;
-	}
+	}*/
 
-	public static List<Gost> dajGoste() {
+	/*public static List<Gost> dajGoste() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 
@@ -460,7 +460,18 @@ public class DBManager {//komentar
 		return (List<Osoba>)q.list();
 	}
 	
-	
+
+	public static List<StraniGost> dajStraneGoste(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + StraniGost.class.getName());
+		return (List<StraniGost>)q.list();
+	}
+	public static List<Gost> dajGoste(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from " + Gost.class.getName());
+		return (List<Gost>)q.list();
+	}
+
 	
 	
 	
