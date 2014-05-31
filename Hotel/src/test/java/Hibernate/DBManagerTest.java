@@ -619,9 +619,11 @@ public class DBManagerTest extends TestCase {
 		   Gost gost = new Gost();
 			Osoba osoba = new Osoba();
 			StraniGost sg=new StraniGost();
+			
 			osoba.setImePrezime("Test Test");
 			gost.setOsoba(osoba);
 			gost.setMjestoRodjenja("Visoko");
+			
 			sg.setGost(gost);
 			sg.setDrzavljanstvo("Njemacka");
 			
@@ -635,6 +637,7 @@ public class DBManagerTest extends TestCase {
 			DBManager.saveOsobu(osoba);
 			DBManager.saveGosta(gost);
 			DBManager.saveStranogGosta(sg);
+			
 			sg.setDrzavljanstvo("Austrija");
 			DBManager.updateStranogGosta(sg);
 			assertTrue(sg.getDrzavljanstvo().equals("Austrija"));
