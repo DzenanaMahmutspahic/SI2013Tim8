@@ -24,12 +24,16 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 
 import Hibernate.DBManager;
+import Klase.Gost;
 import Klase.Osoba;
 import Klase.Zaposlenik;
+import net.sourceforge.jdatepicker.DateModel;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -37,6 +41,8 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -422,6 +428,141 @@ public class OsobljeN extends javax.swing.JFrame {
     				DBManager.spremiZaposlenika(zaposlenik);
     				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
     				
+    			}
+    			catch(Exception ex)
+    			{
+    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+    			}
+    		}
+    	});
+        
+        list.addListSelectionListener(new ListSelectionListener() {
+
+            
+        	public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	try
+                	{
+                		Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
+                		if(zaposlenik != null)
+                		{
+                			if(zaposlenik.getOsoba() != null)
+                			{
+                				textField_1.setText(zaposlenik.getOsoba().getIme());
+                				textField_2.setText(zaposlenik.getOsoba().getPrezime());
+                				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				textField_5.setText(zaposlenik.getOsoba().getAdresa());
+                				
+                			}
+                			else
+                			{
+                				textField_1.setText("");
+                				textField_2.setText("");
+                				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				textField_5.setText("");
+                			}
+                			textField_4.setText(zaposlenik.getJMB());
+                			textField_6.setText(zaposlenik.getDrzavljanstvo());
+                			textField_7.setText(zaposlenik.getTitula());
+                			textField_8.setText(zaposlenik.getObrazovanje());
+                			textField_9.setText(zaposlenik.getEmail());
+                			textField_10.setText(zaposlenik.getTelefon());
+                			textField_11.setText(zaposlenik.getMobitel());
+                			textField_12.setText(zaposlenik.getUsername());
+                			textField_13.setText(zaposlenik.getPassword());
+                			if(zaposlenik.getUloga() == "Recepcioner")
+                			{
+                				radioButton.setSelected(true);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Cistacica")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(true);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Ekonomista")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(true);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Kuhar")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(true);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Manager")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(true);
+                				radioButton_5.setSelected(false);
+                			}
+                			else if(zaposlenik.getUloga() == "Administrator")
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(true);
+                			}
+                			else
+                			{
+                				radioButton.setSelected(false);
+                				radioButton_1.setSelected(false);
+                				radioButton_2.setSelected(false);
+                				radioButton_3.setSelected(false);
+                				radioButton_4.setSelected(false);
+                				radioButton_5.setSelected(false);
+                			}
+                			
+                		}
+                	}
+                	catch(Exception ex)
+                	{
+                		System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+                		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+                	}
+                }
+            }
+        });
+        
+        button_2.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			try
+    			{
+    				Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
+    				if(zaposlenik == null || list.getSelectedValues().length > 1)
+    				{
+    					JOptionPane.showMessageDialog(null, "Morate odabrati jednog zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				int dialogButton = JOptionPane.YES_NO_OPTION;
+        			int dialogResult = JOptionPane.showConfirmDialog (null, "Da li ste sigurni?","Warning",dialogButton);
+        			if(dialogResult == JOptionPane.YES_OPTION){
+        				DBManager.obrisiZaposlenika(zaposlenik);
+        				JOptionPane.showMessageDialog(null, "Zaposlenik obrisan!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        			}
+    					
     			}
     			catch(Exception ex)
     			{

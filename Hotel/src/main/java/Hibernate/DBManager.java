@@ -534,4 +534,16 @@ public static void spasiBoravak(Boravak boravak){
 		t.commit();
 	}
 	
+	public static void obrisiZaposlenika(Zaposlenik zaposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Query q = session.createQuery("from " + Zaposlenik.class.getName() + " zaposlenik where id = :zaposlenikid");
+		q.setParameter("zaposlenikid", zaposlenik.getId());
+		Zaposlenik zap = (Zaposlenik)q.uniqueResult();
+		session.delete(zap.getOsoba());
+		session.delete(zap);
+		t.commit();
+	}
+	
 }
