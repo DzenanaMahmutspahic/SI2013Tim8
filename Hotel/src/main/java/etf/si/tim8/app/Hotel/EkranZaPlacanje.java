@@ -105,6 +105,10 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	        	model.addElement(boravak.getGost());
 	        }
         }
+        else {
+        	jButton1.setEnabled(false);
+        	jButton2.setEnabled(false);
+        }
     }
 
     /**
