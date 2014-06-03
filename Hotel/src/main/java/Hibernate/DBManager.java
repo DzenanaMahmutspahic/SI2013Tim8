@@ -161,6 +161,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.save(predracun);
 		t.commit();
+		session.close();
 	}
 	
 	public static void updatePredracun(Predracun p){
@@ -168,7 +169,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.update(p);
 		t.commit();
-		//session.close();
+		session.close();
 	}
 	
 	public static void unesiRacun(Racun racun){
