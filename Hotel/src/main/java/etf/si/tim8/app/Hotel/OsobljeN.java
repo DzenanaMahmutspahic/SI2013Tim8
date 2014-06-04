@@ -300,35 +300,35 @@ public class OsobljeN extends javax.swing.JFrame {
     	panel_6.setBounds(247, 184, 123, 160);
     	panel_5.add(panel_6);
     	
-    	final JRadioButton radioButton = new JRadioButton("Recepcioner");
-    	radioButton.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton.setBounds(6, 7, 109, 23);
-    	panel_6.add(radioButton);
+    	final JRadioButton rb_recepcioner = new JRadioButton("Recepcioner");
+    	rb_recepcioner.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_recepcioner.setBounds(6, 7, 109, 23);
+    	panel_6.add(rb_recepcioner);
     	
-    	final JRadioButton radioButton_1 = new JRadioButton("\u010Cista\u010Dica");
-    	radioButton_1.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton_1.setBounds(6, 30, 109, 23);
-    	panel_6.add(radioButton_1);
+    	final JRadioButton rb_cistacica = new JRadioButton("\u010Cista\u010Dica");
+    	rb_cistacica.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_cistacica.setBounds(6, 30, 109, 23);
+    	panel_6.add(rb_cistacica);
     	
-    	final JRadioButton radioButton_2 = new JRadioButton("Ekonomista");
-    	radioButton_2.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton_2.setBounds(6, 82, 109, 23);
-    	panel_6.add(radioButton_2);
+    	final JRadioButton rb_ekonomista = new JRadioButton("Ekonomista");
+    	rb_ekonomista.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_ekonomista.setBounds(6, 82, 109, 23);
+    	panel_6.add(rb_ekonomista);
     	
-    	final JRadioButton radioButton_3 = new JRadioButton("Kuhar");
-    	radioButton_3.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton_3.setBounds(6, 56, 109, 23);
-    	panel_6.add(radioButton_3);
+    	final JRadioButton rb_kuhar = new JRadioButton("Kuhar");
+    	rb_kuhar.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_kuhar.setBounds(6, 56, 109, 23);
+    	panel_6.add(rb_kuhar);
     	
-    	final JRadioButton radioButton_4 = new JRadioButton("Manager");
-    	radioButton_4.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton_4.setBounds(6, 108, 109, 23);
-    	panel_6.add(radioButton_4);
+    	final JRadioButton rb_manager = new JRadioButton("Manager");
+    	rb_manager.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_manager.setBounds(6, 108, 109, 23);
+    	panel_6.add(rb_manager);
     	
-    	final JRadioButton radioButton_5 = new JRadioButton("Administrator");
-    	radioButton_5.setBackground(SystemColor.inactiveCaptionBorder);
-    	radioButton_5.setBounds(6, 130, 109, 23);
-    	panel_6.add(radioButton_5);
+    	final JRadioButton rb_administrator = new JRadioButton("Administrator");
+    	rb_administrator.setBackground(SystemColor.inactiveCaptionBorder);
+    	rb_administrator.setBounds(6, 130, 109, 23);
+    	panel_6.add(rb_administrator);
     	
     	JLabel label_15 = new JLabel("Uloge:");
     	label_15.setBounds(247, 150, 200, 50);
@@ -431,27 +431,27 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setUsername(textField_12.getText());
     				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
-    				if(radioButton.isSelected())
+    				if(rb_recepcioner.isSelected())
     				{
     					zaposlenik.setUloga("Recepcioner");
     				}
-    				else if(radioButton_1.isSelected())
+    				else if(rb_cistacica.isSelected())
     				{
     					zaposlenik.setUloga("Cistacica");
     				}
-    				else if(radioButton_2.isSelected())
+    				else if(rb_ekonomista.isSelected())
     				{
     					zaposlenik.setUloga("Ekonomista");
     				}
-    				else if(radioButton_3.isSelected())
+    				else if(rb_kuhar.isSelected())
     				{
     					zaposlenik.setUloga("Kuhar");
     				}
-    				else if(radioButton_4.isSelected())
+    				else if(rb_manager.isSelected())
     				{
     					zaposlenik.setUloga("Manager");
     				}
-    				else if(radioButton_5.isSelected())
+    				else if(rb_administrator.isSelected())
     				{
     					zaposlenik.setUloga("Administrator");
     					zaposlenik.setIsAdministrator(true);
@@ -517,66 +517,66 @@ public class OsobljeN extends javax.swing.JFrame {
                 			textField_13.setText(zaposlenik.getPassword());
                 			if(zaposlenik.getUloga() == "Recepcioner")
                 			{
-                				radioButton.setSelected(true);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(true);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			else if(zaposlenik.getUloga() == "Cistacica")
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(true);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(true);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			else if(zaposlenik.getUloga() == "Ekonomista")
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(true);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(true);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			else if(zaposlenik.getUloga() == "Kuhar")
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(true);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(true);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			else if(zaposlenik.getUloga() == "Manager")
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(true);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(true);
+                				rb_administrator.setSelected(false);
                 			}
                 			else if(zaposlenik.getUloga() == "Administrator")
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(true);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(true);
                 			}
                 			else
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			
                 		}
@@ -628,68 +628,69 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 			textField_11.setText(zaposlenik.getMobitel());
                 			textField_12.setText(zaposlenik.getUsername());
                 			textField_13.setText(zaposlenik.getPassword());
-                			if(zaposlenik.getUloga() == "Recepcioner")
+                			
+                			if(zaposlenik.getUloga().equals("Recepcioner"))
                 			{
-                				radioButton.setSelected(true);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(true);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Cistacica")
+                			else if(zaposlenik.getUloga().equals("Cistacica"))
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(true);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(true);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Ekonomista")
+                			else if(zaposlenik.getUloga().equals("Ekonomista"))
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(true);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(true);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Kuhar")
+                			else if(zaposlenik.getUloga().equals("Kuhar"))
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(true);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(true);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Manager")
+                			else if(zaposlenik.getUloga().equals("Manager"))
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(true);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(true);
+                				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Administrator")
+                			else if(zaposlenik.getUloga().equals("Administrator"))
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(true);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(true);
                 			}
                 			else
                 			{
-                				radioButton.setSelected(false);
-                				radioButton_1.setSelected(false);
-                				radioButton_2.setSelected(false);
-                				radioButton_3.setSelected(false);
-                				radioButton_4.setSelected(false);
-                				radioButton_5.setSelected(false);
+                				rb_recepcioner.setSelected(false);
+                				rb_cistacica.setSelected(false);
+                				rb_ekonomista.setSelected(false);
+                				rb_kuhar.setSelected(false);
+                				rb_manager.setSelected(false);
+                				rb_administrator.setSelected(false);
                 			}
                 			
                 		}
@@ -790,27 +791,27 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				zaposlenik.setUsername(textField_12.getText());
     	    				zaposlenik.setPassword(textField_13.getText());
     	    				zaposlenik.setIsAdministrator(false);
-    	    				if(radioButton.isSelected())
+    	    				if(rb_recepcioner.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Recepcioner");
     	    				}
-    	    				else if(radioButton_1.isSelected())
+    	    				else if(rb_cistacica.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Cistacica");
     	    				}
-    	    				else if(radioButton_2.isSelected())
+    	    				else if(rb_ekonomista.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Ekonomista");
     	    				}
-    	    				else if(radioButton_3.isSelected())
+    	    				else if(rb_kuhar.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Kuhar");
     	    				}
-    	    				else if(radioButton_4.isSelected())
+    	    				else if(rb_manager.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Manager");
     	    				}
-    	    				else if(radioButton_5.isSelected())
+    	    				else if(rb_administrator.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Administrator");
     	    					zaposlenik.setIsAdministrator(true);
