@@ -492,12 +492,18 @@ public class OsobljeN extends javax.swing.JFrame {
                 				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
                 				textField_5.setText(zaposlenik.getOsoba().getAdresa());
                 				
+                				datePicker.getModel().setDay(zaposlenik.getOsoba().getDatumRodjenja().getDate());
+                				datePicker.getModel().setMonth(zaposlenik.getOsoba().getDatumRodjenja().getMonth());
+                				datePicker.getModel().setYear(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900);
+                				datePicker.getJFormattedTextField().setText(zaposlenik.getOsoba().getDatumRodjenja().getDate() + "." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getMonth() + 1) +"." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900)  );
+                				
                 			}
                 			else
                 			{
                 				textField_1.setText("");
                 				textField_2.setText("");
                 				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				datePicker.getJFormattedTextField().setText("");
                 				textField_5.setText("");
                 			}
                 			textField_4.setText(zaposlenik.getJMB());
@@ -600,12 +606,17 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
                 				textField_5.setText(zaposlenik.getOsoba().getAdresa());
                 				
+                				
+                				datePicker.getModel().setDay(zaposlenik.getOsoba().getDatumRodjenja().getDate());
+                				datePicker.getModel().setMonth(zaposlenik.getOsoba().getDatumRodjenja().getMonth());
+                				datePicker.getModel().setYear(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900);
+                				datePicker.getJFormattedTextField().setText(zaposlenik.getOsoba().getDatumRodjenja().getDate() + "." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getMonth() + 1) +"." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900)  );
                 			}
                 			else
                 			{
                 				textField_1.setText("");
                 				textField_2.setText("");
-                				//datePicker.getModel().setValue((DateModel)zaposlenik.getOsoba().getDatumRodjenja());
+                				datePicker.getJFormattedTextField().setText("");
                 				textField_5.setText("");
                 			}
                 			textField_4.setText(zaposlenik.getJMB());
