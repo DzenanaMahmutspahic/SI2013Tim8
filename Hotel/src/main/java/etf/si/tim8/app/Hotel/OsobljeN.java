@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Component;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -329,6 +330,14 @@ public class OsobljeN extends javax.swing.JFrame {
     	rb_administrator.setBackground(SystemColor.inactiveCaptionBorder);
     	rb_administrator.setBounds(6, 130, 109, 23);
     	panel_6.add(rb_administrator);
+    	
+    	ButtonGroup bg = new ButtonGroup();
+    	bg.add(rb_administrator);
+    	bg.add(rb_manager);
+    	bg.add(rb_kuhar);
+    	bg.add(rb_ekonomista);
+    	bg.add(rb_cistacica);
+    	bg.add(rb_recepcioner);
     	
     	JLabel label_15 = new JLabel("Uloge:");
     	label_15.setBounds(247, 150, 200, 50);
