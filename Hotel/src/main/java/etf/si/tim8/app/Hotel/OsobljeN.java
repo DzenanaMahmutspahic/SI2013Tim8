@@ -586,6 +586,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_kuhar.setSelected(false);
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
+                				bg.clearSelection();
                 			}
                 			
                 		}
