@@ -331,7 +331,7 @@ public class OsobljeN extends javax.swing.JFrame {
     	rb_administrator.setBounds(6, 130, 109, 23);
     	panel_6.add(rb_administrator);
     	
-    	ButtonGroup bg = new ButtonGroup();
+    	final ButtonGroup bg = new ButtonGroup();
     	bg.add(rb_administrator);
     	bg.add(rb_manager);
     	bg.add(rb_kuhar);
@@ -524,7 +524,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 			textField_11.setText(zaposlenik.getMobitel());
                 			textField_12.setText(zaposlenik.getUsername());
                 			textField_13.setText(zaposlenik.getPassword());
-                			if(zaposlenik.getUloga() == "Recepcioner")
+                			if(zaposlenik.getUloga().equals("Recepcioner"))
                 			{
                 				rb_recepcioner.setSelected(true);
                 				rb_cistacica.setSelected(false);
@@ -533,7 +533,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Cistacica")
+                			else if(zaposlenik.getUloga().equals("Cistacica") )
                 			{
                 				rb_recepcioner.setSelected(false);
                 				rb_cistacica.setSelected(true);
@@ -542,7 +542,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Ekonomista")
+                			else if(zaposlenik.getUloga().equals("Ekonomista") )
                 			{
                 				rb_recepcioner.setSelected(false);
                 				rb_cistacica.setSelected(false);
@@ -551,7 +551,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Kuhar")
+                			else if(zaposlenik.getUloga().equals("Kuhar") )
                 			{
                 				rb_recepcioner.setSelected(false);
                 				rb_cistacica.setSelected(false);
@@ -560,7 +560,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Manager")
+                			else if(zaposlenik.getUloga().equals("Manager") )
                 			{
                 				rb_recepcioner.setSelected(false);
                 				rb_cistacica.setSelected(false);
@@ -569,7 +569,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(true);
                 				rb_administrator.setSelected(false);
                 			}
-                			else if(zaposlenik.getUloga() == "Administrator")
+                			else if(zaposlenik.getUloga().equals("Administrator") )
                 			{
                 				rb_recepcioner.setSelected(false);
                 				rb_cistacica.setSelected(false);
@@ -700,6 +700,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 				rb_kuhar.setSelected(false);
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
+                				bg.clearSelection();
                 			}
                 			
                 		}
