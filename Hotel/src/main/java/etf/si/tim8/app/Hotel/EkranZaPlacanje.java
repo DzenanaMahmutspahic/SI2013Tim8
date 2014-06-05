@@ -362,7 +362,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         	public void focusLost(FocusEvent arg0) {
         		/*if(Double.parseDouble(tf_popust.getText()) >=0 &&  Double.parseDouble(tf_popust.getText()) <=100) {
     				/*predracun.setPopust(Double.parseDouble(tf_popust.getText()));
-    				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
+    				predracun.setRezervacija
     				tf_ukupno.setText(Double.toString((Double.parseDouble(tf_ukupno.getText()) * (100-Double.parseDouble(tf_popust.getText()))/100)));
         		}*/
         	}

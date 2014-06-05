@@ -608,6 +608,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				rb_manager.setSelected(false);
                 				rb_administrator.setSelected(false);
                 				bg.clearSelection();
+                				//dovoljan zadnji reed
                 			}
                 			
                 		}
