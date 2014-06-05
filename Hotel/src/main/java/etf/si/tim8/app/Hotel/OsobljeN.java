@@ -505,6 +505,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 				datePicker.getModel().setMonth(zaposlenik.getOsoba().getDatumRodjenja().getMonth());
                 				datePicker.getModel().setYear(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900);
                 				datePicker.getJFormattedTextField().setText(zaposlenik.getOsoba().getDatumRodjenja().getDate() + "." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getMonth() + 1) +"." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900)  );
+                				//datePicker.getJFormattedTextField().setText(datePicker.getModel().);
                 				
                 			}
                 			else
@@ -621,6 +622,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 				datePicker.getModel().setMonth(zaposlenik.getOsoba().getDatumRodjenja().getMonth());
                 				datePicker.getModel().setYear(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900);
                 				datePicker.getJFormattedTextField().setText(zaposlenik.getOsoba().getDatumRodjenja().getDate() + "." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getMonth() + 1) +"." + Integer.toString(zaposlenik.getOsoba().getDatumRodjenja().getYear()+1900)  );
+                				//datePicker.getJFormattedTextField().setText(datePicker.getModel().getValue().toString());
                 			}
                 			else
                 			{

@@ -46,6 +46,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 /**
  *
@@ -61,6 +65,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	private Predracun predracun;
 	private Racun racun;
 	
+	private Double minibar = 0.0, telefon = 0.0;
+	
 	private void kreirajPredracun() throws Exception {
 		
 		boolean kreiraj = false;
@@ -72,11 +78,13 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 			if(Double.parseDouble(tf_popust.getText()) >=0 &&  Double.parseDouble(tf_popust.getText()) <=100) {
 				predracun.setPopust(Double.parseDouble(tf_popust.getText()));
 				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
-				predracun.setUkupnaCijena(Double.parseDouble(tf_ukupno.getText()) * (100-Double.parseDouble(tf_popust.getText()))/100);
+				//predracun.setUkupnaCijena(Double.parseDouble(tf_ukupno.getText()) * (100-Double.parseDouble(tf_popust.getText()))/100);
+				predracun.setUkupnaCijena(Double.parseDouble(tf_ukupno.getText()));
+				tf_ukupno.setText(Double.toString(predracun.getUkupnaCijena()));
 				if(kreiraj)
-				DBManager.unesiPredracun(predracun);
+					DBManager.unesiPredracun(predracun);
 				else
-				DBManager.updatePredracun(predracun);	
+					DBManager.updatePredracun(predracun);	
 			}
 			else 
 				JOptionPane.showMessageDialog(null, "Popust mora biti broj izmedju 0 i 100!", "Greska", JOptionPane.ERROR_MESSAGE);
@@ -188,7 +196,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				}
         				if(popust>=100 && popust<=0) popust =0.0;
         				
-        				Double ukupno = (brojdana *  cijenasoba + polja7i9 - ((brojdana *  cijenasoba + polja7i9)*(popust/100)) );
+        				Double ukupno = (brojdana *  cijenasoba + polja7i9  );
         				String uk = ukupno.toString();
         				if(uk.length() > 7 ) uk = uk.substring(0, 7);
         				//jTextField11.setText(Double.toString( (brojdana *  cijenasoba + polja7i9 - (brojdana *  cijenasoba + polja7i9)*(popust/100) ) ));
@@ -261,6 +269,31 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         tf_minibar = new javax.swing.JTextField();
+        tf_minibar.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+        		try{
+        			Double novacijena = !tf_ukupno.getText().equalsIgnoreCase("") ? Double.parseDouble(tf_ukupno.getText())  - minibar : 0;
+					if(!tf_minibar.getText().equalsIgnoreCase("")){
+						novacijena = novacijena + Double.parseDouble(tf_minibar.getText());
+						minibar = Double.parseDouble(tf_minibar.getText());
+					}
+					else
+						minibar=0.0;
+					
+					tf_ukupno.setText(novacijena.toString());
+					
+        		}
+        		catch(Exception e){
+        			tf_minibar.setText("");
+        			JOptionPane.showMessageDialog(null, "Pogresan unos cijene minibar", "Info", JOptionPane.ERROR_MESSAGE);
+        		}
+        }
+        });
+        tf_minibar.addPropertyChangeListener(new PropertyChangeListener() {
+        	public void propertyChange(PropertyChangeEvent arg0) {
+        	}
+        });
         tf_minibar.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyTyped(KeyEvent arg0) {
@@ -302,7 +335,38 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         	}
         });
         tf_telefon = new javax.swing.JTextField();
+        tf_telefon.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+        		try{
+        			Double novacijena = !tf_ukupno.getText().equalsIgnoreCase("") ? Double.parseDouble(tf_ukupno.getText())  - telefon : 0;
+					if(!tf_telefon.getText().equalsIgnoreCase("")){
+						novacijena = novacijena + Double.parseDouble(tf_telefon.getText());
+						telefon = Double.parseDouble(tf_telefon.getText());
+					}
+					else
+						telefon=0.0;
+					
+					tf_ukupno.setText(novacijena.toString());
+					
+        		}
+        		catch(Exception e){
+        			tf_telefon.setText("");
+        			JOptionPane.showMessageDialog(null, "Pogresan unos cijene telefona", "Info", JOptionPane.ERROR_MESSAGE);
+        		}
+        	}
+        });
         tf_popust = new javax.swing.JTextField();
+        tf_popust.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+        		/*if(Double.parseDouble(tf_popust.getText()) >=0 &&  Double.parseDouble(tf_popust.getText()) <=100) {
+    				/*predracun.setPopust(Double.parseDouble(tf_popust.getText()));
+    				predracun.setRezervacija(oznaceniBoravak.getRezervacija());
+    				tf_ukupno.setText(Double.toString((Double.parseDouble(tf_ukupno.getText()) * (100-Double.parseDouble(tf_popust.getText()))/100)));
+        		}*/
+        	}
+        });
         tf_popust.setText(Integer.toString(0));
         jPanel8 = new javax.swing.JPanel();
         jPanel8.setBackground(SystemColor.inactiveCaptionBorder);
