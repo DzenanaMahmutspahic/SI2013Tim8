@@ -754,6 +754,12 @@ jButton_7.setText("Evidencija gostiju");
             			JOptionPane.showMessageDialog(null, "Niste unjeli datum odlaska!", "Info", JOptionPane.ERROR_MESSAGE);
             			return;
             		}
+            		if(datumDO.before(datumOD))
+            		{
+            			JOptionPane.showMessageDialog(null, "Datum odlaska mora biti veći od datuma dolaska!", "Error", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
+            		
             		
             		int klasa;
             		if(jRadioButton1.isSelected() && !jRadioButton2.isSelected())

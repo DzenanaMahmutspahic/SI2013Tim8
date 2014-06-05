@@ -429,6 +429,25 @@ public class OsobljeN extends javax.swing.JFrame {
     				Zaposlenik zaposlenik = new Zaposlenik();
     				osoba.setImePrezime(textField_1.getText() + " " + textField_2.getText());
     				zaposlenik.setJMB(textField_4.getText());
+    				
+    				/*if(textField_4.getText().length()!=13)
+    				{
+    					JOptionPane.showMessageDialog(null, "Niste unijeli validan JMBG!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}*/
+    				 try{
+    					 String jmbg = String.valueOf(textField_4.getText()).trim();
+    			           // String jmbg = String.valueOf(tekst).trim();
+    			            long br = Long.parseLong(jmbg);
+    			            if (jmbg.trim().length()!=13){
+    			                //throw new Exception("JMBG mora sadrzavati 13 cifara!");
+    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati 13 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;}
+    			        }catch(NumberFormatException e1){
+    			           // throw new NumberFormatException("JMBG mora sadrzavati samo cifre!");
+    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;
+    			        }
     				osoba.setAdresa(textField_5.getText());
     				osoba.setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
     				zaposlenik.setDrzavljanstvo(textField_6.getText());
@@ -469,6 +488,7 @@ public class OsobljeN extends javax.swing.JFrame {
     				{
     					zaposlenik.setUloga("");
     				}
+    				
     				
     				zaposlenik.setOsoba(osoba);
     				DBManager.spremiZaposlenika(zaposlenik);
