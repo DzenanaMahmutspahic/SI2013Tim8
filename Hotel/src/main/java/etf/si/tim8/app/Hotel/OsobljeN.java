@@ -366,7 +366,7 @@ public class OsobljeN extends javax.swing.JFrame {
     	btnNewButton.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			
-    			new HomePage().setVisible(true);
+    			new EkranZaAdministratora().setVisible(true);
     			setVisible(false);
     		}
     	});
