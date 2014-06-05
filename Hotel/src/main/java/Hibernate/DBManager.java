@@ -229,7 +229,9 @@ public class DBManager {//komentar
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query q = session.createQuery("from " + Gost.class.getName());
+	
 		return (List<Gost>)q.list();
+		
 		
 	}
 	
@@ -664,6 +666,7 @@ public static void spasiBoravak(Boravak boravak){
 		session.delete(zap.getOsoba());
 		session.delete(zap);
 		t.commit();
+		
 	}
 	
 	public static void urediZaposlenika(Zaposlenik zaposlenik)
@@ -681,6 +684,7 @@ public static void spasiBoravak(Boravak boravak){
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery("from " + Boravak.class.getName());
 			List<Boravak> sviBoravci = (List<Boravak>)q.list();
+			session.close();
 			List<Long> gostIds = new ArrayList();
 			for(Boravak boravak : sviBoravci)
 			{
@@ -701,6 +705,7 @@ public static void spasiBoravak(Boravak boravak){
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery("from " + Boravak.class.getName());
 			List<Boravak> sviBoravci = (List<Boravak>)q.list();
+			session.close();
 			Date today = new Date();
 			int trBroj = 0;
 			for(Boravak boravak : sviBoravci)

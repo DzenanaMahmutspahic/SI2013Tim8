@@ -195,9 +195,10 @@ statistika();
 		comboBox.setBounds(171, 11, 149, 30);
 		comboBox.addItem("Domaci");
 		comboBox.addItem("Strani");
-		//comboBox.setSelectedIndex(0);
+		comboBox.addItem("");
+		comboBox.setSelectedIndex(2);
 		//comboBox.setSelectedItem("Domaci");
-
+	
 
 		//final JComboBox 
 		comboBox_3 = new JComboBox();
@@ -213,20 +214,52 @@ statistika();
 
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (comboBox.getSelectedIndex() == 2)
+				{
+					textField.setEditable(false);
+					textField_1.setEditable(false);
+					textField_2.setEditable(false);
+					datePicker.getJFormattedTextField().setEditable(false);
+					textField_4.setEditable(false);
+					textField_5.setEditable(false);
+					comboBox_2.setEditable(false);
+					textField_7.setEditable(false);
+					comboBox_3.setEditable(false);
+					textField_9.setEditable(false);
+					datePicker2.getJFormattedTextField().setEditable(false);
+					datePicker3.getJFormattedTextField().setEditable(false);
+					
+				}
+				else
+				{
+				
+				
 				if (comboBox.getSelectedIndex() == 1) {
 					textField_5.setEditable(true);
 					comboBox_2.setEditable(true);
 					textField_7.setEditable(true);
 					comboBox_3.setEditable(true);
 					textField_9.setEditable(true);
+					datePicker2.getJFormattedTextField().setEditable(true);
+					datePicker3.getJFormattedTextField().setEditable(true);
 
-				} else {
+				}
+				else {
+					textField.setEditable(true);
+					textField_1.setEditable(true);
+					textField_2.setEditable(true);
+					datePicker.getJFormattedTextField().setEditable(true);
+					textField_4.setEditable(true);
 					textField_5.setEditable(false);
 					comboBox_2.setEditable(false);
 					textField_7.setEditable(false);
 					comboBox_3.setEditable(false);
 					textField_9.setEditable(false);
+					datePicker2.getJFormattedTextField().setEditable(false);
+					datePicker3.getJFormattedTextField().setEditable(false);
+			
 
+				}
 				}
 			}
 		});
@@ -608,6 +641,22 @@ catch(Exception ec){
 		textField_3.setEditable(false);
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
+		
+		
+		
+		textField.setEditable(false);
+		textField_1.setEditable(false);
+		textField_2.setEditable(false);
+		datePicker.getJFormattedTextField().setEditable(false);
+		textField_4.setEditable(false);
+		textField_5.setEditable(false);
+		comboBox_2.setEditable(false);
+		textField_7.setEditable(false);
+		comboBox_3.setEditable(false);
+		textField_9.setEditable(false);
+		datePicker2.getJFormattedTextField().setEditable(false);
+		datePicker3.getJFormattedTextField().setEditable(false);
+
 
 	}
 	
@@ -754,8 +803,6 @@ catch(Exception ec){
 		JOptionPane.showMessageDialog(null, textField_3.getText(), "Info",
 				JOptionPane.INFORMATION_MESSAGE);
 		if (textField_3.getText().equals("Strani")) {
-			JOptionPane.showMessageDialog(null, "Petlja za sstranog", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
 			sg.setBrojPutneIsprave(textField_20.getText());
 			sg.setBrojVize(textField_22.getText());
 			sg.setDatumDozvoleBoravka((Date) datePicker5.getModel().getValue());
@@ -797,10 +844,20 @@ catch(Exception ec){
 			textField_20.setEditable(true);
 			textField_21.setEditable(true);
 			textField_22.setEditable(true);
+		datePicker5.getJFormattedTextField().setEditable(true);
+		datePicker6.getJFormattedTextField().setEditable(true);
 
 		} else {
 			textField_3.setText("Domaci");
+			
+		
+			
 		}
+		datePicker4.getJFormattedTextField().setEditable(true);
+		textField_13.setEditable(true);
+		textField_16.setEditable(true);
+		textField_17.setEditable(true);
+		textField_18.setEditable(true);
 
 		List<StraniGost> stranigosti = new ArrayList<StraniGost>();
 		stranigosti = DBManager.dajStraneGoste();
@@ -877,13 +934,9 @@ catch(Exception ec){
 		for (StraniGost sg : stranigosti) {
 			if (sg.getGost() == null)
 				System.out.printf("gost  u sg je null");
-			if (sg.getGost().getId() == g.getId()) {
-
-				JOptionPane.showMessageDialog(null, "Gost je strani", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-				return true;
-			}
-		}
+			if (sg.getGost().getId() == g.getId()) 
+					return true;
+					}
 		return false;
 	}
 
@@ -897,12 +950,24 @@ catch(Exception ec){
 		textField_20.setText("");
 		textField_21.setText("");
 		textField_22.setText("");
+		datePicker4.getJFormattedTextField().setText("");
+		datePicker5.getJFormattedTextField().setText("");
+		datePicker6.getJFormattedTextField().setText("");
 
+		
 		textField_14.setEditable(false);
 		textField_15.setEditable(false);
 		textField_20.setEditable(false);
 		textField_21.setEditable(false);
 		textField_22.setEditable(false);
+		textField_13.setEditable(false);
+		textField_16.setEditable(false);
+		textField_17.setEditable(false);
+		textField_18.setEditable(false);
+		datePicker4.getJFormattedTextField().setEditable(false);
+		datePicker5.getJFormattedTextField().setEditable(false);
+		datePicker6.getJFormattedTextField().setEditable(false);
+
 	}
 
 	public void ocistiKontroleUnos() {
@@ -941,7 +1006,7 @@ catch(Exception ec){
 			if (!validateNationality(textField_5.getText()))
 				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
 			if (!validateBrojPutneIspave(textField_7.getText()))
-				poruka += "Putna isprava treba da bude u formatu A000000\n";
+				poruka += "Putna isprava treba da bude u formatu A123456\n";
 			if ((Date) datePicker2.getModel().getValue() == null
 					|| (Date) datePicker3.getModel().getValue() == null)
 				poruka += "Morate unijeti sve datume";
@@ -953,6 +1018,10 @@ Date datumulaska=(Date) datePicker3.getModel().getValue();
 if(datumdozvole.after(datumulaska)) 
 				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
 			}
+			if(!validateBrojVize(textField_9.getText()))
+				poruka += "Broj vize treba da bude u formatu A1234567\n";
+			
+			
 		}
 
 		return poruka;
@@ -984,7 +1053,7 @@ if(datumdozvole.after(datumulaska))
 				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
 
 			if (!validateBrojPutneIspave(textField_20.getText()))
-				poruka += "Putna isprava treba da bude u formatu A000000\n";
+				poruka += "Putna isprava treba da bude u formatu A123456\n";
 
 			if ((Date) datePicker4.getModel().getValue() == null
 					|| (Date) datePicker5.getModel().getValue() == null
@@ -999,6 +1068,8 @@ Date datumulaska=(Date) datePicker6.getModel().getValue();
 if(datumdozvole.after(datumulaska)) 
 				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
 			}
+			if(!validateBrojVize(textField_22.getText()))
+				poruka += "Broj vize treba da bude u formatu A1234567\n";
 		}
 
 		return poruka;
@@ -1006,16 +1077,16 @@ if(datumdozvole.after(datumulaska))
 
 	public static boolean validateFirstName(String firstName) {
 		return firstName.matches("^[A-Z]{1}[a-z]{2,}$");
-	} // end method validateFirstName
+	} 
 
-	// validate last name
+
 	public static boolean validateLastName(String lastName) {
 		return lastName.matches("^[A-Z]{1}[a-z]{2,}$");
 	}
 
 	public static boolean validateCity(String address) {
 		return address.matches("([A-Z]{1}[a-z]{1,} *)+");
-	} // end method validateAddress
+	} 
 
 	public static boolean validateAddress(String address) {
 	//	return address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
@@ -1029,6 +1100,10 @@ if(datumdozvole.after(datumulaska))
 	public static boolean validateBrojPutneIspave(String brojPutneIspave) {
 		return brojPutneIspave.matches("[A-Z]{1}\\d{6}");
 	}
+	public static boolean validateBrojVize(String brojPutneIspave) {
+		return brojPutneIspave.matches("[A-Z]{1}\\d{7}");
+	}
+	
 
 	public static boolean validateDatumRodjenja(Date datumrodjenja) {
 		Date today = new Date();
@@ -1036,5 +1111,6 @@ if(datumdozvole.after(datumulaska))
 			return false;
 		return true;
 	}
-
+	
+	
 }
