@@ -367,6 +367,7 @@ public class OsobljeN extends javax.swing.JFrame {
     		public void actionPerformed(ActionEvent e) {
     			
     			new HomePage().setVisible(true);
+    			setVisible(false);
     		}
     	});
     	btnNewButton.setBounds(909, 499, 200, 50);
