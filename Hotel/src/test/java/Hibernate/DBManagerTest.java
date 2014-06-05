@@ -235,7 +235,7 @@ public class DBManagerTest extends TestCase {
 	
 	
 	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba, treba vratiti true
-	public void testDajZauzeteSobe() 
+/*	public void testDajZauzeteSobe() 
 	{
 		java.util.Date datumOD= new java.util.Date();
 		java.util.Date datumDO= new java.util.Date();
@@ -305,13 +305,13 @@ public class DBManagerTest extends TestCase {
 		Rezervacija r1=new Rezervacija();
 		
 		s.setBrojSobe(1);
-		s.setBalkon(true);
+		//s.setBalkon(true);
 		s.setBrojKreveta(2);
 		s.setSprat(2);
 		DBManager.spasiSobu(s);
 		
 		s1.setBrojSobe(2);
-		s1.setBalkon(true);
+		//s1.setBalkon(true);
 		s1.setBrojKreveta(2);
 		s1.setSprat(2);
 		DBManager.spasiSobu(s1);
@@ -330,9 +330,90 @@ public class DBManagerTest extends TestCase {
 		
 		assertTrue(tempListaSoba.contains(1) && tempListaSoba.contains(2));
 		
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t1 = session.beginTransaction();
+		session.delete(s);
+		session.delete(s1);
+		session.delete(r);
+		session.delete(r1);
+		t1.commit();
+	}*/
+	
+	public void testDajZauzeteSobe() {
+
+		java.util.Date datumOD= new java.util.Date();
+		java.util.Date datumDO= new java.util.Date();
+		java.util.Date rezervisanoOD= new java.util.Date();
+		java.util.Date rezervisanoDO= new java.util.Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		
+		try
+		{
+			 datumOD=sdf.parse("2014-08-15");
+	    }
+		catch(java.text.ParseException p)
+		{
+	            System.out.println(p.toString());
+	    }
+		
+		 try
+		 {
+			 datumDO=sdf.parse("2014-08-20");
+	     }
+		 catch(java.text.ParseException p1) 
+		 {
+	            System.out.println(p1.toString());
+	      }
+		
+		try
+		{
+			 rezervisanoOD=sdf.parse("2014-08-10");
+	     }
+		catch(java.text.ParseException p)
+		{
+	            System.out.println(p.toString());
+	      }
+		
+		 try
+		 {
+			 rezervisanoDO=sdf.parse("2014-08-20");
+	       }
+		 catch(java.text.ParseException p1) 
+		 {
+	            System.out.println(p1.toString());
+	      }
+		 
+		 Soba s= new Soba();
+			
+			Rezervacija r=new Rezervacija();
+			
+			s.setBrojSobe(10);
+			//s.setBalkon(true);
+			s.setBrojKreveta(2);
+			s.setSprat(2);
+			DBManager.spasiSobu(s);
+			
+			r.setSoba(s);
+			r.setRezervisanoOd(rezervisanoOD);
+			r.setRezervisanoDo(rezervisanoDO);
+			DBManager.spasiRezervaciju(r);
+			
+			
+			java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
+			
+			assertTrue(tempListaSoba.contains(1));
+			
+			
+		/*	Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t1 = session.beginTransaction();
+			session.delete(s);
+		
+			session.delete(r);
+			
+			t1.commit();*/
+		
 	}
-	
-	
 	/*
 	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba jer je prva soba zauzeta
 	//samo dio perioda, a ne cijeli period koji trazimo
@@ -477,6 +558,7 @@ public class DBManagerTest extends TestCase {
 		sg.setVrstaPutneIsprave("Neka");
 		sg.setVrstaVize("Neka");
 		DBManager.saveStranogGosta(sg);
+		
 		List<StraniGost> stranigosti = DBManager.dajStraneGoste();
 		Boolean tacno=false;
 		for (StraniGost i : stranigosti) {
@@ -484,6 +566,14 @@ public class DBManagerTest extends TestCase {
 				tacno=true;
 		}
 		Assert.assertTrue(tacno);
+		
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t1 = session.beginTransaction();
+		session.delete(o);
+		session.delete(g);
+		session.delete(sg);
+		t1.commit();
 	}
 
 	
@@ -623,9 +713,9 @@ public class DBManagerTest extends TestCase {
 	   sg.setDatumUlaskaUBih(datumUlaska); sg.setDrzavljanstvo("BIH");
 	   sg.setGost(g); sg.setVrstaPutneIsprave("Neka"); sg.setVrstaVize("Neka");
 	   
-	   DBManager.saveStranogGosta(sg); StraniGost
-	   newsg=DBManager.dajStranogZaGosta(g); List<StraniGost>
-	   stranigosti=DBManager.dajStraneGoste();
+	   DBManager.saveStranogGosta(sg); 
+	   StraniGost newsg=DBManager.dajStranogZaGosta(g); 
+	   List<StraniGost> stranigosti=DBManager.dajStraneGoste();
 	   Assert.assertFalse(sg==newsg); }
 	   
 	   public void testUpdateStranogGosta() { 
