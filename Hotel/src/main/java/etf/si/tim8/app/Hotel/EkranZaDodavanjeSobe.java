@@ -34,7 +34,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class EkranZaDodavanjeSobe {
 //tajma komentar
-	
+	//
 	private JFrame frmDodavanjeSobe;
 	private JTextField textField;
 
