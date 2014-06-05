@@ -112,6 +112,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	        for(Boravak boravak : boravci){
 	        	model.addElement(boravak.getGost());
 	        }
+	        jButton1.setEnabled(false);
+        	jButton2.setEnabled(false);
         }
         else {
         	jButton1.setEnabled(false);
@@ -409,7 +411,16 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         			racun.setPredracun(predracun);
         			racun.setVrijemeIzdavanja(new Date());
         			DBManager.unesiRacun(racun);
-        			JOptionPane.showMessageDialog(null, "Uspješno ste evidentirali račun!", "Evidencija računa", JOptionPane.INFORMATION_MESSAGE);
+        			Double po=0.0;
+        			try{
+        				if(racun.getPredracun().getPopust() > 0.0) po = racun.getPredracun().getPopust();
+        			}
+        			catch(Exception exc)
+        			{
+        				po=0.0;
+        			}
+        			JOptionPane.showMessageDialog(null, "Uspješno ste evidentirali račun! Ukupno za platiti: "+ Double.toString((racun.getPredracun().getUkupnaCijena()*(100.0 -po)/100 )), "Evidencija računa", JOptionPane.INFORMATION_MESSAGE);
+        			tf_ukupno.setText(Double.toString((racun.getPredracun().getUkupnaCijena()*(100.0 -po)/100 )));
         		}}
         		catch(Exception exception){
         			JOptionPane.showMessageDialog(null, exception.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
