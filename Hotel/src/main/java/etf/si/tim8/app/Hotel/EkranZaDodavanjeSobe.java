@@ -35,10 +35,10 @@ import javax.swing.DefaultComboBoxModel;
 public class EkranZaDodavanjeSobe {
 //tajma komentar
 	
-	private JFrame frame;
+	private JFrame frmDodavanjeSobe;
 	private JTextField textField;
 
-	public void setVisible(boolean t){frame.setVisible(t);}
+	public void setVisible(boolean t){frmDodavanjeSobe.setVisible(t);}
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +47,7 @@ public class EkranZaDodavanjeSobe {
 			public void run() {
 				try {
 					EkranZaDodavanjeSobe window = new EkranZaDodavanjeSobe();
-					window.frame.setVisible(true);
+					window.frmDodavanjeSobe.setVisible(true);
 					//frame.setTitle("Nova soba");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,17 +67,18 @@ public class EkranZaDodavanjeSobe {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 278, 324);
-		frame.getContentPane().setLayout(null);
+		frmDodavanjeSobe = new JFrame();
+		frmDodavanjeSobe.setTitle("Dodavanje sobe");
+		frmDodavanjeSobe.getContentPane().setBackground(Color.WHITE);
+		frmDodavanjeSobe.setResizable(false);
+		frmDodavanjeSobe.setBounds(100, 100, 278, 324);
+		frmDodavanjeSobe.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBounds(10, 11, 249, 272);
-		frame.getContentPane().add(panel);
+		frmDodavanjeSobe.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblSoba = new JLabel("Soba:");
