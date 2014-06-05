@@ -149,6 +149,12 @@ public class EkranZaDodavanjeSobe {
 				try{
 					boolean ispravna=true;
 					soba.setCijena(Double.parseDouble(textField.getText()));
+					if(Double.parseDouble(textField.getText())<=0)
+					{
+						ispravna=false;
+						JOptionPane.showMessageDialog(null, "Cijena mora biti pozitivan broj!", "Error", JOptionPane.INFORMATION_MESSAGE);
+						
+					}
 					
 					if(Integer.parseInt(spinner.getValue().toString())>0 && Integer.parseInt(spinner.getValue().toString())<3)
 						soba.setSprat(Integer.parseInt(spinner.getValue().toString()));
