@@ -195,8 +195,9 @@ statistika();
 		comboBox.setBounds(171, 11, 149, 30);
 		comboBox.addItem("Domaci");
 		comboBox.addItem("Strani");
-		comboBox.setSelectedIndex(0);
-		comboBox.setSelectedItem("Domaci");
+		//comboBox.setSelectedIndex(0);
+		//comboBox.setSelectedItem("Domaci");
+
 
 		//final JComboBox 
 		comboBox_3 = new JComboBox();
@@ -704,9 +705,9 @@ catch(Exception ec){
 
 			sg.setBrojPutneIsprave(textField_7.getText());
 			sg.setBrojVize(textField_9.getText());
-			sg.setDatumDozvoleBoravka((Date) datePicker.getModel()
+			sg.setDatumDozvoleBoravka((Date) datePicker2.getModel()
 					.getValue());
-			sg.setDatumUlaskaUBih((Date) datePicker.getModel()
+			sg.setDatumUlaskaUBih((Date) datePicker3.getModel()
 					.getValue());
 			sg.setDrzavljanstvo(textField_5.getText());
 			sg.setGost(g);
@@ -750,11 +751,15 @@ catch(Exception ec){
 
 		DBManager.updateGosta(g);
 		DBManager.updateOsobu(g.getOsoba());
-		if (textField_3.getText() == "Strani") {
+		JOptionPane.showMessageDialog(null, textField_3.getText(), "Info",
+				JOptionPane.INFORMATION_MESSAGE);
+		if (textField_3.getText().equals("Strani")) {
+			JOptionPane.showMessageDialog(null, "Petlja za sstranog", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 			sg.setBrojPutneIsprave(textField_20.getText());
 			sg.setBrojVize(textField_22.getText());
 			sg.setDatumDozvoleBoravka((Date) datePicker5.getModel().getValue());
-			sg.setDatumUlaskaUBih((Date) datePicker5.getModel().getValue());
+			sg.setDatumUlaskaUBih((Date) datePicker6.getModel().getValue());
 			sg.setDrzavljanstvo(textField_14.getText());
 			sg.setVrstaPutneIsprave(textField_15.getText());
 
@@ -773,6 +778,7 @@ catch(Exception ec){
 
 	
 	
+	@SuppressWarnings("deprecation")
 	public void ucitajPodatke()
 	{
 		ocistiKontrole();
@@ -812,8 +818,8 @@ catch(Exception ec){
 		textField_13.setText(g.getMjestoRodjenja());
 		textField_3.setText("Domaci");
 		
-		
-        model4.setDate(g.getOsoba().getDatumRodjenja().getYear()+1900, g.getOsoba().getDatumRodjenja().getMonth(), g.getOsoba().getDatumRodjenja().getDay());
+		model4.setValue(g.getOsoba().getDatumRodjenja());
+    //    model4.setDate(g.getOsoba().getDatumRodjenja().getYear()+1900, g.getOsoba().getDatumRodjenja().getMonth(), g.getOsoba().getDatumRodjenja().getDay()+1);
        
 		StraniGost sg = null;
 		for (StraniGost pom : stranigosti) {
@@ -829,8 +835,11 @@ catch(Exception ec){
 			textField_15.setText(sg.getVrstaPutneIsprave());
 			textField_3.setText("Strani");
 		
-			 model5.setDate(sg.getDatumDozvoleBoravka().getYear()+1900, sg.getDatumDozvoleBoravka().getMonth(),sg.getDatumDozvoleBoravka().getDay());
-			 model6.setDate(sg.getDatumUlaskaUBih().getYear()+1900, sg.getDatumUlaskaUBih().getMonth(),sg.getDatumUlaskaUBih().getDay());
+		//	model5.setValue(sg.getDatumDozvoleBoravka());
+			model5.setValue(sg.getDatumDozvoleBoravka());
+			// model5.setDate(sg.getDatumDozvoleBoravka().getYear()+1900, sg.getDatumDozvoleBoravka().getMonth(),sg.getDatumDozvoleBoravka().getDay()+1);
+			model6.setValue(sg.getDatumUlaskaUBih());
+		//	model6.setDate(sg.getDatumUlaskaUBih().getYear()+1900, sg.getDatumUlaskaUBih().getMonth(),sg.getDatumUlaskaUBih().getDay()+1);
 		
 
 		}
@@ -936,6 +945,14 @@ catch(Exception ec){
 			if ((Date) datePicker2.getModel().getValue() == null
 					|| (Date) datePicker3.getModel().getValue() == null)
 				poruka += "Morate unijeti sve datume";
+			if((Date) datePicker2.getModel().getValue() != null
+					&& (Date) datePicker3.getModel().getValue() != null)
+			{
+Date datumdozvole=(Date) datePicker2.getModel().getValue();
+Date datumulaska=(Date) datePicker3.getModel().getValue();
+if(datumdozvole.after(datumulaska)) 
+				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
+			}
 		}
 
 		return poruka;
@@ -948,7 +965,7 @@ catch(Exception ec){
 			poruka += "Ime mora biti dugo bar 2 znaka, prvo slovo veliko\n";
 
 		if (!validateLastName(textField_17.getText()))
-			poruka += "Prezime prezime biti dugo bar 2 znaka, prvo slovo veliko\n";
+			poruka += "Prezime  biti dugo bar 2 znaka, prvo slovo veliko\n";
 
 		if (!validateCity(textField_13.getText()))
 			poruka += "Naziv mjesta nije validan\n";
@@ -961,7 +978,7 @@ catch(Exception ec){
 		 if(!validateAddress(textField_18.getText()))
 		 poruka+="Unesite adresu\n";
 
-		if (textField_3.getText() == "Strani") {
+		if (textField_3.getText().equals("Strani")) {
 
 			if (!validateNationality(textField_14.getText()))
 				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
@@ -973,18 +990,27 @@ catch(Exception ec){
 					|| (Date) datePicker5.getModel().getValue() == null
 					|| (Date) datePicker6.getModel().getValue() == null)
 				poruka += "Morate unijeti sve datume";
+			
+			if((Date) datePicker5.getModel().getValue() != null
+					&& (Date) datePicker6.getModel().getValue() != null)
+			{
+Date datumdozvole=(Date) datePicker5.getModel().getValue();
+Date datumulaska=(Date) datePicker6.getModel().getValue();
+if(datumdozvole.after(datumulaska)) 
+				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
+			}
 		}
 
 		return poruka;
 	}
 
 	public static boolean validateFirstName(String firstName) {
-		return firstName.matches("[A-Z][a-zA-Z]*");
+		return firstName.matches("^[A-Z]{1}[a-z]{2,}$");
 	} // end method validateFirstName
 
 	// validate last name
 	public static boolean validateLastName(String lastName) {
-		return lastName.matches("[A-Z][a-zA-Z]*");
+		return lastName.matches("^[A-Z]{1}[a-z]{2,}$");
 	}
 
 	public static boolean validateCity(String address) {
