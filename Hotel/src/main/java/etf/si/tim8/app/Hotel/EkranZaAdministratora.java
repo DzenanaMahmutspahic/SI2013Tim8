@@ -39,6 +39,7 @@ public class EkranZaAdministratora extends JFrame {
 	 * Create the frame.
 	 */
 	public EkranZaAdministratora() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 746, 383);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

@@ -410,6 +410,7 @@ public class DBManagerTest extends TestCase {
 			session.delete(r);
 			
 			t1.commit();
+			session.close();
 			
 			assertTrue(tempListaSoba.contains(10));
 			
@@ -417,7 +418,7 @@ public class DBManagerTest extends TestCase {
 			
 		
 	}
-	/*
+	
 	//testira slucaj kad se unesu ispravni datumi, da li ce metoda dobro vratiti listu zauzetih soba jer je prva soba zauzeta
 	//samo dio perioda, a ne cijeli period koji trazimo
 	public void testDajZauzeteSobeDioPerioda() 
@@ -494,31 +495,50 @@ public class DBManagerTest extends TestCase {
 		s.setBalkon(true);
 		s.setBrojKreveta(2);
 		s.setSprat(2);
+		DBManager.spasiSobu(s);
+		
 		
 		s1.setBrojSobe(2);
 		s1.setBalkon(true);
 		s1.setBrojKreveta(2);
 		s1.setSprat(2);
+		DBManager.spasiSobu(s1);
 		
 		r.setSoba(s);
 		r.setRezervisanoOd(rezervisanoOD);
 		r.setRezervisanoDo(rezervisanoDO);
+		DBManager.spasiRezervaciju(r);
 		
 		r1.setSoba(s1);
 		r1.setRezervisanoOd(rezervisanoOD1);
 		r1.setRezervisanoDo(rezervisanoDO1);
+		DBManager.spasiRezervaciju(r1);
+	
 		
 		//rez.add(r);
 		//rez.add(r1);
 		
 	//	for(Rezervacija rez1: rez){
 		java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t1 = session.beginTransaction();
+		session.delete(s);
+		session.delete(r);
+		
+		session.delete(s1);
+		session.delete(r1);
+		
+		t1.commit();
+		session.close();
+		
+		
 		assertTrue(tempListaSoba.contains(2) && tempListaSoba.contains(1));
 		//}
 		
 		
 	}
-	*/
+	
 	
 	
 	public void testSaveStranogGosta() {

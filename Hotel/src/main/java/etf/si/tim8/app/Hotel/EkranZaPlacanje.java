@@ -432,7 +432,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new HomePage().setVisible(true);
-        		EkranZaPlacanje.this.setVisible(false);
+        		//EkranZaPlacanje.this.setVisible(false);
+        		EkranZaPlacanje.this.dispose();
         	}
         });
 
