@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Predracun implements Serializable {
 	private long Id;
-	private double popust;
+	private Double popust;
 	private Rezervacija rezervacija;
-	private double ukupnaCijena;
+	private Double ukupnaCijena;
 
 	public Predracun() {}
 
@@ -18,7 +18,7 @@ public class Predracun implements Serializable {
 		Id = id;
 	}
 
-	public double getPopust() {
+	public Double getPopust() {
 		return popust;
 	}
 
@@ -34,7 +34,7 @@ public class Predracun implements Serializable {
 		this.rezervacija = rezervacija;
 	}
 	
-	public double getUkupnaCijena() {
+	public Double getUkupnaCijena() {
 		return ukupnaCijena;
 	}
 
