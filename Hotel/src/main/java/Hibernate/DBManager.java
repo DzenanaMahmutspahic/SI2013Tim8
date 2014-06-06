@@ -456,19 +456,28 @@ public class DBManager {//komentar
 	public static List<Osoba> dajOsobe(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query q = session.createQuery("from " + Osoba.class.getName());
-		return (List<Osoba>)q.list();
+		List<Osoba> lista=q.list();
+		session.close();
+		return lista;
+	
 	}
 	
 
 	public static List<StraniGost> dajStraneGoste(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Query q = session.createQuery("from " + StraniGost.class.getName());
-		return (List<StraniGost>)q.list();
+	//	Query q = session.createQuery("from " + StraniGost.class.getName());
+		Query q = session.createQuery("from StraniGost");
+		List<StraniGost> lista=q.list();
+		session.close();
+		return lista;
 	}
 	public static List<Gost> dajGoste(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query q = session.createQuery("from " + Gost.class.getName());
-		return (List<Gost>)q.list();
+		List<Gost> lista=q.list();
+		session.close();
+		return lista;
+		
 	}
 
 	
@@ -480,6 +489,7 @@ public class DBManager {//komentar
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		session.delete(g);
+		session.close();
 		t.commit();
 	}
 
@@ -488,6 +498,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.delete(sg);
 		t.commit();
+		session.close();
 	}
 
 	public static void obrisiOsobu(Osoba o) {
@@ -495,6 +506,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.delete(o);
 		t.commit();
+		session.close();
 	}
 	
 	public static StraniGost dajStranogZaGosta(Gost g)
@@ -521,6 +533,7 @@ public class DBManager {//komentar
 	Transaction t = session.beginTransaction();
 	session.update(sg);
 	t.commit();
+	session.close();
 	}
 	
 	public static void updateGosta(Gost g){
@@ -528,12 +541,14 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.update(g);
 		t.commit();
+		session.close();
 		}
 	public static void updateOsobu(Osoba o){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		session.update(o);
 		t.commit();
+		session.close();
 		}
 	
 	public static void saveStranogGosta(StraniGost sg){
@@ -541,6 +556,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.save(sg);
 		t.commit();
+		session.close();
 		}
 	
 	public static void saveGosta(Gost g){
@@ -548,6 +564,7 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.save(g);
 		t.commit();
+		session.close();
 		}
 	
 	public static void saveOsobu(Osoba o){
@@ -555,12 +572,14 @@ public class DBManager {//komentar
 		Transaction t = session.beginTransaction();
 		session.save(o);
 		t.commit();
+		session.close();
 		}
 	public static void spasiRezervaciju(Rezervacija rezervacija){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		session.save(rezervacija);
 		t.commit();
+		session.close();
 		}
 	
 	public static List<Soba> dajSveSobe(){

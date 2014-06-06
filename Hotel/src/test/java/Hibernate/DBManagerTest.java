@@ -60,6 +60,7 @@ public class DBManagerTest extends TestCase {
 		session.delete(osoba);		
 		t1.commit();
 		
+		
 		assertTrue(boravci.contains(boravak));		
 	}
 	
@@ -562,6 +563,7 @@ public class DBManagerTest extends TestCase {
 		List<StraniGost> stranigosti = DBManager.dajStraneGoste();
 		Boolean tacno=false;
 		for (StraniGost i : stranigosti) {
+			if(i.getBrojPutneIsprave()!=null)
 			if(	i.getBrojPutneIsprave().equals(sg.getBrojPutneIsprave()))
 				tacno=true;
 		}
@@ -574,6 +576,7 @@ public class DBManagerTest extends TestCase {
 		session.delete(g);
 		session.delete(sg);
 		t1.commit();
+		session.close();
 	}
 
 	
@@ -622,6 +625,7 @@ public class DBManagerTest extends TestCase {
 	   stranigosti=DBManager.dajStraneGoste();
 	   Boolean tacno=false;
 		for (StraniGost i : stranigosti) {
+			if(i.getBrojPutneIsprave()!=null)
 			if(	i.getBrojPutneIsprave().equals(sg.getBrojPutneIsprave()))
 				tacno=true;
 		}
@@ -854,6 +858,14 @@ public class DBManagerTest extends TestCase {
 	   o.setAdresa("Vitkovac 166");
 	   DBManager.saveOsobu(o);
 	   List<Osoba>osobe=DBManager.dajOsobe();
+	   
+	   Boolean tacno=false;
+		for (Osoba i : osobe) {
+			if(i.getIme()!=null&&i.getPrezime()!=null)
+			if(	i.getIme().equals(o.getIme())&&i.getPrezime().equals(o.getPrezime()))
+				tacno=true;
+		}
+		Assert.assertTrue(tacno);
 	   Assert.assertFalse(osobe.contains(o));
 	   
 	   }

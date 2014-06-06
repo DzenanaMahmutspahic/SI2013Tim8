@@ -985,10 +985,10 @@ catch(Exception ec){
 		String poruka = "";
 
 		if (!validateFirstName(textField.getText()))
-			poruka += "Ime mora biti dugo bar 2 znaka, prvo slovo veliko\n";
+			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateLastName(textField_1.getText()))
-			poruka += "Prezime prezime biti dugo bar 2 znaka, prvo slovo veliko\n";
+			poruka += "Prezime prezime biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateCity(textField_4.getText()))
 			poruka += "Naziv mjesta nije validan\n";
@@ -1004,7 +1004,7 @@ catch(Exception ec){
 		if (comboBox.getSelectedItem() == "Strani") {
 
 			if (!validateNationality(textField_5.getText()))
-				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
+				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova\n";
 			if (!validateBrojPutneIspave(textField_7.getText()))
 				poruka += "Putna isprava treba da bude u formatu A123456\n";
 			if ((Date) datePicker2.getModel().getValue() == null
@@ -1031,10 +1031,10 @@ if(datumdozvole.after(datumulaska))
 		String poruka = "";
 
 		if (!validateFirstName(textField_16.getText()))
-			poruka += "Ime mora biti dugo bar 2 znaka, prvo slovo veliko\n";
+			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateLastName(textField_17.getText()))
-			poruka += "Prezime  biti dugo bar 2 znaka, prvo slovo veliko\n";
+			poruka += "Prezime  biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateCity(textField_13.getText()))
 			poruka += "Naziv mjesta nije validan\n";
@@ -1050,7 +1050,7 @@ if(datumdozvole.after(datumulaska))
 		if (textField_3.getText().equals("Strani")) {
 
 			if (!validateNationality(textField_14.getText()))
-				poruka += "Nacionalnost treba biti napisana velikim slovima, najmanje 2 slova\n";
+				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova\n";
 
 			if (!validateBrojPutneIspave(textField_20.getText()))
 				poruka += "Putna isprava treba da bude u formatu A123456\n";
@@ -1089,8 +1089,8 @@ if(datumdozvole.after(datumulaska))
 	} 
 
 	public static boolean validateAddress(String address) {
-	//	return address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		return !address.equals("")&& !address.equals(" ");
+
+		return !(address.equals("")||address.equals(" "));
 	}
 
 	public static boolean validateNationality(String nationality) {
