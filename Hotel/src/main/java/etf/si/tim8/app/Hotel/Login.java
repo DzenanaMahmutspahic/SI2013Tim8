@@ -58,7 +58,6 @@ public class Login extends javax.swing.JFrame {
        
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField1.setBackground(SystemColor.inactiveCaptionBorder);
-        jLabel3 = new javax.swing.JLabel();
         setTitle("Hotel Ksenon Plaza");
         setBackground(new java.awt.Color(255, 255, 255));
        
@@ -80,29 +79,21 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        jLabel3.setText("Forgot your Password?");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1Layout.setHorizontalGroup(
         	jPanel1Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel1Layout.createSequentialGroup()
         			.addContainerGap(36, Short.MAX_VALUE)
-        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(jPanel1Layout.createSequentialGroup()
         					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
         						.addComponent(jLabel1)
         						.addComponent(jLabel2))
         					.addGap(26)
-        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(jPanel1Layout.createSequentialGroup()
-        							.addGap(61)
-        							.addComponent(jLabel3))
-        						.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
-        							.addComponent(jPasswordField1, Alignment.LEADING)
-        							.addComponent(jTextField1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
-        				.addComponent(jButton1, Alignment.TRAILING))
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(jPasswordField1, Alignment.LEADING)
+        						.addComponent(jTextField1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
+        				.addComponent(jButton1))
         			.addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,9 +107,7 @@ public class Login extends javax.swing.JFrame {
         			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel2)
         				.addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jLabel3)
-        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGap(22)
         			.addComponent(jButton1)
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -192,6 +181,7 @@ public class Login extends javax.swing.JFrame {
         		else
         		{
         			new EkranZaAdministratora(zaposlenik).setVisible(true);
+        			
         			dispose();
         		}
         		
@@ -209,7 +199,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
