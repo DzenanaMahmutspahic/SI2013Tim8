@@ -68,6 +68,7 @@ public class EkranZaEditovanjeSobe {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Azuriranje sobe");
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 253, 301);

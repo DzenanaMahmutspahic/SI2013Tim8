@@ -68,7 +68,7 @@ public class EkranZaDodavanjeSobe {
 	 */
 	private void initialize() {
 		frmDodavanjeSobe = new JFrame();
-		frmDodavanjeSobe.setTitle("Hotel Ksenon Plaza-Dodavanje sobe");
+		frmDodavanjeSobe.setTitle("Dodavanje sobe");
 		frmDodavanjeSobe.getContentPane().setBackground(Color.WHITE);
 		frmDodavanjeSobe.setResizable(false);
 		frmDodavanjeSobe.setBounds(100, 100, 302, 340);
