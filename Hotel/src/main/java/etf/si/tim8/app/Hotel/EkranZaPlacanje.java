@@ -103,7 +103,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
     	setTitle("Ekran za Placanje");
         initComponents();
         //dodavanje rezervacija u listu
-        boravci = DBManager.dajBoravke2();
+        boravci = DBManager.dajBoravke();
         
         if(boravci !=null && boravci.size() > 0 ){
 	        DefaultListModel model = new DefaultListModel();
@@ -157,7 +157,8 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         				tf_minibar.setText("");
         				tf_telefon.setText("");
         				
-        				textField.setText( new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoOd()) + " - " + new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoDo()));
+        				        				
+        				textField.setText( new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoOd()) + " - " + (oznaceniBoravak.getRezervacija().getRezervisanoDo() !=null ? new SimpleDateFormat("dd.MM.yyyy").format(oznaceniBoravak.getRezervacija().getRezervisanoDo() ) : " "));
         				/*Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoOd().getYear() +1900) + " - " + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getDate()) + "." + Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getMonth()+1) + "."+Integer.toString(oznaceniBoravak.getRezervacija().getRezervisanoDo().getYear() +1900)*/ 
         				
         				long brojdana;
