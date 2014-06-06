@@ -609,6 +609,7 @@ public static void spasiSobu(Soba soba){
 		Transaction t = session.beginTransaction();
 		session.save(soba);
 		t.commit();
+		session.close();
 		
 	}
 
@@ -617,6 +618,7 @@ public static void spasiZaposlenika(Zaposlenik zaposlenik){
 	Transaction t = session.beginTransaction();
 	session.save(zaposlenik);
 	t.commit();
+	session.close();
 	
 }
 
@@ -625,6 +627,7 @@ public static void spasiBoravak(Boravak boravak){
 	Transaction t = session.beginTransaction();
 	session.save(boravak);
 	t.commit();
+	session.close();
 	
 }
 

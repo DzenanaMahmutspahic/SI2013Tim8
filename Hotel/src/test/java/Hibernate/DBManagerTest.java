@@ -403,16 +403,18 @@ public class DBManagerTest extends TestCase {
 			
 			java.util.List tempListaSoba =DBManager.dajZauzeteSobe(datumOD, datumDO);
 			
-			assertTrue(tempListaSoba.contains(1));
-			
-			
-		/*	Session session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t1 = session.beginTransaction();
 			session.delete(s);
 		
 			session.delete(r);
 			
-			t1.commit();*/
+			t1.commit();
+			
+			assertTrue(tempListaSoba.contains(10));
+			
+			
+			
 		
 	}
 	/*

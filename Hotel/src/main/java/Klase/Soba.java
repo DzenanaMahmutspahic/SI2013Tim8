@@ -33,7 +33,7 @@ public class Soba implements Serializable {
 	public void setSprat(int sprat) {
 		this.sprat = sprat;
 	}
-	public boolean getBalkon() {
+	public Boolean getBalkon() {
 		return balkon;
 	}
 	public void setBalkon(Boolean balkon) {
@@ -51,7 +51,7 @@ public class Soba implements Serializable {
 	public void setCijena(double cijena) {
 		this.cijena = cijena;
 	}
-	public boolean getZauzeta() {
+	public Boolean getZauzeta() {
 		return zauzeta;
 	}
 	public void setZauzeta(Boolean zauzeta) {
