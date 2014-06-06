@@ -6,10 +6,10 @@ public class Soba implements Serializable {
 	private long id;
 	private int brojSobe;
 	private int sprat;
-	private Boolean balkon;
+	private boolean balkon;
 	private int brojKreveta;
 	private double cijena;
-	private Boolean zauzeta;
+	private boolean zauzeta;
 	
 	public Soba() {}
 	
@@ -33,7 +33,7 @@ public class Soba implements Serializable {
 	public void setSprat(int sprat) {
 		this.sprat = sprat;
 	}
-	public Boolean getBalkon() {
+	public boolean getBalkon() {
 		return balkon;
 	}
 	public void setBalkon(Boolean balkon) {
@@ -51,7 +51,7 @@ public class Soba implements Serializable {
 	public void setCijena(double cijena) {
 		this.cijena = cijena;
 	}
-	public Boolean getZauzeta() {
+	public boolean getZauzeta() {
 		return zauzeta;
 	}
 	public void setZauzeta(Boolean zauzeta) {
