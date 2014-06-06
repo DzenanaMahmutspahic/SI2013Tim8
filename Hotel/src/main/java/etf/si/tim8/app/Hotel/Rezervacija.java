@@ -756,7 +756,7 @@ jButton_7.setText("Evidencija gostiju");
             		}
             		if(datumDO.before(datumOD))
             		{
-            			JOptionPane.showMessageDialog(null, "Datum odlaska mora biti veći od datuma dolaska!", "Error", JOptionPane.ERROR_MESSAGE);
+            			JOptionPane.showMessageDialog(null, "Datum odlaska mora biti poslije datuma dolaska!", "Error", JOptionPane.ERROR_MESSAGE);
             			return;
             		}
             		
