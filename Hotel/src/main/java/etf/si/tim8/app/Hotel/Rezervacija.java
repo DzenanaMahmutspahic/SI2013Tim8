@@ -902,11 +902,20 @@ jButton_7.setText("Evidencija gostiju");
         				Klase.Rezervacija rezervacija = (Klase.Rezervacija)jList2.getSelectedValue();
         				if(rezervacija == null)
         				{
+        					
         					JOptionPane.showMessageDialog(null, "Niste odabrali rezervaciju!", "Info", JOptionPane.ERROR_MESSAGE);
         					return;
         				}
         				DBManager.otkaziRezervaciju(rezervacija);
         				JOptionPane.showMessageDialog(null, "Rezervacija otkazana!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        			
+                			List<Klase.Rezervacija> sveRezervacije = DBManager.dajSveRezervacije();
+                			DefaultListModel model = new DefaultListModel();
+                			for(Klase.Rezervacija rezervacije : sveRezervacije)
+                			{
+                				model.addElement(rezervacije);
+                			}
+                			jList2.setModel(model);
         			}
         		}
         		catch(Exception ex)
