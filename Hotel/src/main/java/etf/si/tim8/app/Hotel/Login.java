@@ -30,6 +30,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	setResizable(false);
         initComponents();
     }
@@ -186,12 +187,12 @@ public class Login extends javax.swing.JFrame {
         		if(!zaposlenik.getIsAdministrator())
         		{
         			new HomePage(zaposlenik).setVisible(true);
-        			setVisible(false);
+        			dispose();
         		}
         		else
         		{
         			new EkranZaAdministratora(zaposlenik).setVisible(true);
-        			setVisible(false);
+        			dispose();
         		}
         		
         	}

@@ -42,7 +42,7 @@ public class DBManager {//komentar
 		q.setParameter("danas", new Date());
 		
 		List<Boravak> boravci = q.list();
-		session.close();
+		//session.close();
 		return boravci; 
 		//return ret;
 	}
@@ -61,7 +61,7 @@ public class DBManager {//komentar
 		//			ret.add(b);
 		//	}
 		//}
-		session.close();
+	//	session.close();
 		return boravci; 
 		//return ret;
 	}
@@ -100,7 +100,7 @@ public class DBManager {//komentar
     				
     			}
 			}
-			session.close();
+			//session.close();
 			return ret;
 		
 
@@ -119,7 +119,7 @@ public class DBManager {//komentar
 			predracun = (Predracun) q.list().get(0);
 		else predracun=null;
 	    
-		session.close();
+	//	session.close();
 		return predracun;
 	}
 	
@@ -135,7 +135,7 @@ public class DBManager {//komentar
 			racun = (Racun) q.list().get(0);
 		else racun=null;
 	    
-		session.close();
+		//session.close();
 		return racun;
 	}
 	

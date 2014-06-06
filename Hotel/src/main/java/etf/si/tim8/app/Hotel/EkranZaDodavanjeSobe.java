@@ -71,13 +71,13 @@ public class EkranZaDodavanjeSobe {
 		frmDodavanjeSobe.setTitle("Hotel Ksenon Plaza-Dodavanje sobe");
 		frmDodavanjeSobe.getContentPane().setBackground(Color.WHITE);
 		frmDodavanjeSobe.setResizable(false);
-		frmDodavanjeSobe.setBounds(100, 100, 334, 340);
+		frmDodavanjeSobe.setBounds(100, 100, 302, 340);
 		frmDodavanjeSobe.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel.setBounds(10, 11, 297, 279);
+		panel.setBounds(10, 11, 272, 279);
 		frmDodavanjeSobe.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -88,46 +88,46 @@ public class EkranZaDodavanjeSobe {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 36, 277, 232);
+		panel_1.setBounds(10, 36, 242, 232);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblSprat = new JLabel("Sprat:");
-		lblSprat.setBounds(10, 11, 66, 14);
+		lblSprat.setBounds(10, 17, 66, 14);
 		panel_1.add(lblSprat);
 		
 		JLabel lblBrojSobe = new JLabel("Broj sobe:");
-		lblBrojSobe.setBounds(10, 36, 66, 14);
+		lblBrojSobe.setBounds(10, 57, 66, 14);
 		panel_1.add(lblBrojSobe);
 		
 		JLabel lblTipSobe = new JLabel("Tip sobe:");
-		lblTipSobe.setBounds(10, 61, 66, 14);
+		lblTipSobe.setBounds(10, 91, 66, 14);
 		panel_1.add(lblTipSobe);
 		
 		JLabel lblCijena = new JLabel("Cijena:\r\n");
-		lblCijena.setBounds(10, 86, 66, 14);
+		lblCijena.setBounds(10, 125, 66, 14);
 		panel_1.add(lblCijena);
 		
 		final JCheckBox cb1 = new JCheckBox("Balkon");
 		cb1.setBackground(Color.WHITE);
-		cb1.setBounds(10, 129, 102, 18);
+		cb1.setBounds(6, 164, 85, 18);
 		panel_1.add(cb1);
 		
 		final JSpinner spinner = new JSpinner();
-		spinner.setBounds(97, 11, 112, 20);
+		spinner.setBounds(97, 11, 112, 26);
 		panel_1.add(spinner);
 		
 		final JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(97, 39, 112, 20);
+		spinner_1.setBounds(97, 48, 112, 23);
 		panel_1.add(spinner_1);
 		
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Jednokrevetna", "Dvokrevetna"}));
-		comboBox.setBounds(97, 64, 112, 20);
+		comboBox.setBounds(97, 79, 112, 23);
 		panel_1.add(comboBox);
 		
 		textField = new JTextField();
-		textField.setBounds(97, 89, 112, 20);
+		textField.setBounds(97, 113, 112, 26);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
@@ -178,12 +178,13 @@ public class EkranZaDodavanjeSobe {
 							break;
 						}
 					}
-					if(!postoji)
+					if(!postoji && Integer.parseInt(spinner_1.getValue().toString())>0)
 					soba.setBrojSobe(Integer.parseInt(spinner_1.getValue().toString()));
 					else
-					JOptionPane.showMessageDialog(null, "Broj sobe već postoji!", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    
-					
+					{
+					ispravna=false;
+					JOptionPane.showMessageDialog(null, "Broj sobe već postoji ili ste unijeli broj manji od nule!", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}
 					if(ispravna){
 					if(cb1.isSelected())soba.setBalkon(true);
 					else soba.setBalkon(false);
