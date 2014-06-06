@@ -68,27 +68,27 @@ public class EkranZaDodavanjeSobe {
 	 */
 	private void initialize() {
 		frmDodavanjeSobe = new JFrame();
-		frmDodavanjeSobe.setTitle("Dodavanje sobe");
+		frmDodavanjeSobe.setTitle("Hotel Ksenon Plaza-Dodavanje sobe");
 		frmDodavanjeSobe.getContentPane().setBackground(Color.WHITE);
 		frmDodavanjeSobe.setResizable(false);
-		frmDodavanjeSobe.setBounds(100, 100, 278, 324);
+		frmDodavanjeSobe.setBounds(100, 100, 334, 340);
 		frmDodavanjeSobe.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel.setBounds(10, 11, 249, 272);
+		panel.setBounds(10, 11, 297, 279);
 		frmDodavanjeSobe.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblSoba = new JLabel("Soba:");
 		lblSoba.setBackground(SystemColor.inactiveCaptionBorder);
-		lblSoba.setBounds(24, 11, 74, 29);
+		lblSoba.setBounds(23, 11, 87, 29);
 		panel.add(lblSoba);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 44, 219, 208);
+		panel_1.setBounds(10, 36, 277, 232);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
