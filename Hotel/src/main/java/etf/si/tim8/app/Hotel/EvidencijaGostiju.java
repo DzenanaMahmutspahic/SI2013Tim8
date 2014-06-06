@@ -988,38 +988,38 @@ catch(Exception ec){
 			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateLastName(textField_1.getText()))
-			poruka += "Prezime prezime biti dugo bar 3 slova, prvo slovo veliko\n";
+			poruka += "Prezime prezime biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateCity(textField_4.getText()))
-			poruka += "Naziv mjesta nije validan\n";
+			poruka += "Naziv mjesta nije validan!\n";
 
 		if ((Date) datePicker.getModel().getValue() != null) {
 			if (!validateDatumRodjenja((Date) datePicker.getModel().getValue()))
-				poruka += "Datum rodjenja ne moze biti u buducnosti\n";
+				poruka += "Datum rodjenja ne moze biti u buducnosti!\n";
 		} else
-			poruka += "Morate unijeti datum rodjenja\n";
+			poruka += "Morate unijeti datum rodjenja!\n";
 		 if(!validateAddress(textField_2.getText()))
 		 poruka+="Unesite adresu\n";
 
 		if (comboBox.getSelectedItem() == "Strani") {
 
 			if (!validateNationality(textField_5.getText()))
-				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova\n";
+				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova!\n";
 			if (!validateBrojPutneIspave(textField_7.getText()))
-				poruka += "Putna isprava treba da bude u formatu A123456\n";
+				poruka += "Putna isprava treba da bude u formatu A123456!\n";
 			if ((Date) datePicker2.getModel().getValue() == null
 					|| (Date) datePicker3.getModel().getValue() == null)
-				poruka += "Morate unijeti sve datume";
+				poruka += "Morate unijeti sve datume!\n";
 			if((Date) datePicker2.getModel().getValue() != null
 					&& (Date) datePicker3.getModel().getValue() != null)
 			{
 Date datumdozvole=(Date) datePicker2.getModel().getValue();
 Date datumulaska=(Date) datePicker3.getModel().getValue();
 if(datumdozvole.after(datumulaska)) 
-				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
+				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka!\n";
 			}
 			if(!validateBrojVize(textField_9.getText()))
-				poruka += "Broj vize treba da bude u formatu A1234567\n";
+				poruka += "Broj vize treba da bude u formatu A1234567!\n";
 			
 			
 		}
@@ -1031,34 +1031,34 @@ if(datumdozvole.after(datumulaska))
 		String poruka = "";
 
 		if (!validateFirstName(textField_16.getText()))
-			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko\n";
+			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateLastName(textField_17.getText()))
-			poruka += "Prezime  biti dugo bar 3 slova, prvo slovo veliko\n";
+			poruka += "Prezime  biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateCity(textField_13.getText()))
-			poruka += "Naziv mjesta nije validan\n";
+			poruka += "Naziv mjesta nije validan!\n";
 
 		if ((Date) datePicker4.getModel().getValue() != null) {
 			if (!validateDatumRodjenja((Date) datePicker4.getModel().getValue()))
-				poruka += "Datum rodjenja ne moze biti u buducnosti\n";
+				poruka += "Datum rodjenja ne moze biti u buducnosti!\n";
 		} else
-			poruka += "Morate unijeti datum rodjenja\n";
+			poruka += "Morate unijeti datum rodjenja!\n";
 		 if(!validateAddress(textField_18.getText()))
 		 poruka+="Unesite adresu\n";
 
 		if (textField_3.getText().equals("Strani")) {
 
 			if (!validateNationality(textField_14.getText()))
-				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova\n";
+				poruka += "Drzavljanstvo treba biti napisano velikim slovima, najmanje 2 slova!\n";
 
 			if (!validateBrojPutneIspave(textField_20.getText()))
-				poruka += "Putna isprava treba da bude u formatu A123456\n";
+				poruka += "Putna isprava treba da bude u formatu A123456!\n";
 
 			if ((Date) datePicker4.getModel().getValue() == null
 					|| (Date) datePicker5.getModel().getValue() == null
 					|| (Date) datePicker6.getModel().getValue() == null)
-				poruka += "Morate unijeti sve datume";
+				poruka += "Morate unijeti sve datume!\n";
 			
 			if((Date) datePicker5.getModel().getValue() != null
 					&& (Date) datePicker6.getModel().getValue() != null)
@@ -1066,10 +1066,10 @@ if(datumdozvole.after(datumulaska))
 Date datumdozvole=(Date) datePicker5.getModel().getValue();
 Date datumulaska=(Date) datePicker6.getModel().getValue();
 if(datumdozvole.after(datumulaska)) 
-				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka";
+				poruka += "Datum ulaska ne moze biti prije datuma dozvole boravka!\n";
 			}
 			if(!validateBrojVize(textField_22.getText()))
-				poruka += "Broj vize treba da bude u formatu A1234567\n";
+				poruka += "Broj vize treba da bude u formatu A1234567!\n";
 		}
 
 		return poruka;
