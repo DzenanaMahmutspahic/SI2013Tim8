@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SpinnerNumberModel;
 
 public class EkranZaDodavanjeSobe {
 //tajma komentar
@@ -114,10 +115,12 @@ public class EkranZaDodavanjeSobe {
 		panel_1.add(cb1);
 		
 		final JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(0, 0, 2, 1));
 		spinner.setBounds(97, 11, 112, 26);
 		panel_1.add(spinner);
 		
 		final JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(0, 0, 20, 1));
 		spinner_1.setBounds(97, 48, 112, 23);
 		panel_1.add(spinner_1);
 		
