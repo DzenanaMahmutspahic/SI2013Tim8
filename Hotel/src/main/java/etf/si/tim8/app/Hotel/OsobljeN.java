@@ -469,17 +469,31 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setEmail(textField_9.getText());
     				zaposlenik.setTelefon(textField_10.getText());
     				
-    				if(textField_10.getText().length()<9){
-    					JOptionPane.showMessageDialog(null, "Broj telefona mora imati minimalno 6 cifara", "Info", JOptionPane.ERROR_MESSAGE);
-    					return;
-    				}
+    				 try{
+    					 String mob = String.valueOf(textField_10.getText()).trim();
+    			    
+    			            long br = Long.parseLong(mob);
+    			            if (mob.trim().length()!=9){
+    			            JOptionPane.showMessageDialog(null, "Broj telefona mora sadrzavati 9 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;}
+    			        }catch(NumberFormatException e1){
+    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;
+    			        }
     				
     				zaposlenik.setMobitel(textField_11.getText());
     				
-    				if(textField_11.getText().length()<9){
-    					JOptionPane.showMessageDialog(null, "Broj mobitela mora imati minimalno 6 cifara", "Info", JOptionPane.ERROR_MESSAGE);
-    					return;
-    				}
+    				 try{
+    					 String mob = String.valueOf(textField_11.getText()).trim();
+    			    
+    			            long br = Long.parseLong(mob);
+    			            if (mob.trim().length()!=9 && mob.trim().length()!=10 ){
+    			            JOptionPane.showMessageDialog(null, "Broj mobitela mora sadrzavati 9 ili 10(hallo) cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;}
+    			        }catch(NumberFormatException e1){
+    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+        					return;
+    			        }
     				
     				zaposlenik.setUsername(textField_12.getText());
     				zaposlenik.setPassword(textField_13.getText());
