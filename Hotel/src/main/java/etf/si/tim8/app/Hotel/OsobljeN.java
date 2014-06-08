@@ -429,6 +429,17 @@ public class OsobljeN extends javax.swing.JFrame {
     				Osoba osoba = new Osoba();
     				Zaposlenik zaposlenik = new Zaposlenik();
     				osoba.setImePrezime(textField_1.getText() + " " + textField_2.getText());
+    				
+    				if(textField_1.getText().length()<3){
+    					JOptionPane.showMessageDialog(null, "Ime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
+    				if(textField_2.getText().length()<3){
+    					JOptionPane.showMessageDialog(null, "Prezime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
     				zaposlenik.setJMB(textField_4.getText());
     				
     				/*if(textField_4.getText().length()!=13)
@@ -449,6 +460,7 @@ public class OsobljeN extends javax.swing.JFrame {
     			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
         					return;
     			        }
+    				 
     				osoba.setAdresa(textField_5.getText());
     				osoba.setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
     				zaposlenik.setDrzavljanstvo(textField_6.getText());
@@ -456,7 +468,19 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setObrazovanje(textField_8.getText());
     				zaposlenik.setEmail(textField_9.getText());
     				zaposlenik.setTelefon(textField_10.getText());
+    				
+    				if(textField_10.getText().length()<9){
+    					JOptionPane.showMessageDialog(null, "Broj telefona mora imati minimalno 6 cifara", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
     				zaposlenik.setMobitel(textField_11.getText());
+    				
+    				if(textField_11.getText().length()<9){
+    					JOptionPane.showMessageDialog(null, "Broj mobitela mora imati minimalno 6 cifara", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
     				zaposlenik.setUsername(textField_12.getText());
     				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
