@@ -181,8 +181,17 @@ public class Rezervacija extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		dispose();
-        		new HomePage().setVisible(true);
+        		if(zaposlenik == null || !zaposlenik.getIsAdministrator())
+        		{
+    				dispose();
+        			new HomePage(zaposlenik).setVisible(true);
+            		//EkranZaPlacanje.this.setVisible(false);
+        		}
+        		else
+        		{
+        			dispose();
+        			new EkranZaAdministratora(zaposlenik).setVisible(true);
+        		}
         	}
         });
         jButton6 = new javax.swing.JButton();

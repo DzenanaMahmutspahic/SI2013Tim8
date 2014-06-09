@@ -153,7 +153,7 @@ public class HomePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
         	dispose();
-            new EkranZaPlacanje().setVisible(true);
+            new EkranZaPlacanje(zaposlenik).setVisible(true);
         }
     }); 
 } 
@@ -162,7 +162,7 @@ public class HomePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
         	dispose();
-            new EvidencijaGostiju().setVisible(true);
+            new EvidencijaGostiju(zaposlenik).setVisible(true);
         }
     }); 
 } 
@@ -171,7 +171,7 @@ public class HomePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
         	dispose();
-            new EkranZaPracenjeRaspolozivostiSoba().setVisible(true);
+            new EkranZaPracenjeRaspolozivostiSoba(zaposlenik).setVisible(true);
         }
     }); 
 } 
