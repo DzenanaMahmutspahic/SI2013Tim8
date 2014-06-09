@@ -17,7 +17,7 @@ import java.awt.Color;
 public class EkranZaAdministratora extends JFrame {
 
 	private JPanel contentPane;
-	private Zaposlenik zaposlenik;
+	final private Zaposlenik zaposlenik;
 
 	/**
 	 * Launch the application.
@@ -39,6 +39,7 @@ public class EkranZaAdministratora extends JFrame {
 	 * Create the frame.
 	 */
 	public EkranZaAdministratora() {
+		this.zaposlenik = null;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 746, 383);
 		contentPane = new JPanel();
@@ -114,8 +115,8 @@ public class EkranZaAdministratora extends JFrame {
 		contentPane.add(btnOsoblje);
 	}
 	
-	public EkranZaAdministratora(Zaposlenik zaposlenik) {
-		this.zaposlenik = zaposlenik;
+	public EkranZaAdministratora(Zaposlenik zap) {
+		this.zaposlenik = zap;
 		setBounds(100, 100, 746, 383);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -127,7 +128,7 @@ public class EkranZaAdministratora extends JFrame {
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new EkranZaPracenjeRaspolozivostiSobaAdmin().setVisible(true);;
+				new EkranZaPracenjeRaspolozivostiSobaAdmin(zaposlenik).setVisible(true);;
 			}
 		});
 		btnSobe.setText("Sobe");
@@ -140,7 +141,7 @@ public class EkranZaAdministratora extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
-			 new Rezervacija().setVisible(true);
+			 new Rezervacija(zaposlenik).setVisible(true);
 			 
 			}
 		});
@@ -154,7 +155,7 @@ public class EkranZaAdministratora extends JFrame {
 		btnPlaanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new EkranZaPlacanje().setVisible(true);
+				new EkranZaPlacanje(zaposlenik).setVisible(true);
 			}
 		});
 		btnPlaanje.setText("Pla\u0107anje");
@@ -167,7 +168,7 @@ public class EkranZaAdministratora extends JFrame {
 		btnEvidencijaGostiju.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new EvidencijaGostiju().setVisible(true);
+				new EvidencijaGostiju(zaposlenik).setVisible(true);
 			}
 		});
 		btnEvidencijaGostiju.setText("Evidencija gostiju");
@@ -180,7 +181,7 @@ public class EkranZaAdministratora extends JFrame {
 		btnOsoblje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new OsobljeN().setVisible(true);
+				new OsobljeN(zaposlenik).setVisible(true);
 			}
 		});
 		btnOsoblje.setText("Osoblje");

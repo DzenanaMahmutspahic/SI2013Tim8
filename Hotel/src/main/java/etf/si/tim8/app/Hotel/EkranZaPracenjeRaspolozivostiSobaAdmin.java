@@ -29,10 +29,13 @@ import javax.swing.JLabel;
 import antlr.collections.List;
 
 import com.mysql.fabric.xmlrpc.base.Array;
+
 import java.util.*;
 import java.sql.*;
 import java.awt.*;
+
 import Hibernate.DBManager;
+import Klase.Zaposlenik;
 
 /**
  *
@@ -40,10 +43,19 @@ import Hibernate.DBManager;
  */
 public class EkranZaPracenjeRaspolozivostiSobaAdmin extends javax.swing.JFrame {
 
+	private Zaposlenik zaposlenik;
     /**
      * Creates new form EkranZaPracenjeRaspolozivostiSoba
      */
     public EkranZaPracenjeRaspolozivostiSobaAdmin() {
+    	setResizable(false);
+    	getContentPane().setBackground(Color.WHITE);
+    	setTitle("Sobe");
+        initComponents();
+    }
+    
+    public EkranZaPracenjeRaspolozivostiSobaAdmin(Zaposlenik zap) {
+    	this.zaposlenik = zap;
     	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
     	setTitle("Sobe");
@@ -97,7 +109,7 @@ public class EkranZaPracenjeRaspolozivostiSobaAdmin extends javax.swing.JFrame {
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		new HomePage().setVisible(true);
+        		new EkranZaAdministratora(zaposlenik).setVisible(true);
         	}
         });
 

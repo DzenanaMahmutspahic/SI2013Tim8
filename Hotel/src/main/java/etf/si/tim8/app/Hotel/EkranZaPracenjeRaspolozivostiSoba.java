@@ -29,10 +29,13 @@ import javax.swing.JLabel;
 import antlr.collections.List;
 
 import com.mysql.fabric.xmlrpc.base.Array;
+
 import java.util.*;
 import java.sql.*;
 import java.awt.*;
+
 import Hibernate.DBManager;
+import Klase.Zaposlenik;
 
 /**
  *
@@ -40,6 +43,7 @@ import Hibernate.DBManager;
  */
 public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
 
+	private Zaposlenik zaposlenik;
     /**
      * Creates new form EkranZaPracenjeRaspolozivostiSoba
      */
@@ -49,6 +53,16 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
     	setTitle("Sobe");
         initComponents();
     }
+    
+    public EkranZaPracenjeRaspolozivostiSoba(Zaposlenik zaposlenik) {
+    	this.zaposlenik = zaposlenik;
+    	setResizable(false);
+    	getContentPane().setBackground(Color.WHITE);
+    	setTitle("Sobe");
+        initComponents();
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +111,7 @@ public class EkranZaPracenjeRaspolozivostiSoba extends javax.swing.JFrame {
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		new HomePage().setVisible(true);
+        		new HomePage(zaposlenik).setVisible(true);
         	}
         });
 

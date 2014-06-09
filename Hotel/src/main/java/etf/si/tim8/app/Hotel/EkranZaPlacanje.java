@@ -64,6 +64,7 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 	private Boravak oznaceniBoravak;
 	private Predracun predracun;
 	private Racun racun;
+	private Zaposlenik zaposlenik;
 	
 	private Double minibar = 0.0, telefon = 0.0;
 	
@@ -94,7 +95,35 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
 		
 	}
 	
-    public EkranZaPlacanje() {
+	public EkranZaPlacanje() {
+    	setResizable(false);
+    	setPreferredSize(new Dimension(850, 570));
+    	setSize(1000,1000);
+    	getContentPane().setBackground(Color.WHITE);
+    	setAutoRequestFocus(false);
+    	setTitle("Ekran za Placanje");
+        initComponents();
+        //dodavanje rezervacija u listu
+        boravci = DBManager.dajBoravke();
+        
+        if(boravci !=null && boravci.size() > 0 ){
+	        DefaultListModel model = new DefaultListModel();
+	        jList1.setModel(model);
+	        
+	        for(Boravak boravak : boravci){
+	        	model.addElement(boravak.getGost());
+	        }
+	        jButton1.setEnabled(false);
+        	jButton2.setEnabled(false);
+        }
+        else {
+        	jButton1.setEnabled(false);
+        	jButton2.setEnabled(false);
+        }
+    }
+	
+    public EkranZaPlacanje(Zaposlenik zaposlenik) {
+    	this.zaposlenik = zaposlenik;
     	setResizable(false);
     	setPreferredSize(new Dimension(850, 570));
     	setSize(1000,1000);
@@ -431,9 +460,18 @@ public class EkranZaPlacanje extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		new HomePage().setVisible(true);
-        		//EkranZaPlacanje.this.setVisible(false);
-        		EkranZaPlacanje.this.dispose();
+        		if(zaposlenik == null || !zaposlenik.getIsAdministrator())
+        		{
+        			new HomePage(zaposlenik).setVisible(true);
+            		//EkranZaPlacanje.this.setVisible(false);
+            		EkranZaPlacanje.this.dispose();
+        		}
+        		else
+        		{
+        			new EkranZaAdministratora(zaposlenik).setVisible(true);
+        			EkranZaPlacanje.this.dispose();
+        		}
+        		
         	}
         });
 
