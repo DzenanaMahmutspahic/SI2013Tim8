@@ -202,7 +202,7 @@ statistika();
 
 		//final JComboBox 
 		comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(171, 352, 149, 23);
+		comboBox_3.setBounds(171, 352, 240, 23);
 		comboBox_3.addItem("Aerodromska tranzitna viza");
 		comboBox_3.addItem("Tranzitna viza");
 		comboBox_3.addItem("Ulazna viza za kratkoročni boravak");

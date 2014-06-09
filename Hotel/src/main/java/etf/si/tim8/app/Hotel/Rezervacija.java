@@ -941,6 +941,11 @@ jButton_7.setText("Evidencija gostiju");
             			JOptionPane.showMessageDialog(null, "Niste unjeli datum odlaska!", "Info", JOptionPane.ERROR_MESSAGE);
             			return;
             		}
+            		if(datumDO.before(datumOD))
+            		{
+            			JOptionPane.showMessageDialog(null, "Datum do mora biti poslije datuma od!", "Error", JOptionPane.ERROR_MESSAGE);
+            			return;
+            		}
             		
             		int klasa;
             		if(jComboBox1.getSelectedIndex() == 0)

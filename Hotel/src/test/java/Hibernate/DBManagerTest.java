@@ -679,7 +679,16 @@ public class DBManagerTest extends TestCase {
 	 			if(	i.getIme().equals(g.getIme())&&	i.getPrezime().equals(g.getPrezime()))
 	 				tacno=true;
 	 		}
+	 		
+	 		Session session = HibernateUtil.getSessionFactory().openSession();
+	 		Transaction t1 = session.beginTransaction();
+			session.delete(o);
+	
+			session.delete(g);
+			t1.commit();
+			
 	 	   Assert.assertTrue(tacno); 
+	 	   
 	 	   
 	   }
 	   
