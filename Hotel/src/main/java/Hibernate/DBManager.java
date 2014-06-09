@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.JDBCConnectionException;
 
 import Klase.Gost;
 import Klase.Osoba;
@@ -35,16 +37,15 @@ public class DBManager {//komentar
 	}
 	
 	
-	/*Za Ekran za placanje *///ne radi ova metoda uopce
+	/*Za Ekran za placanje */ //a
 	public static List<Boravak> dajBoravke() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query q = session.createQuery("from Boravak boravak where boravak.rezervacija.potvrdjena=true and (boravak.vrijemeOdlaska is null or boravak.vrijemeOdlaska>=:danas or boravak.rezervacija.rezervisanoDo >=:danas)");
 		q.setParameter("danas", new Date());
 		
 		List<Boravak> boravci = q.list();
-		//session.close();
-		return boravci; 
-		//return ret;
+		session.close();
+		return boravci;
 	}
 	
 	
@@ -119,7 +120,7 @@ public class DBManager {//komentar
 			predracun = (Predracun) q.list().get(0);
 		else predracun=null;
 	    
-	//	session.close();
+		session.close();
 		return predracun;
 	}
 	
@@ -135,7 +136,7 @@ public class DBManager {//komentar
 			racun = (Racun) q.list().get(0);
 		else racun=null;
 	    
-		//session.close();
+		session.close();
 		return racun;
 	}
 	

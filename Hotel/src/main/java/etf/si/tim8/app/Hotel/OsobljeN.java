@@ -499,40 +499,55 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setUsername(textField_12.getText());
     				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
+    				
+    				boolean oznacenRB = false;
     				if(rb_recepcioner.isSelected())
     				{
     					zaposlenik.setUloga("Recepcioner");
+    					oznacenRB=true;
     				}
     				else if(rb_cistacica.isSelected())
     				{
     					zaposlenik.setUloga("Cistacica");
+    					oznacenRB=true;
     				}
     				else if(rb_ekonomista.isSelected())
     				{
     					zaposlenik.setUloga("Ekonomista");
+    					oznacenRB=true;
     				}
     				else if(rb_kuhar.isSelected())
     				{
     					zaposlenik.setUloga("Kuhar");
+    					oznacenRB=true;
     				}
     				else if(rb_manager.isSelected())
     				{
     					zaposlenik.setUloga("Manager");
+    					oznacenRB=true;
     				}
     				else if(rb_administrator.isSelected())
     				{
     					zaposlenik.setUloga("Administrator");
     					zaposlenik.setIsAdministrator(true);
+    					oznacenRB=true;
     				}
-    				else
+    				/*else
     				{
     					zaposlenik.setUloga("");
+    				}*/
+    				
+    				
+    				
+    				if(oznacenRB==true){
+    					zaposlenik.setOsoba(osoba);
+	    				DBManager.spremiZaposlenika(zaposlenik);
+	    				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
     				}
-    				
-    				
-    				zaposlenik.setOsoba(osoba);
-    				DBManager.spremiZaposlenika(zaposlenik);
-    				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
+    				else if(oznacenRB==false) {
+    					JOptionPane.showMessageDialog(null, "Nije označena uloga!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
     				}
     				
     			}
