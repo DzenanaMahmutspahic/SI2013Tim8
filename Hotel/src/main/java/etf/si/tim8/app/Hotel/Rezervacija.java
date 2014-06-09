@@ -178,6 +178,7 @@ public class Rezervacija extends javax.swing.JFrame {
         jTextField16 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
+        jComboBox2.setEnabled(false);
         jButton5 = new javax.swing.JButton();
         jButton5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
