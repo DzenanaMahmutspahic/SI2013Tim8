@@ -51,6 +51,7 @@ import java.awt.SystemColor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -467,7 +468,22 @@ public class OsobljeN extends javax.swing.JFrame {
     				zaposlenik.setDrzavljanstvo(textField_6.getText());
     				zaposlenik.setTitula(textField_7.getText());
     				zaposlenik.setObrazovanje(textField_8.getText());
-    				zaposlenik.setEmail(textField_9.getText());
+    				
+    				
+    					String email = String.valueOf(textField_9.getText()).trim();
+    					boolean validmail = true;
+    					if(!email.contains(".") && !email.contains("@")) validmail=false;
+    					if(email.indexOf("@") > email.indexOf(".") || email.indexOf("@") ==0) validmail=false;
+    					if(validmail) zaposlenik.setDrzavljanstvo(email);
+    					else{ 
+    						JOptionPane.showMessageDialog(null, "Nevalidan mail!", "Info", JOptionPane.ERROR_MESSAGE); 
+    						return;
+    					}
+    					
+    				
+    				
+
+    				//zaposlenik.setEmail(textField_9.getText());
     				zaposlenik.setTelefon(textField_10.getText());
     				
     				 try{
