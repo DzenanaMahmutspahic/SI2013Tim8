@@ -465,6 +465,15 @@ public class OsobljeN extends javax.swing.JFrame {
     				 
     				osoba.setAdresa(textField_5.getText());
     				osoba.setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
+    				//Date d = new Date(System.currentTimeMillis());
+    				java.util.Date date = new java.util.Date();
+    				java.util.Date datumRodjenja = new java.util.Date();
+    				datumRodjenja=(java.util.Date) datePicker.getModel().getValue();
+    				if(datumRodjenja.after(date)){
+    					JOptionPane.showMessageDialog(null, "Datum rodjenja mora biti manji od trenutnog datuma!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    					
     				zaposlenik.setDrzavljanstvo(textField_6.getText());
     				zaposlenik.setTitula(textField_7.getText());
     				zaposlenik.setObrazovanje(textField_8.getText());
