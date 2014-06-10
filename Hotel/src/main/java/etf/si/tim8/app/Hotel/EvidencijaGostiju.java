@@ -239,6 +239,11 @@ statistika();
 				
 				
 				if (comboBox.getSelectedIndex() == 1) {
+					textField.setEditable(true);
+					textField_1.setEditable(true);
+					textField_2.setEditable(true);
+					datePicker.getJFormattedTextField().setEditable(true);
+					textField_4.setEditable(true);
 					textField_5.setEditable(true);
 					comboBox_2.setEditable(true);
 					textField_7.setEditable(true);
@@ -795,6 +800,11 @@ statistika();
 				
 				
 				if (comboBox.getSelectedIndex() == 1) {
+					textField.setEditable(true);
+					textField_1.setEditable(true);
+					textField_2.setEditable(true);
+					datePicker.getJFormattedTextField().setEditable(true);
+					textField_4.setEditable(true);
 					textField_5.setEditable(true);
 					comboBox_2.setEditable(true);
 					textField_7.setEditable(true);
