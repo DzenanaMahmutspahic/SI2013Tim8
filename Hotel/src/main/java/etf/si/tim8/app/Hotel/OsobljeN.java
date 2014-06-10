@@ -416,12 +416,13 @@ public class OsobljeN extends javax.swing.JFrame {
     		public void actionPerformed(ActionEvent e) {
     			try
     			{
+    				String x = textField_12.getText();
     				if(textField_1.getText() == "" || textField_2.getText() == "" ||
     				   textField_4.getText() == "" || textField_5.getText() == "" ||
     				   textField_6.getText() == "" || textField_7.getText() == "" ||
     				   textField_8.getText() == "" || textField_9.getText() == "" ||
     				   textField_10.getText() == "" || textField_11.getText() == "" ||
-    				   textField_12.getText() == "" || textField_13.getText() == "" ||
+    				   textField_12.getText().length() == 0 || textField_13.getText().length() == 0 ||
     				   datePicker.getModel().getValue() == null)
     				{
     					JOptionPane.showMessageDialog(null, "Greska! Niste unijeli sve podatke!", "Info", JOptionPane.ERROR_MESSAGE);
