@@ -162,6 +162,12 @@ statistika();
 		lblAdresa.setText("Adresa:");
 		lblAdresa.setBounds(20, 129, 94, 14);
 		panel.add(lblAdresa);
+		datePicker4.getJFormattedTextField().setEditable(false);
+		datePicker.getJFormattedTextField().setEditable(false);
+		datePicker2.getJFormattedTextField().setEditable(false);
+		datePicker3.getJFormattedTextField().setEditable(false);
+		datePicker5.getJFormattedTextField().setEditable(false);
+		datePicker6.getJFormattedTextField().setEditable(false);
 
 		comboBox_2 = new JComboBox();
 
@@ -223,15 +229,14 @@ statistika();
 					textField.setEditable(false);
 					textField_1.setEditable(false);
 					textField_2.setEditable(false);
-					datePicker.getJFormattedTextField().setEditable(false);
+					
 					textField_4.setEditable(false);
 					textField_5.setEditable(false);
 					comboBox_2.setEditable(false);
 					textField_7.setEditable(false);
 					comboBox_3.setEditable(false);
 					textField_9.setEditable(false);
-					datePicker2.getJFormattedTextField().setEditable(false);
-					datePicker3.getJFormattedTextField().setEditable(false);
+				
 					
 				}
 				else
@@ -242,31 +247,28 @@ statistika();
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-					datePicker.getJFormattedTextField().setEditable(true);
+			
 					textField_4.setEditable(true);
 					textField_5.setEditable(true);
 					comboBox_2.setEditable(true);
 					textField_7.setEditable(true);
 					comboBox_3.setEditable(true);
 					textField_9.setEditable(true);
-					datePicker2.getJFormattedTextField().setEditable(true);
-					datePicker3.getJFormattedTextField().setEditable(true);
+			
 
 				}
 				else {
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-					datePicker.getJFormattedTextField().setEditable(true);
+				
 					textField_4.setEditable(true);
 					textField_5.setEditable(false);
 					comboBox_2.setEditable(false);
 					textField_7.setEditable(false);
 					comboBox_3.setEditable(false);
 					textField_9.setEditable(false);
-					datePicker2.getJFormattedTextField().setEditable(false);
-					datePicker3.getJFormattedTextField().setEditable(false);
-			
+				
 
 				}
 				}
@@ -665,15 +667,14 @@ catch(Exception ec){
 		textField.setEditable(false);
 		textField_1.setEditable(false);
 		textField_2.setEditable(false);
-		datePicker.getJFormattedTextField().setEditable(false);
+	
 		textField_4.setEditable(false);
 		textField_5.setEditable(false);
 		comboBox_2.setEditable(false);
 		textField_7.setEditable(false);
 		comboBox_3.setEditable(false);
 		textField_9.setEditable(false);
-		datePicker2.getJFormattedTextField().setEditable(false);
-		datePicker3.getJFormattedTextField().setEditable(false);
+	
 
 
 	}
@@ -776,7 +777,9 @@ statistika();
 		comboBox_3.setSelectedItem("Ulazna viza za kratkoročni boravak");
 
 		panel.add(comboBox_3);
-
+		comboBox_3.setEditable(false);
+		comboBox_2.setEditable(false);
+		comboBox.setEditable(false);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedIndex() == 2)
@@ -784,16 +787,20 @@ statistika();
 					textField.setEditable(false);
 					textField_1.setEditable(false);
 					textField_2.setEditable(false);
-					datePicker.getJFormattedTextField().setEditable(false);
+					
 					textField_4.setEditable(false);
 					textField_5.setEditable(false);
-					comboBox_2.setEditable(false);
+			
+					comboBox_2.setEnabled(false);
 					textField_7.setEditable(false);
-					comboBox_3.setEditable(false);
+				
+					comboBox_3.setEnabled(false);
 					textField_9.setEditable(false);
-					datePicker2.getJFormattedTextField().setEditable(false);
-					datePicker3.getJFormattedTextField().setEditable(false);
-					
+				
+					datePicker2.setEnabled(false);
+					datePicker3.setEnabled(false);
+					datePicker2.getJFormattedTextField().setEnabled(false);
+					datePicker3.getJFormattedTextField().setEnabled(false);
 				}
 				else
 				{
@@ -803,31 +810,40 @@ statistika();
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-					datePicker.getJFormattedTextField().setEditable(true);
+		
 					textField_4.setEditable(true);
 					textField_5.setEditable(true);
-					comboBox_2.setEditable(true);
+					
+					comboBox_2.setEnabled(true);
 					textField_7.setEditable(true);
-					comboBox_3.setEditable(true);
+				
+					comboBox_3.setEnabled(true);
 					textField_9.setEditable(true);
-					datePicker2.getJFormattedTextField().setEditable(true);
-					datePicker3.getJFormattedTextField().setEditable(true);
+				
+					datePicker2.setEnabled(true);
+					datePicker3.setEnabled(true);
+					datePicker2.getJFormattedTextField().setEnabled(true);
+					datePicker3.getJFormattedTextField().setEnabled(true);
 
 				}
 				else {
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-					datePicker.getJFormattedTextField().setEditable(true);
+			
 					textField_4.setEditable(true);
 					textField_5.setEditable(false);
-					comboBox_2.setEditable(false);
+				
+					comboBox_2.setEnabled(false);
 					textField_7.setEditable(false);
-					comboBox_3.setEditable(false);
+				
+					comboBox_3.setEnabled(false);
 					textField_9.setEditable(false);
-					datePicker2.getJFormattedTextField().setEditable(false);
-					datePicker3.getJFormattedTextField().setEditable(false);
-			
+		
+					datePicker2.setEnabled(false);
+					datePicker3.setEnabled(false);
+					datePicker2.getJFormattedTextField().setEnabled(false);
+					datePicker3.getJFormattedTextField().setEnabled(false);
 
 				}
 				}
@@ -1217,15 +1233,21 @@ catch(Exception ec){
 		textField.setEditable(false);
 		textField_1.setEditable(false);
 		textField_2.setEditable(false);
-		datePicker.getJFormattedTextField().setEditable(false);
+
 		textField_4.setEditable(false);
 		textField_5.setEditable(false);
-		comboBox_2.setEditable(false);
+
+		comboBox_2.setEnabled(false);
 		textField_7.setEditable(false);
-		comboBox_3.setEditable(false);
+	
+		comboBox_3.setEnabled(false);
 		textField_9.setEditable(false);
-		datePicker2.getJFormattedTextField().setEditable(false);
-		datePicker3.getJFormattedTextField().setEditable(false);
+
+	
+		datePicker2.setEnabled(false);
+		datePicker3.setEnabled(false);
+		datePicker2.getJFormattedTextField().setEnabled(false);
+		datePicker3.getJFormattedTextField().setEnabled(false);
 
 
 	}
@@ -1238,35 +1260,6 @@ catch(Exception ec){
 		
 
 		if (tabbedPane.getSelectedIndex() == 2) {
-
-			/*Session session = HibernateUtil.getSessionFactory()
-					.openSession();
-			Transaction t = session.beginTransaction();
-			Query query = session
-					.createQuery("from Boravak boravak join boravak.gost as gost join boravak.rezervacija as rezervacija");
-
-			List<Object[]> objekti = (List<Object[]>) query.list();*/
-			//List<Boravak> boravci =  DBManager.dajBoravke2();
-			
-			
-
-			//int brojtrenutnih = 0, brojstarih = 0;
-			
-			//Date today = new Date();
-			//for (Boravak b : boravci) {
-				
-				
-				
-				//if (today.after(b.getVrijemeDolaska())
-					//	&& today.before(b.getVrijemeOdlaska()))
-					//brojtrenutnih++;
-				//if (today.before(b.getVrijemeOdlaska()))
-					//brojstarih++;
-			//}
-
-			//textField_27.setText(Integer.toString(brojtrenutnih));
-			//textField_25.setText(Integer.toString(brojstarih));
-			
 
 			Date today = new Date();
 			List<Soba> sobe1 =DBManager.dajSlobodneSobe(today, today, 1);
@@ -1288,6 +1281,12 @@ catch(Exception ec){
 
 	public void unesiGosta()
 	{
+		if (comboBox.getSelectedItem().toString() == "") {
+			JOptionPane.showMessageDialog(null, "Ne mozete unijeti gosta bez statusa", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		
 		if (validiraj() != "") {
 			JOptionPane.showMessageDialog(null, validiraj(), "Info",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -1414,16 +1413,25 @@ catch(Exception ec){
 			textField_20.setEditable(true);
 			textField_21.setEditable(true);
 			textField_22.setEditable(true);
-		datePicker5.getJFormattedTextField().setEditable(true);
-		datePicker6.getJFormattedTextField().setEditable(true);
-
+		
+			
+			datePicker5.setEnabled(true);
+			datePicker6.setEnabled(true);
+			datePicker5.getJFormattedTextField().setEnabled(true);
+			datePicker6.getJFormattedTextField().setEnabled(true);
+		
+		
+		
+		
 		} else {
 			textField_3.setText("Domaci");
 			
 		
 			
 		}
-		datePicker4.getJFormattedTextField().setEditable(true);
+		
+		datePicker4.setEnabled(true);
+		datePicker4.getJFormattedTextField().setEnabled(true);
 		textField_13.setEditable(true);
 		textField_16.setEditable(true);
 		textField_17.setEditable(true);
@@ -1534,10 +1542,14 @@ catch(Exception ec){
 		textField_16.setEditable(false);
 		textField_17.setEditable(false);
 		textField_18.setEditable(false);
-		datePicker4.getJFormattedTextField().setEditable(false);
-		datePicker5.getJFormattedTextField().setEditable(false);
-		datePicker6.getJFormattedTextField().setEditable(false);
-
+	
+	
+		datePicker5.setEnabled(true);
+		datePicker6.setEnabled(true);
+		datePicker4.setEnabled(true);
+		datePicker5.getJFormattedTextField().setEnabled(true);
+		datePicker6.getJFormattedTextField().setEnabled(true);
+		datePicker4.getJFormattedTextField().setEnabled(true);
 	}
 
 	public void ocistiKontroleUnos() {
