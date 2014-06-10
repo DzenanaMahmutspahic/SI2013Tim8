@@ -869,6 +869,10 @@ jButton_7.setText("Evidencija gostiju");
                 	try
                 	{
                 		Klase.Rezervacija rezervacija = (Klase.Rezervacija)jList2.getSelectedValue();
+                		if(rezervacija == null)
+                		{
+                			return;
+                		}
                     	Gost gost = DBManager.getGostRezervacija(rezervacija);
                     	if(gost != null && gost.getOsoba() != null)
                     	{
@@ -922,15 +926,19 @@ jButton_7.setText("Evidencija gostiju");
         					return;
         				}
         				DBManager.otkaziRezervaciju(rezervacija);
+        				
+        				DefaultListModel m = (DefaultListModel)jList2.getModel();
+        				m.removeElementAt(jList2.getSelectedIndex());
+        				
+        				//List<Klase.Rezervacija> sveRezervacije = DBManager.dajSveRezervacije();
+            			//for(Klase.Rezervacija rezervacije : sveRezervacije)
+            			//{
+            				//m.addElement(rezervacije);
+            			//}
+        				
         				JOptionPane.showMessageDialog(null, "Rezervacija otkazana!", "Info", JOptionPane.INFORMATION_MESSAGE);
         			
-                			List<Klase.Rezervacija> sveRezervacije = DBManager.dajSveRezervacije();
-                			DefaultListModel model = new DefaultListModel();
-                			for(Klase.Rezervacija rezervacije : sveRezervacije)
-                			{
-                				model.addElement(rezervacije);
-                			}
-                			jList2.setModel(model);
+                			
         			}
         		}
         		catch(Exception ex)
