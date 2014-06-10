@@ -358,7 +358,7 @@ statistika();
 		panel_1.add(label_2);
 
 		textField_12 = new JTextField();
-		textField_12.setBounds(10, 26, 200, 20);
+		textField_12.setBounds(10, 26, 200, 23);
 		panel_1.add(textField_12);
 
 		JButton button = new JButton();
@@ -1391,7 +1391,7 @@ catch(Exception ec){
 
 		DBManager.updateGosta(g);
 		DBManager.updateOsobu(g.getOsoba());
-		JOptionPane.showMessageDialog(null, textField_3.getText(), "Info",
+		JOptionPane.showMessageDialog(null, "Promjene su spasene", "Info",
 				JOptionPane.INFORMATION_MESSAGE);
 		if (textField_3.getText().equals("Strani")) {
 			sg.setBrojPutneIsprave(textField_20.getText());
@@ -1592,7 +1592,7 @@ catch(Exception ec){
 			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko\n";
 
 		if (!validateLastName(textField_1.getText()))
-			poruka += "Prezime prezime biti dugo bar 3 slova, prvo slovo veliko!\n";
+			poruka += "Prezime mora biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateCity(textField_4.getText()))
 			poruka += "Naziv mjesta nije validan!\n";
@@ -1638,7 +1638,7 @@ if(datumdozvole.after(datumulaska))
 			poruka += "Ime mora biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateLastName(textField_17.getText()))
-			poruka += "Prezime  biti dugo bar 3 slova, prvo slovo veliko!\n";
+			poruka += "Prezime mora biti dugo bar 3 slova, prvo slovo veliko!\n";
 
 		if (!validateCity(textField_13.getText()))
 			poruka += "Naziv mjesta nije validan!\n";
