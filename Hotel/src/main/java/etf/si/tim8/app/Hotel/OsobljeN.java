@@ -1375,7 +1375,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     				   textField_6.getText() == "" || textField_7.getText() == "" ||
     				   textField_8.getText() == "" || textField_9.getText() == "" ||
     				   textField_10.getText() == "" || textField_11.getText() == "" ||
-    				   textField_12.getText() == "" || textField_13.getText() == "" ||
+    				   textField_12.getText().length() == 0 || textField_13.getText().length() == 0 ||
     				   datePicker.getModel().getValue() == null)
     				{
     					JOptionPane.showMessageDialog(null, "Greska! Niste unijeli sve podatke!", "Info", JOptionPane.ERROR_MESSAGE);
@@ -1452,6 +1452,13 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     			        }
     				
     				zaposlenik.setUsername(textField_12.getText());
+    				
+    				if(DBManager.daLiPostojiUserName(zaposlenik.getUsername()))
+    				{
+    					JOptionPane.showMessageDialog(null, "Username vec postoji!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
     				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
     				if(rb_recepcioner.isSelected())
@@ -1487,6 +1494,20 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     				
     				zaposlenik.setOsoba(osoba);
     				DBManager.spremiZaposlenika(zaposlenik);
+    				
+    				textField_1.setText("");
+    				textField_2.setText("");
+    				textField_4.setText("");
+    				textField_5.setText("");
+    				textField_6.setText("");
+    				textField_7.setText("");
+    				textField_8.setText("");
+    				textField_9.setText("");
+    				textField_10.setText("");
+    				textField_11.setText("");
+    				textField_12.setText("");
+    				textField_13.setText("");
+    				datePicker.getModel().setValue(null);
     				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
     				}
     				
@@ -1764,6 +1785,16 @@ list_1.addListSelectionListener(new ListSelectionListener() {
             			textField_5.setText("");
             			textField_1.setText("");
             			textField_2.setText("");
+            			if(tabbedPane.getSelectedIndex() == 0)
+            			{
+            				DefaultListModel m = (DefaultListModel)list.getModel();
+            				m.removeElementAt(list.getSelectedIndex());
+            			}
+            			else
+            			{
+            				DefaultListModel m = (DefaultListModel)list_1.getModel();
+            				m.removeElementAt(list_1.getSelectedIndex());
+            			}
         				JOptionPane.showMessageDialog(null, "Zaposlenik obrisan!", "Info", JOptionPane.INFORMATION_MESSAGE);
         			}
     					
