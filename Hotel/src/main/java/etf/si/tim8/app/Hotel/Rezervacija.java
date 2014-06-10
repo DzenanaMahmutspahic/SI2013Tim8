@@ -824,6 +824,11 @@ jButton_7.setText("Evidencija gostiju");
         			java.util.Date datumOD = (java.util.Date) datePicker.getModel().getValue();
             		java.util.Date datumDO = (java.util.Date) datePicker2.getModel().getValue();
         			DBManager.evidentirajBoravkeIRezervaciju(soba, gosti, datumOD, datumDO, zaposlenik);
+        			
+        			DefaultListModel m = (DefaultListModel)jList1.getModel();
+        			m.removeAllElements();
+        			list.clearSelection();
+        			
         			JOptionPane.showMessageDialog(null, "Rezervacija evidentirana!", "Info", JOptionPane.INFORMATION_MESSAGE);
         		}
         		catch(Exception ex)
