@@ -1113,8 +1113,17 @@ catch(Exception ec){
 		btnPoetnaStranica.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-                new HomePage().setVisible(true);
+				if(zaposlenik != null && !zaposlenik.getIsAdministrator())
+				{
+					dispose();
+	                new HomePage(zaposlenik).setVisible(true);
+				}
+				else if (zaposlenik.getIsAdministrator())
+				{
+					dispose();
+	                new EkranZaAdministratora(zaposlenik).setVisible(true);
+				}
+				
 
 			}
 
