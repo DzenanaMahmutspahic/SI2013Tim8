@@ -33,8 +33,8 @@ public class HomePage extends javax.swing.JFrame {
         setTitle("Hotel Ksenon Plaza-Dobrodosli!");
     }
     
-    public HomePage(Zaposlenik zaposlenik) {
-    	this.zaposlenik = zaposlenik;
+    public HomePage(Zaposlenik zap) {
+    	this.zaposlenik = zap;
     	setResizable(false);
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
@@ -161,8 +161,8 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-        	dispose();
             new EvidencijaGostiju(zaposlenik).setVisible(true);
+            dispose();
         }
     }); 
 } 
@@ -170,8 +170,8 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {                                      
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-        	dispose();
             new EkranZaPracenjeRaspolozivostiSoba(zaposlenik).setVisible(true);
+            dispose();
         }
     }); 
 } 

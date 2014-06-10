@@ -117,8 +117,9 @@ public class EvidencijaGostiju extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EvidencijaGostiju(Zaposlenik zap) {
-		this.zaposlenik = zap;
+	
+	public EvidencijaGostiju() {
+		zaposlenik = null;
 		setResizable(false);
 		setTitle("Hotel Ksenon Plaza-Evidencija gostiju");
 		setBounds(100, 100, 903, 631);
@@ -162,12 +163,6 @@ statistika();
 		lblAdresa.setText("Adresa:");
 		lblAdresa.setBounds(20, 129, 94, 14);
 		panel.add(lblAdresa);
-		datePicker4.getJFormattedTextField().setEditable(false);
-		datePicker.getJFormattedTextField().setEditable(false);
-		datePicker2.getJFormattedTextField().setEditable(false);
-		datePicker3.getJFormattedTextField().setEditable(false);
-		datePicker5.getJFormattedTextField().setEditable(false);
-		datePicker6.getJFormattedTextField().setEditable(false);
 
 		comboBox_2 = new JComboBox();
 
@@ -212,7 +207,7 @@ statistika();
 
 		//final JComboBox 
 		comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(171, 352, 149, 23);
+		comboBox_3.setBounds(171, 352, 240, 23);
 		comboBox_3.addItem("Aerodromska tranzitna viza");
 		comboBox_3.addItem("Tranzitna viza");
 		comboBox_3.addItem("Ulazna viza za kratkoročni boravak");
@@ -221,7 +216,9 @@ statistika();
 		comboBox_3.setSelectedItem("Ulazna viza za kratkoročni boravak");
 
 		panel.add(comboBox_3);
-
+		comboBox_3.setEditable(false);
+		comboBox_2.setEditable(false);
+		comboBox.setEditable(false);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedIndex() == 2)
@@ -232,12 +229,17 @@ statistika();
 					
 					textField_4.setEditable(false);
 					textField_5.setEditable(false);
-					comboBox_2.setEditable(false);
+			
+					comboBox_2.setEnabled(false);
 					textField_7.setEditable(false);
-					comboBox_3.setEditable(false);
+				
+					comboBox_3.setEnabled(false);
 					textField_9.setEditable(false);
 				
-					
+					datePicker2.setEnabled(false);
+					datePicker3.setEnabled(false);
+					datePicker2.getJFormattedTextField().setEnabled(false);
+					datePicker3.getJFormattedTextField().setEnabled(false);
 				}
 				else
 				{
@@ -247,28 +249,40 @@ statistika();
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-			
+		
 					textField_4.setEditable(true);
 					textField_5.setEditable(true);
-					comboBox_2.setEditable(true);
+					
+					comboBox_2.setEnabled(true);
 					textField_7.setEditable(true);
-					comboBox_3.setEditable(true);
+				
+					comboBox_3.setEnabled(true);
 					textField_9.setEditable(true);
-			
+				
+					datePicker2.setEnabled(true);
+					datePicker3.setEnabled(true);
+					datePicker2.getJFormattedTextField().setEnabled(true);
+					datePicker3.getJFormattedTextField().setEnabled(true);
 
 				}
 				else {
 					textField.setEditable(true);
 					textField_1.setEditable(true);
 					textField_2.setEditable(true);
-				
+			
 					textField_4.setEditable(true);
 					textField_5.setEditable(false);
-					comboBox_2.setEditable(false);
-					textField_7.setEditable(false);
-					comboBox_3.setEditable(false);
-					textField_9.setEditable(false);
 				
+					comboBox_2.setEnabled(false);
+					textField_7.setEditable(false);
+				
+					comboBox_3.setEnabled(false);
+					textField_9.setEditable(false);
+		
+					datePicker2.setEnabled(false);
+					datePicker3.setEnabled(false);
+					datePicker2.getJFormattedTextField().setEnabled(false);
+					datePicker3.getJFormattedTextField().setEnabled(false);
 
 				}
 				}
@@ -525,17 +539,8 @@ catch(Exception ec){
 		btnPoetnaStranica.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				if(zaposlenik == null || !zaposlenik.getIsAdministrator())
-        		{
-					dispose();
-        			new HomePage(zaposlenik).setVisible(true);
-            		
-        		}
-        		else
-        		{
-        			dispose();
-        			new EkranZaAdministratora(zaposlenik).setVisible(true);
-        		}
+				dispose();
+                new HomePage().setVisible(true);
 
 			}
 
@@ -667,20 +672,28 @@ catch(Exception ec){
 		textField.setEditable(false);
 		textField_1.setEditable(false);
 		textField_2.setEditable(false);
-	
+
 		textField_4.setEditable(false);
 		textField_5.setEditable(false);
-		comboBox_2.setEditable(false);
+
+		comboBox_2.setEnabled(false);
 		textField_7.setEditable(false);
-		comboBox_3.setEditable(false);
-		textField_9.setEditable(false);
 	
+		comboBox_3.setEnabled(false);
+		textField_9.setEditable(false);
+
+	
+		datePicker2.setEnabled(false);
+		datePicker3.setEnabled(false);
+		datePicker2.getJFormattedTextField().setEnabled(false);
+		datePicker3.getJFormattedTextField().setEnabled(false);
 
 
 	}
 	
-	public EvidencijaGostiju() {
-		zaposlenik = null;
+	
+	public EvidencijaGostiju(Zaposlenik zap) {
+		this.zaposlenik = zap;
 		setResizable(false);
 		setTitle("Hotel Ksenon Plaza-Evidencija gostiju");
 		setBounds(100, 100, 903, 631);
