@@ -538,7 +538,8 @@ public class DBManagerTest extends TestCase {
 		
 		
 	}
-	
+
+
 	
 	
 	public void testSaveStranogGosta() {
@@ -852,7 +853,7 @@ public class DBManagerTest extends TestCase {
 	   }
 	   
 	   
-	 /*  public void testSaveGosta() { Osoba o=new Osoba(); o.setImePrezime("Alen Kopic"); 
+	  public void testSaveGosta() { Osoba o=new Osoba(); o.setImePrezime("Alen Kopic"); 
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
 			try {
@@ -878,7 +879,7 @@ public class DBManagerTest extends TestCase {
 			 		}
 			 	   Assert.assertTrue(tacno); 
 			 	   
-			   }*/
+			   }
 	   
 	   public void testSaveOsobu() {
 		   Osoba o=new Osoba();
@@ -1379,6 +1380,7 @@ public class DBManagerTest extends TestCase {
 		session.delete(racun);
 		t1.commit();	
 	}
+	
 	
 	
 
