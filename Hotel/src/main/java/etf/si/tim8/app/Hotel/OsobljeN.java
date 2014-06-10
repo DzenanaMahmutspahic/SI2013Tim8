@@ -164,7 +164,34 @@ public class OsobljeN extends javax.swing.JFrame {
     	    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
     	            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
     	    			}
+    	            	
+    	            	
     	            }
+    	            
+    	            else
+    	            {
+    	            	try
+    	    			{
+    	    				List<Zaposlenik> zaposlenici = DBManager.dajZaposlenike(textField.getText());
+    	    				DefaultListModel m = (DefaultListModel)list.getModel();
+    	    				m.removeAllElements();
+    	    				for(Zaposlenik zaposlenik : zaposlenici)
+    	    				{
+    	    					m.addElement(zaposlenik);
+    	    				}
+    	    				
+    	    				
+    	    			}
+    	    			catch(Exception ex)
+    	    			{
+    	    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+    	            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    			}
+    	            }
+    	            
+    	            
+    	            
+    	            
     	        }
     	    });
     	JPanel panel_1 = new JPanel();
@@ -871,6 +898,16 @@ list_1.addListSelectionListener(new ListSelectionListener() {
             			textField_5.setText("");
             			textField_1.setText("");
             			textField_2.setText("");
+            			if(tabbedPane.getSelectedIndex() == 0)
+            			{
+            				DefaultListModel m = (DefaultListModel)list.getModel();
+            				m.removeElementAt(list.getSelectedIndex());
+            			}
+            			else
+            			{
+            				DefaultListModel m = (DefaultListModel)list_1.getModel();
+            				m.removeElementAt(list_1.getSelectedIndex());
+            			}
         				JOptionPane.showMessageDialog(null, "Zaposlenik obrisan!", "Info", JOptionPane.INFORMATION_MESSAGE);
         			}
     					
@@ -1053,6 +1090,27 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				}
     	    				
     	    				list_1.setModel(model);
+    	    				
+    	    			}
+    	            	
+    	    			catch(Exception ex)
+    	    			{
+    	    				System.out.println("Greska pri radu sa bazom: "+ex.getMessage());
+    	            		JOptionPane.showMessageDialog(null, "Greška pri radu s bazom!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    			}
+    	            }
+    	            else
+    	            {
+    	            	try
+    	    			{
+    	    				List<Zaposlenik> zaposlenici = DBManager.dajZaposlenike(textField.getText());
+    	    				DefaultListModel m = (DefaultListModel)list.getModel();
+    	    				m.removeAllElements();
+    	    				for(Zaposlenik zaposlenik : zaposlenici)
+    	    				{
+    	    					m.addElement(zaposlenik);
+    	    				}
+    	    				
     	    				
     	    			}
     	    			catch(Exception ex)
