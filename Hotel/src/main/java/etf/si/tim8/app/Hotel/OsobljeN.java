@@ -75,6 +75,7 @@ public class OsobljeN extends javax.swing.JFrame {
 	private JTextField textField_13;
 
 	private Zaposlenik z;
+	private String trenutniUsername;
     /**
      * Creates new form HomePage
      */
@@ -643,6 +644,7 @@ public class OsobljeN extends javax.swing.JFrame {
                 		Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
                 		if(zaposlenik != null)
                 		{
+                			trenutniUsername = zaposlenik.getUsername();
                 			if(zaposlenik.getOsoba() != null)
                 			{
                 				textField_1.setText(zaposlenik.getOsoba().getIme());
@@ -760,6 +762,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 		Zaposlenik zaposlenik = (Zaposlenik)list_1.getSelectedValue();
                 		if(zaposlenik != null)
                 		{
+                			trenutniUsername = zaposlenik.getUsername();
                 			if(zaposlenik.getOsoba() != null)
                 			{
                 				textField_1.setText(zaposlenik.getOsoba().getIme());
@@ -936,6 +939,11 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     					JOptionPane.showMessageDialog(null, "Greska! Niste odabrali zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
     					return;
     				}
+    				if(datePicker.getModel().getValue() == null)
+    				{
+    					JOptionPane.showMessageDialog(null, "Morate ponovo odabrati datum rodjenja!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
     				if(textField_1.getText() == "" || textField_2.getText() == "" ||
     	    				   textField_4.getText() == "" || textField_5.getText() == "" ||
     	    				   textField_6.getText() == "" || textField_7.getText() == "" ||
@@ -951,49 +959,145 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				{
     	    					zaposlenik.setOsoba(new Osoba());
     	    				}
+    	    				
     	    				zaposlenik.getOsoba().setImePrezime(textField_1.getText() + " " + textField_2.getText());
+    	    				
+    	    				if(textField_1.getText().length()<3){
+    	    					JOptionPane.showMessageDialog(null, "Ime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
+    	    				if(textField_2.getText().length()<3){
+    	    					JOptionPane.showMessageDialog(null, "Prezime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
     	    				zaposlenik.setJMB(textField_4.getText());
+    	    				
+    	    				/*if(textField_4.getText().length()!=13)
+    	    				{
+    	    					JOptionPane.showMessageDialog(null, "Niste unijeli validan JMBG!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}*/
+    	    				 try{
+    	    					 String jmbg = String.valueOf(textField_4.getText()).trim();
+    	    			           // String jmbg = String.valueOf(tekst).trim();
+    	    			            long br = Long.parseLong(jmbg);
+    	    			            if (jmbg.trim().length()!=13){
+    	    			                //throw new Exception("JMBG mora sadrzavati 13 cifara!");
+    	    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati 13 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			           // throw new NumberFormatException("JMBG mora sadrzavati samo cifre!");
+    	    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				 
     	    				zaposlenik.getOsoba().setAdresa(textField_5.getText());
     	    				zaposlenik.getOsoba().setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
+    	    				//Date d = new Date(System.currentTimeMillis());
+    	    				java.util.Date date = new java.util.Date();
+    	    				java.util.Date datumRodjenja = new java.util.Date();
+    	    				datumRodjenja=(java.util.Date) datePicker.getModel().getValue();
+    	    				if(datumRodjenja.after(date)){
+    	    					JOptionPane.showMessageDialog(null, "Datum rodjenja mora biti manji od trenutnog datuma!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    					
     	    				zaposlenik.setDrzavljanstvo(textField_6.getText());
     	    				zaposlenik.setTitula(textField_7.getText());
     	    				zaposlenik.setObrazovanje(textField_8.getText());
-    	    				zaposlenik.setEmail(textField_9.getText());
+    	    				
+    	    				
+    	    					String email = String.valueOf(textField_9.getText()).trim();
+    	    					boolean validmail = true;
+    	    					if(!email.contains(".") && !email.contains("@")) validmail=false;
+    	    					if(email.indexOf("@") > email.indexOf(".") || email.indexOf("@") ==0) validmail=false;
+    	    					if(validmail) zaposlenik.setDrzavljanstvo(email);
+    	    					else{ 
+    	    						JOptionPane.showMessageDialog(null, "Nevalidan mail!", "Info", JOptionPane.ERROR_MESSAGE); 
+    	    						return;
+    	    					}
+    	    					
+    	    				
+    	    				
+
+    	    				//zaposlenik.setEmail(textField_9.getText());
     	    				zaposlenik.setTelefon(textField_10.getText());
+    	    				
+    	    				 try{
+    	    					 String mob = String.valueOf(textField_10.getText()).trim();
+    	    			    
+    	    			            long br = Long.parseLong(mob);
+    	    			            if (mob.trim().length()!=9){
+    	    			            JOptionPane.showMessageDialog(null, "Broj telefona mora sadrzavati 9 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				
     	    				zaposlenik.setMobitel(textField_11.getText());
+    	    				
+    	    				 try{
+    	    					 String mob = String.valueOf(textField_11.getText()).trim();
+    	    			    
+    	    			            long br = Long.parseLong(mob);
+    	    			            if (mob.trim().length()!=9 && mob.trim().length()!=10 ){
+    	    			            JOptionPane.showMessageDialog(null, "Broj mobitela mora sadrzavati 9 ili 10(hallo) cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				
     	    				zaposlenik.setUsername(textField_12.getText());
+    	    				if(!zaposlenik.getUsername().equals(trenutniUsername) && DBManager.daLiPostojiUserName(zaposlenik.getUsername()))
+    	    				{
+    	    					JOptionPane.showMessageDialog(null, "Username vec postoji!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
     	    				zaposlenik.setPassword(textField_13.getText());
     	    				zaposlenik.setIsAdministrator(false);
+    	    				
+    	    				boolean oznacenRB = false;
     	    				if(rb_recepcioner.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Recepcioner");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_cistacica.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Cistacica");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_ekonomista.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Ekonomista");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_kuhar.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Kuhar");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_manager.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Manager");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_administrator.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Administrator");
     	    					zaposlenik.setIsAdministrator(true);
+    	    					oznacenRB=true;
     	    				}
-    	    				else
+    	    				/*else
     	    				{
     	    					zaposlenik.setUloga("");
-    	    				}
-    	    				//
+    	    				}*/
+    	    				
     	    				DBManager.urediZaposlenika(zaposlenik);
     	    				
     	    				JOptionPane.showMessageDialog(null, "Izmjene spasene!", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -1530,6 +1634,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 		Zaposlenik zaposlenik = (Zaposlenik)list.getSelectedValue();
                 		if(zaposlenik != null)
                 		{
+                			trenutniUsername = zaposlenik.getUsername();
                 			if(zaposlenik.getOsoba() != null)
                 			{
                 				textField_1.setText(zaposlenik.getOsoba().getIme());
@@ -1647,6 +1752,7 @@ list_1.addListSelectionListener(new ListSelectionListener() {
                 		Zaposlenik zaposlenik = (Zaposlenik)list_1.getSelectedValue();
                 		if(zaposlenik != null)
                 		{
+                			trenutniUsername = zaposlenik.getUsername();
                 			if(zaposlenik.getOsoba() != null)
                 			{
                 				textField_1.setText(zaposlenik.getOsoba().getIme());
@@ -1823,6 +1929,11 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     					JOptionPane.showMessageDialog(null, "Greska! Niste odabrali zaposlenika!", "Info", JOptionPane.ERROR_MESSAGE);
     					return;
     				}
+    				if(datePicker.getModel().getValue() == null)
+    				{
+    					JOptionPane.showMessageDialog(null, "Morate ponovo odabrati datum rodjenja!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
     				if(textField_1.getText() == "" || textField_2.getText() == "" ||
     	    				   textField_4.getText() == "" || textField_5.getText() == "" ||
     	    				   textField_6.getText() == "" || textField_7.getText() == "" ||
@@ -1838,49 +1949,145 @@ list_1.addListSelectionListener(new ListSelectionListener() {
     	    				{
     	    					zaposlenik.setOsoba(new Osoba());
     	    				}
-    	    				zaposlenik.getOsoba().setImePrezime(textField_1.getText() + " " + textField_2.getText());
+    	    				
+zaposlenik.getOsoba().setImePrezime(textField_1.getText() + " " + textField_2.getText());
+    	    				
+    	    				if(textField_1.getText().length()<3){
+    	    					JOptionPane.showMessageDialog(null, "Ime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
+    	    				if(textField_2.getText().length()<3){
+    	    					JOptionPane.showMessageDialog(null, "Prezime ne može biti kraće od 3 slova!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
     	    				zaposlenik.setJMB(textField_4.getText());
+    	    				
+    	    				/*if(textField_4.getText().length()!=13)
+    	    				{
+    	    					JOptionPane.showMessageDialog(null, "Niste unijeli validan JMBG!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}*/
+    	    				 try{
+    	    					 String jmbg = String.valueOf(textField_4.getText()).trim();
+    	    			           // String jmbg = String.valueOf(tekst).trim();
+    	    			            long br = Long.parseLong(jmbg);
+    	    			            if (jmbg.trim().length()!=13){
+    	    			                //throw new Exception("JMBG mora sadrzavati 13 cifara!");
+    	    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati 13 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			           // throw new NumberFormatException("JMBG mora sadrzavati samo cifre!");
+    	    			            JOptionPane.showMessageDialog(null, "JMBG mora sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				 
     	    				zaposlenik.getOsoba().setAdresa(textField_5.getText());
     	    				zaposlenik.getOsoba().setDatumRodjenja((java.util.Date) datePicker.getModel().getValue());
+    	    				//Date d = new Date(System.currentTimeMillis());
+    	    				java.util.Date date = new java.util.Date();
+    	    				java.util.Date datumRodjenja = new java.util.Date();
+    	    				datumRodjenja=(java.util.Date) datePicker.getModel().getValue();
+    	    				if(datumRodjenja.after(date)){
+    	    					JOptionPane.showMessageDialog(null, "Datum rodjenja mora biti manji od trenutnog datuma!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    					
     	    				zaposlenik.setDrzavljanstvo(textField_6.getText());
     	    				zaposlenik.setTitula(textField_7.getText());
     	    				zaposlenik.setObrazovanje(textField_8.getText());
-    	    				zaposlenik.setEmail(textField_9.getText());
+    	    				
+    	    				
+    	    					String email = String.valueOf(textField_9.getText()).trim();
+    	    					boolean validmail = true;
+    	    					if(!email.contains(".") && !email.contains("@")) validmail=false;
+    	    					if(email.indexOf("@") > email.indexOf(".") || email.indexOf("@") ==0) validmail=false;
+    	    					if(validmail) zaposlenik.setDrzavljanstvo(email);
+    	    					else{ 
+    	    						JOptionPane.showMessageDialog(null, "Nevalidan mail!", "Info", JOptionPane.ERROR_MESSAGE); 
+    	    						return;
+    	    					}
+    	    					
+    	    				
+    	    				
+
+    	    				//zaposlenik.setEmail(textField_9.getText());
     	    				zaposlenik.setTelefon(textField_10.getText());
+    	    				
+    	    				 try{
+    	    					 String mob = String.valueOf(textField_10.getText()).trim();
+    	    			    
+    	    			            long br = Long.parseLong(mob);
+    	    			            if (mob.trim().length()!=9){
+    	    			            JOptionPane.showMessageDialog(null, "Broj telefona mora sadrzavati 9 cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				
     	    				zaposlenik.setMobitel(textField_11.getText());
+    	    				
+    	    				 try{
+    	    					 String mob = String.valueOf(textField_11.getText()).trim();
+    	    			    
+    	    			            long br = Long.parseLong(mob);
+    	    			            if (mob.trim().length()!=9 && mob.trim().length()!=10 ){
+    	    			            JOptionPane.showMessageDialog(null, "Broj mobitela mora sadrzavati 9 ili 10(hallo) cifara!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;}
+    	    			        }catch(NumberFormatException e1){
+    	    			            JOptionPane.showMessageDialog(null, "Broj može sadržavati samo cifre!", "Info", JOptionPane.ERROR_MESSAGE);
+    	        					return;
+    	    			        }
+    	    				
     	    				zaposlenik.setUsername(textField_12.getText());
+    	    				if(!zaposlenik.getUsername().equals(trenutniUsername) && DBManager.daLiPostojiUserName(zaposlenik.getUsername()))
+    	    				{
+    	    					JOptionPane.showMessageDialog(null, "Username vec postoji!", "Info", JOptionPane.ERROR_MESSAGE);
+    	    					return;
+    	    				}
+    	    				
     	    				zaposlenik.setPassword(textField_13.getText());
     	    				zaposlenik.setIsAdministrator(false);
+    	    				
+    	    				boolean oznacenRB = false;
     	    				if(rb_recepcioner.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Recepcioner");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_cistacica.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Cistacica");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_ekonomista.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Ekonomista");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_kuhar.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Kuhar");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_manager.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Manager");
+    	    					oznacenRB=true;
     	    				}
     	    				else if(rb_administrator.isSelected())
     	    				{
     	    					zaposlenik.setUloga("Administrator");
     	    					zaposlenik.setIsAdministrator(true);
+    	    					oznacenRB=true;
     	    				}
-    	    				else
+    	    				/*else
     	    				{
     	    					zaposlenik.setUloga("");
-    	    				}
-    	    				//
+    	    				}*/
+    	    				
     	    				DBManager.urediZaposlenika(zaposlenik);
     	    				
     	    				JOptionPane.showMessageDialog(null, "Izmjene spasene!", "Info", JOptionPane.INFORMATION_MESSAGE);
