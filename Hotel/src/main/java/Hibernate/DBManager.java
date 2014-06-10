@@ -742,5 +742,16 @@ public static void spasiBoravak(Boravak boravak){
 			return trBroj;
 			
 		}
+		
+		public static boolean daLiPostojiUserName(String username)
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from " + Zaposlenik.class.getName() + " zaposlenik"
+					+ " where zaposlenik.username = :username");
+			q.setParameter("username", username);
+			Zaposlenik z = (Zaposlenik)q.uniqueResult();
+			
+			return z != null;
+		}
 	
 }

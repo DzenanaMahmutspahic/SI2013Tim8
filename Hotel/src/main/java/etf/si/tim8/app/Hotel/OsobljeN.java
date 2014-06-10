@@ -522,6 +522,12 @@ public class OsobljeN extends javax.swing.JFrame {
     			        }
     				
     				zaposlenik.setUsername(textField_12.getText());
+    				if(DBManager.daLiPostojiUserName(zaposlenik.getUsername()))
+    				{
+    					JOptionPane.showMessageDialog(null, "Username vec postoji!", "Info", JOptionPane.ERROR_MESSAGE);
+    					return;
+    				}
+    				
     				zaposlenik.setPassword(textField_13.getText());
     				zaposlenik.setIsAdministrator(false);
     				
