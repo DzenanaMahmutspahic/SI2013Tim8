@@ -567,6 +567,21 @@ public class OsobljeN extends javax.swing.JFrame {
     				if(oznacenRB==true){
     					zaposlenik.setOsoba(osoba);
 	    				DBManager.spremiZaposlenika(zaposlenik);
+	    				
+	    				textField_1.setText("");
+	    				textField_2.setText("");
+	    				textField_4.setText("");
+	    				textField_5.setText("");
+	    				textField_6.setText("");
+	    				textField_7.setText("");
+	    				textField_8.setText("");
+	    				textField_9.setText("");
+	    				textField_10.setText("");
+	    				textField_11.setText("");
+	    				textField_12.setText("");
+	    				textField_13.setText("");
+	    				datePicker.getModel().setValue(null);
+	    				
 	    				JOptionPane.showMessageDialog(null, "Novi zaposlenik evidentiran", "Info", JOptionPane.INFORMATION_MESSAGE);
     				}
     				else if(oznacenRB==false) {
