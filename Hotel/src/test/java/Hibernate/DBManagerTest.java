@@ -132,6 +132,38 @@ public class DBManagerTest extends TestCase {
 			
 			assertFalse(boravci.contains(boravak));		
 		}
+		
+		public void testSpasiBoravak(){
+			Boravak boravak = new Boravak();
+			Gost gost = new Gost();
+			Rezervacija rezervacija = new Rezervacija();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("TestSpasi Test");
+			gost.setOsoba(osoba);
+			rezervacija.setPotvrdjena(true);
+			boravak.setRezervacija(rezervacija);
+			boravak.setGost(gost);
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(osoba);		
+			session.save(gost);
+			session.save(rezervacija);
+			//session.save(boravak);
+			t.commit();
+			DBManager.spasiBoravak(boravak);
+			
+			List<Boravak> boravci = DBManager.dajBoravke();
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(boravak);
+			session.delete(rezervacija);
+			session.delete(gost);
+			session.delete(osoba);		
+			t1.commit();
+			
+			assertTrue(boravci.contains(boravak));	
+		}
 
 	public void testDajBoravke2() {
 		Boravak boravak = new Boravak();
