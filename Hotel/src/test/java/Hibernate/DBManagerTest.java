@@ -248,6 +248,50 @@ public class DBManagerTest extends TestCase {
 			
 			assertTrue(ispit);
 		}
+		
+		public void testUrediZaposlenika(){
+			Zaposlenik zaposlenik = new Zaposlenik();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("TestZaposl TestDaj");
+			osoba.setAdresa("adr");
+			osoba.setDatumRodjenja(new Date());
+			
+			zaposlenik.setOsoba(osoba);
+			zaposlenik.setDrzavljanstvo("BiH");
+			zaposlenik.setEmail("zap@etf.ba");
+			zaposlenik.setIsAdministrator(true);
+			zaposlenik.setObrazovanje("SSS");
+			zaposlenik.setUsername("zaposl");
+			zaposlenik.setMobitel("987456123");
+			zaposlenik.setPassword("passwd");
+			zaposlenik.setJMB("1234567890789");
+			zaposlenik.setUloga("Cistacica");
+			zaposlenik.setTitula("titula");
+			zaposlenik.setTelefon("123456789");
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(osoba);		
+			session.save(zaposlenik);
+			t.commit();
+			
+			zaposlenik.setTitula("NovaTitula");
+			DBManager.urediZaposlenika(zaposlenik);
+			
+			
+			Zaposlenik z1=DBManager.dajZaposlenika(osoba);
+			boolean ispit = false;
+			
+			if(z1.getTitula().equals("NovaTitula"))
+				ispit=true;
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(zaposlenik);
+			session.delete(osoba);		
+			t1.commit();
+			
+			assertTrue(ispit);
+		}
 
 	public void testDajBoravke2() {
 		Boravak boravak = new Boravak();
