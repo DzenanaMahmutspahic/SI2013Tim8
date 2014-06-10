@@ -164,6 +164,90 @@ public class DBManagerTest extends TestCase {
 			
 			assertTrue(boravci.contains(boravak));	
 		}
+		
+		public void testDajSveZaposlenike(){
+			Zaposlenik zaposlenik = new Zaposlenik();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("TestZaposl Test");
+			osoba.setAdresa("adr");
+			osoba.setDatumRodjenja(new Date());
+			
+			zaposlenik.setOsoba(osoba);
+			zaposlenik.setDrzavljanstvo("BiH");
+			zaposlenik.setEmail("zap@etf.ba");
+			zaposlenik.setIsAdministrator(true);
+			zaposlenik.setObrazovanje("SSS");
+			zaposlenik.setUsername("zaposl");
+			zaposlenik.setMobitel("987456123");
+			zaposlenik.setPassword("passwd");
+			zaposlenik.setJMB("1234567890789");
+			zaposlenik.setUloga("Cistacica");
+			zaposlenik.setTitula("titula");
+			zaposlenik.setTelefon("123456789");
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(osoba);		
+			session.save(zaposlenik);
+			t.commit();
+			
+			List<Zaposlenik> zaposlenici = DBManager.dajSveZaposlenike();
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(zaposlenik);
+			session.delete(osoba);		
+			t1.commit();
+			boolean ispit = false;
+			for(Zaposlenik z : zaposlenici){
+				if(z.getOsoba().getImePrezime().equals(zaposlenik.getOsoba().getImePrezime()) && z.getIsAdministrator() == zaposlenik.getIsAdministrator() &&  z.getObrazovanje().equals(zaposlenik.getObrazovanje())){
+					ispit = true;
+					break;
+				}
+			}
+			
+			assertTrue(ispit);
+			
+		}
+		
+		public void testDajZaposlenika(){
+			Zaposlenik zaposlenik = new Zaposlenik();
+			Osoba osoba = new Osoba();
+			osoba.setImePrezime("TestZaposl TestDaj");
+			osoba.setAdresa("adr");
+			osoba.setDatumRodjenja(new Date());
+			
+			zaposlenik.setOsoba(osoba);
+			zaposlenik.setDrzavljanstvo("BiH");
+			zaposlenik.setEmail("zap@etf.ba");
+			zaposlenik.setIsAdministrator(true);
+			zaposlenik.setObrazovanje("SSS");
+			zaposlenik.setUsername("zaposl");
+			zaposlenik.setMobitel("987456123");
+			zaposlenik.setPassword("passwd");
+			zaposlenik.setJMB("1234567890789");
+			zaposlenik.setUloga("Cistacica");
+			zaposlenik.setTitula("titula");
+			zaposlenik.setTelefon("123456789");
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			session.save(osoba);		
+			session.save(zaposlenik);
+			t.commit();
+			
+			Zaposlenik z1 = DBManager.dajZaposlenika(osoba);
+			
+			Transaction t1 = session.beginTransaction();
+			session.delete(zaposlenik);
+			session.delete(osoba);		
+			t1.commit();
+			boolean ispit = false;
+			
+			if(zaposlenik.getOsoba().getImePrezime().equals(z1.getOsoba().getImePrezime()) && zaposlenik.getIsAdministrator() == z1.getIsAdministrator() && zaposlenik.getJMB().equals(z1.getJMB()) && zaposlenik.getObrazovanje().equals(z1.getObrazovanje()))
+				ispit=true;
+			
+			assertTrue(ispit);
+		}
 
 	public void testDajBoravke2() {
 		Boravak boravak = new Boravak();
