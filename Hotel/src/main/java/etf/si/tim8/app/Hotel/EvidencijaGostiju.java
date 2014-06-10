@@ -1584,7 +1584,8 @@ catch(Exception ec){
 		textField_9.setText("");
 
 	}
-
+    
+	
 	public String validiraj() {
 		String poruka = "";
 
